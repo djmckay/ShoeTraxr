@@ -11,7 +11,6 @@ import CoreData
 
 extension Shoe {
     
-    
     var workoutData:[Workout] {
         get {
             var workoutData = [Workout]()

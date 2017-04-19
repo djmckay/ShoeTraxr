@@ -91,5 +91,32 @@ public class AddShoeTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func validateRequiredData(_ sender: Any) {
+        if self.brand.characters.count == 0 {
+            let alert = UIAlertController(title: "Required Data", message: "Brand is required.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.popoverPresentationController?.sourceView = self.view
+            
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if self.model.characters.count == 0 {
+            let alert = UIAlertController(title: "Required Data", message: "Model/Product is required.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.popoverPresentationController?.sourceView = self.view
+            
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if self.distance == 0 {
+            let alert = UIAlertController(title: "Required Data", message: "Distance limit is required.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.popoverPresentationController?.sourceView = self.view
+            
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            self.performSegue(withIdentifier: "addShoeSave", sender: tableView)
+
+        }
+    }
     
 }
