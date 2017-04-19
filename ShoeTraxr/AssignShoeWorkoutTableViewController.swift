@@ -18,7 +18,6 @@ public class AssignShoeWorkoutTableViewController: ShoeTableViewController {
         }
         selectedShoe  = shoes[indexPath.row]
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        print(selectedShoe.brand!)
         self.performSegue(withIdentifier: "selectShoeOK", sender: tableView)
     }
     

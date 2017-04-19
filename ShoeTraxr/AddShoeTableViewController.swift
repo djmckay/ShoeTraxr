@@ -45,6 +45,11 @@ public class AddShoeTableViewController: UITableViewController {
             self.numberOfWorkouts.integerValue = editShoe.workoutData.count
             self.shoeDistanceLogged.value = editShoe.distanceLoggedFormatted
         }
+        else {
+            //adding new shoe don't need to show a few fields.
+            self.numberOfWorkouts.contentView.isHidden = true
+            self.shoeDistanceLogged.contentView.isHidden = true
+        }
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

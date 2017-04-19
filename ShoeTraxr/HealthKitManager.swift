@@ -23,9 +23,9 @@ class HealthKitManager {
         // 1. Set the types you want to read from HK Store
         let healthKitTypesToRead = Set(arrayLiteral:
             HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!,
+            //HKObjectType.activitySummaryType(),
             HKObjectType.workoutType()
             )
-        
         // 2. Set the types you want to write to HK Store
         let healthKitTypesToWrite = Set<HKSampleType>()
         
@@ -97,5 +97,35 @@ class HealthKitManager {
         
     }
 
-    
+    func readSummary(completion: (([HKActivitySummary]?, NSError?) -> Void)!) {
+        
+        let calendar = Calendar.autoupdatingCurrent
+        
+        var dateComponents = calendar.dateComponents(
+            [ .year, .month, .day ],
+            from: Date()
+        )
+        
+        // This line is required to make the whole thing work
+        dateComponents.calendar = calendar
+        
+        // 1. Predicate to read todays summary
+        let predicate =  HKQuery.predicateForActivitySummary(with: dateComponents)
+        
+        // 3. Create the query
+        //let query = HKActivitySummaryQuery(predicate: predicate) { (query, summaries, error) in
+        let query = HKActivitySummaryQuery(predicate: nil) { (query, summaries, error) in
+            guard let summaries = summaries, summaries.count > 0
+                else {
+                    // No data returned. Perhaps check for error
+                    completion(nil, error as! NSError)
+                    return
+            }
+            // Handle the activity rings data here
+            completion(summaries, nil)
+            
+        }
+        healthKitStore.execute(query)
+
+    }
 }

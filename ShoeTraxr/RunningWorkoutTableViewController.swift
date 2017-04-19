@@ -136,8 +136,6 @@ public class RunningWorkoutTableViewController: UITableViewController {
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedWorkout  = workouts[indexPath.row]
-        print(selectedWorkout.uuid)
-        print(selectedWorkout.description)
         self.performSegue(withIdentifier: "assignShoe", sender: tableView)
 
     }
@@ -203,10 +201,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
         
         if( segue.identifier == "selectShoeOK" )
         {
-            print("save")
             
             if let assignShoe:AssignShoeWorkoutTableViewController = segue.source as? AssignShoeWorkoutTableViewController {
-                print(assignShoe.selectedShoe.brand!)
                 let workout = Workout()
                 
 

@@ -54,7 +54,6 @@ public class ShoeTableViewController: UITableViewController {
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let shoe  = shoes[indexPath.row]
-        print(shoe.brand)
         editShoe = shoe
         self.performSegue(withIdentifier: "editShoeDetails", sender: tableView)
     }
@@ -79,7 +78,6 @@ public class ShoeTableViewController: UITableViewController {
         if shoe.distanceUnit == "Kilometers" {
             
             var distanceInKM = shoe.distanceLogged
-            print(shoe.distanceLoggedFormatted)
             detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
             detailText += " Max Distance: "
 
@@ -88,7 +86,6 @@ public class ShoeTableViewController: UITableViewController {
         }
         else {
             var distanceInMiles = shoe.distanceLogged
-            print(shoe.distanceLoggedFormatted)
             detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
             detailText += " Max Distance: "
 
@@ -117,7 +114,6 @@ public class ShoeTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        print("called to delete")
         deleteShoe(shoes[indexPath.row])
         
         
@@ -139,7 +135,6 @@ public class ShoeTableViewController: UITableViewController {
         
         if( segue.identifier == "addShoeSave" )
         {
-            print("save")
 
             if let addShoe:AddShoeTableViewController = segue.source as? AddShoeTableViewController {
                 if editShoe == nil {
