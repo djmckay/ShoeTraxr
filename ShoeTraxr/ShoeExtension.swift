@@ -47,7 +47,6 @@ extension Shoe {
                 let distanceInMiles = self.distanceLogged
                 detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
             }
-            print(detailText)
             return detailText
         }
     }

@@ -26,6 +26,7 @@
 		2276B51F1EA6BBD000F84083 /* ShoeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B51E1EA6BBD000F84083 /* ShoeExtension.swift */; };
 		2276B5211EA6BBFF00F84083 /* WorkoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B5201EA6BBFF00F84083 /* WorkoutExtension.swift */; };
 		2276B5271EA6FF8B00F84083 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */; };
+		22E1FC451EA7EF770092A3F4 /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1FC441EA7EF770092A3F4 /* PickerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		2276B51E1EA6BBD000F84083 /* ShoeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeExtension.swift; sourceTree = "<group>"; };
 		2276B5201EA6BBFF00F84083 /* WorkoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExtension.swift; sourceTree = "<group>"; };
 		2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		22E1FC441EA7EF770092A3F4 /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				2276B5101EA63E4200F84083 /* NumberCell.swift */,
 				2276B5121EA6479900F84083 /* TextCell.swift */,
 				2276B50E1EA63C5300F84083 /* DatePickerCell.swift */,
+				22E1FC441EA7EF770092A3F4 /* PickerCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				2276B5051EA5AF5500F84083 /* ShoeTableViewController.swift in Sources */,
 				2276B5151EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift in Sources */,
 				220769631EA552C300B98B6B /* RunningWorkoutTableViewController.swift in Sources */,
+				22E1FC451EA7EF770092A3F4 /* PickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
