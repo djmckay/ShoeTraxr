@@ -20,7 +20,8 @@ public class AddShoeTableViewController: UITableViewController {
     @IBOutlet weak var shoeDistanceUnit: UISegmentedControl!
     
     @IBOutlet weak var numberOfWorkouts: NumberCell!
-    
+    @IBOutlet weak var shoeDistanceLogged: TextCell!
+
     var editShoe: Shoe!
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -31,6 +32,7 @@ public class AddShoeTableViewController: UITableViewController {
         shoeMileageCell.doubleValue = 500.0
         
         if let editShoe = editShoe {
+            self.title = "Shoe Details"
             self.shoeBrandCell.textField.text = editShoe.brand
             if editShoe.distanceUnit == "Kilometers" {
                 self.shoeDistanceUnit.isEnabledForSegment(at: DistanceUnit.Kilometers.rawValue)
@@ -41,6 +43,7 @@ public class AddShoeTableViewController: UITableViewController {
             self.shoeMileageCell.doubleValue = editShoe.distance
             self.shoeDateCell.date = editShoe.dateAdded! as Date
             self.numberOfWorkouts.integerValue = editShoe.workoutData.count
+            self.shoeDistanceLogged.value = editShoe.distanceLoggedFormatted
         }
     }
     

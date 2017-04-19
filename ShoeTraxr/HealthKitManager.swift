@@ -14,6 +14,9 @@ class HealthKitManager {
     let healthKitStore:HKHealthStore = HKHealthStore()
     var workouts = [HKWorkout]()
 
+    let running = HKWorkoutActivityType.running
+    let walking = HKWorkoutActivityType.walking
+    
     
     func authorizeHealthKit(completion: ((_ success:Bool, _ error:NSError?) -> Void)!)
     {
@@ -51,6 +54,32 @@ class HealthKitManager {
         
         // 1. Predicate to read only running workouts
         let predicate =  HKQuery.predicateForWorkouts(with: HKWorkoutActivityType.running)
+        // 2. Order the workouts by date
+        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
+        // 3. Create the query
+        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor])
+        { (sampleQuery, results, error ) -> Void in
+            
+            if let queryError = error {
+                print( "There was an error while reading the samples: \(queryError.localizedDescription)")
+            }
+            self.workouts = results as! [HKWorkout]
+            completion(results,error as? NSError)
+        }
+        // 4. Execute the query
+        healthKitStore.execute(sampleQuery)
+        
+    }
+
+    func readWalkingWorkouts(completion: (([AnyObject]?, NSError?) -> Void)!) {
+         readWorkouts(type: HKWorkoutActivityType.walking, completion: completion)
+        
+    }
+
+    private func readWorkouts(type: HKWorkoutActivityType, completion: (([AnyObject]?, NSError?) -> Void)!) {
+        
+        // 1. Predicate to read only running workouts
+        let predicate =  HKQuery.predicateForWorkouts(with: type)
         // 2. Order the workouts by date
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
         // 3. Create the query

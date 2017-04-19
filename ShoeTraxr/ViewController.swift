@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GADBannerViewDelegate {
 
 
     let healthManager:HealthKitManager = HealthKitManager()
+    @IBOutlet weak var bannerView: GADBannerView!
     
     
     func authorizeHealthKit()
@@ -33,6 +35,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        bannerView.adUnitID = "ca-app-pub-1011036572239562/3191605335"
+        bannerView.rootViewController = self
+        bannerView.delegate = self as GADBannerViewDelegate
+        
+        let request = GADRequest()
+        request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
+        
+        bannerView.load(request)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +59,13 @@ class ViewController: UIViewController {
                 authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
                 runningWorkoutController.healthManager = self.healthManager
+                runningWorkoutController.type = healthManager.running
+            }
+            if identifier == "ShowWalkingWorkouts" {
+                authorizeHealthKit()
+                let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
+                runningWorkoutController.healthManager = self.healthManager
+                runningWorkoutController.type = healthManager.walking
             }
             if identifier == "ShowShoes" {
                 authorizeHealthKit()

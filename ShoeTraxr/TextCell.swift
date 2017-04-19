@@ -17,5 +17,8 @@ class TextCell: UITableViewCell {
         get {
             return textField.text!
         }
+        set (newValue) {
+            textField.text = "\(newValue)"
+        }
     }
 }

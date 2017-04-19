@@ -11,6 +11,7 @@ import CoreData
 
 extension Shoe {
     
+    
     var workoutData:[Workout] {
         get {
             var workoutData = [Workout]()
@@ -35,6 +36,40 @@ extension Shoe {
         }
     }
     
+    var distanceLoggedFormatted:String {
+        get {
+            let distanceFormatter = LengthFormatter()
+            var detailText = String()
+            if self.distanceUnit == "Kilometers" {
+                let distanceInKM = self.distanceLogged
+                detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
+            }
+            else {
+                let distanceInMiles = self.distanceLogged
+                detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
+            }
+            print(detailText)
+            return detailText
+        }
+    }
+    
+    var distanceFormatted:String {
+        get {
+            let distanceFormatter = LengthFormatter()
+            var detailText = String()
+            if self.distanceUnit == "Kilometers" {
+                let distanceInKM = self.distance
+                detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
+            }
+            else {
+                let distanceInMiles = self.distance
+                detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
+            }
+            
+            return detailText
+        }
+    }
+    
     func delete(completion: ( (Bool, NSError?) -> Void)!) {
         ModelController.sharedInstance.deleteShoe(shoe: self) { (status, error) in
             completion(status, error)
@@ -52,5 +87,16 @@ extension Shoe {
             
             
         })
+    }
+    
+    func getTitle() -> String {
+        
+        var title = self.brand! + " " + self.model!
+        if (self.uuid?.characters.count)! > 0 {
+            title = self.uuid!
+            
+        }
+        
+        return title
     }
 }

@@ -16,6 +16,8 @@ public enum DistanceUnit:Int {
 public class RunningWorkoutTableViewController: UITableViewController {
     var modelController:ModelController?
 
+    var type: HKWorkoutActivityType!
+    
     let kAddWorkoutReturnOKSegue = "addWorkoutOKSegue"
     let kAddWorkoutSegue  = "addWorkoutSegue"
     
@@ -49,24 +51,45 @@ public class RunningWorkoutTableViewController: UITableViewController {
             modelController = ModelController.sharedInstance
         }
         
-        healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
-            if( error != nil )
-            {
-                print("Error reading workouts: \(error?.localizedDescription)")
-                return;
-            }
-            else
-            {
-                print("Workouts read successfully!")
-            }
-            
-            //Keep workouts and refresh tableview in main thread
-            self.workouts = results as! [HKWorkout]
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
+        if type == HKWorkoutActivityType.running {
+            healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
+                if( error != nil )
+                {
+                    print("Error reading workouts: \(error?.localizedDescription)")
+                    return;
+                }
+                else
+                {
+                    print("Workouts read successfully!")
+                }
+                
+                //Keep workouts and refresh tableview in main thread
+                self.workouts = results as! [HKWorkout]
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+                
             })
-            
-        })
+        } else if type == HKWorkoutActivityType.walking {
+            healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
+                if( error != nil )
+                {
+                    print("Error reading workouts: \(error?.localizedDescription)")
+                    return;
+                }
+                else
+                {
+                    print("Workouts read successfully!")
+                }
+                
+                //Keep workouts and refresh tableview in main thread
+                self.workouts = results as! [HKWorkout]
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+                
+            })
+        }
         
     }
     
@@ -86,24 +109,24 @@ public class RunningWorkoutTableViewController: UITableViewController {
     public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
-            if( error != nil )
-            {
-                print("Error reading workouts: \(error?.localizedDescription)")
-                return;
-            }
-            else
-            {
-                print("Workouts read successfully!")
-            }
-            
-            //Kkeep workouts and refresh tableview in main thread
-            self.workouts = results as! [HKWorkout]
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-            
-        })
+//        healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
+//            if( error != nil )
+//            {
+//                print("Error reading workouts: \(error?.localizedDescription)")
+//                return;
+//            }
+//            else
+//            {
+//                print("Workouts read successfully!")
+//            }
+//            
+//            //Kkeep workouts and refresh tableview in main thread
+//            self.workouts = results as! [HKWorkout]
+//            DispatchQueue.main.async(execute: {
+//                self.tableView.reloadData()
+//            })
+//            
+//        })
     }
     
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,12 +171,31 @@ public class RunningWorkoutTableViewController: UITableViewController {
         cell.detailTextLabel?.text = detailText;
         
         cell.accessoryType = .none
+        let shoeAvatar = cell.viewWithTag(1) as! UIImageView
+        shoeAvatar.isHidden = true
         for shoeLoggedWorkout in (modelController?.workouts)! {
             if shoeLoggedWorkout.uuid == workout.uuid.uuidString {
                cell.accessoryType = .checkmark
+                shoeAvatar.isHidden = false
+                shoeAvatar.backgroundColor = UIColor.green
             }
         }
         return cell
+    }
+    
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "assignShoe" {
+                let navigation = segue.destination as! UINavigationController
+                let assignShoe = navigation.viewControllers[0] as! AssignShoeWorkoutTableViewController
+                for shoeLoggedWorkout in (modelController?.workouts)! {
+                    if shoeLoggedWorkout.uuid == selectedWorkout.uuid.uuidString {
+                        assignShoe.selectedShoe = shoeLoggedWorkout.shoe
+                        assignShoe.workout = shoeLoggedWorkout
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Segues
@@ -182,7 +224,7 @@ public class RunningWorkoutTableViewController: UITableViewController {
                 modelController?.workouts.append(workout)
                 DispatchQueue.main.async(execute: {
                     if assignShoe.selectedShoe.distanceLogged >= assignShoe.selectedShoe.distance {
-                        let alert = UIAlertController(title: assignShoe.selectedShoe.brand, message: "Shoe has exceeded allowed limit.  Consider retiring.", preferredStyle: UIAlertControllerStyle.alert)
+                        let alert = UIAlertController(title: assignShoe.selectedShoe.getTitle(), message: "Shoe has exceeded allowed limit of \(assignShoe.selectedShoe.distanceFormatted).  Consider retiring.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.popoverPresentationController?.sourceView = self.view
                         
                         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))

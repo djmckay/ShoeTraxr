@@ -79,6 +79,7 @@ public class ShoeTableViewController: UITableViewController {
         if shoe.distanceUnit == "Kilometers" {
             
             var distanceInKM = shoe.distanceLogged
+            print(shoe.distanceLoggedFormatted)
             detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
             detailText += " Max Distance: "
 
@@ -87,6 +88,7 @@ public class ShoeTableViewController: UITableViewController {
         }
         else {
             var distanceInMiles = shoe.distanceLogged
+            print(shoe.distanceLoggedFormatted)
             detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
             detailText += " Max Distance: "
 
