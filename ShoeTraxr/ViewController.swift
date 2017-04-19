@@ -49,6 +49,11 @@ class ViewController: UIViewController {
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
                 runningWorkoutController.healthManager = self.healthManager
             }
+            if identifier == "ShowShoes" {
+                authorizeHealthKit()
+                let shoeController = segue.destination as! ShoeTableViewController
+                shoeController.healthManager = self.healthManager
+            }
         }
     }
 }

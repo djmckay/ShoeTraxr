@@ -12,8 +12,16 @@ import CoreData
 
 class ModelController: NSObject {
 
-    var dataObjects: [NSManagedObject] = []
-    var shoes = [ShoeModel]()
+    var shoes = [Shoe]()
+    var workouts = [Workout]()
+
+    var managedContext:NSManagedObjectContext!
+    
+    static let sharedInstance: ModelController = {
+        let instance = ModelController()
+        // setup code
+        return instance
+    }()
     
     override init() {
         super.init()
@@ -25,71 +33,57 @@ class ModelController: NSObject {
                 return
         }
         
-        let managedContext =
+        managedContext =
             appDelegate.persistentContainer.viewContext
         
         //2
         let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Shoe")
-//        let sectionSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-//        let sortDescriptors = [sectionSortDescriptor]
-//        fetchRequest.sortDescriptors = sortDescriptors
+            NSFetchRequest<Shoe>(entityName: "Shoe")
+        let sectionSortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         //3
         do {
-            dataObjects = try managedContext.fetch(fetchRequest)
+            shoes = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
-        for item in dataObjects {
-            let shoe = ShoeModel(object: item)
-            print(item.description)
-//            shoe.brand = item.value(forKeyPath: "brand") as? String
-//            shoe.model = item.value(forKeyPath: "model") as? String
-//            shoe.uuid = item.value(forKeyPath: "uuid") as? String
-            
-            shoes.append(shoe)
-        }
+        let workoutFetchRequest =
+            NSFetchRequest<Workout>(entityName: "Workout")
         
+        //3
+        do {
+            workouts = try managedContext.fetch(workoutFetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+          
         
     }
     
-    func deleteShoe(shoeModel: ShoeModel, completion: ( (Bool, NSError?) -> Void)!) {
-        shoeModel.delete()
-        shoes.remove(at: shoes.index(of: shoeModel)!)
-        dataObjects.remove(at: dataObjects.index(of: shoeModel.persistObject)!)
+    func deleteShoe(shoe: Shoe, completion: ( (Bool, NSError?) -> Void)!) {
+        managedContext.delete(shoe)
+        
+        shoes.remove(at: shoes.index(of: shoe)!)
         completion(true, nil)
     }
     
-    func addShoe(shoeModel: ShoeModel, completion: ( (Bool, NSError?) -> Void)!) {
+    func deleteWorkout(workout: Workout, completion: ( (Bool, NSError?) -> Void)!) {
+        managedContext.delete(workout)
         
-//        if let appDelegate =
-//            UIApplication.shared.delegate as? AppDelegate {
-//            // 1
-//            let managedContext =
-//                appDelegate.persistentContainer.viewContext
-//            
-//            let entity =
-//                NSEntityDescription.entity(forEntityName: "Shoe",
-//                                           in: managedContext)!
-//            
-//            let shoeItem = NSManagedObject(entity: entity,
-//                                                insertInto: managedContext)
-//            
-//            dataObjects.append(shoeItem)
-//            shoeItem.setValue(shoeModel.brand, forKeyPath: "brand")
-//            shoeItem.setValue(shoeModel.model, forKeyPath: "model")
-//            shoeItem.setValue(shoeModel.uuid, forKeyPath: "uuid")
-//            shoeItem.setValue(shoeModel.date, forKeyPath: "dateAdded")
-//            shoeItem.setValue(shoeModel.distance, forKeyPath: "maxMileage")
-
-            
-            shoes.append(shoeModel)
-            dataObjects.append(shoeModel.persistObject)
+        shoes.remove(at: workouts.index(of: workout)!)
+        completion(true, nil)
+    }
+    
+    func addShoe(shoe: Shoe, completion: ( (Bool, NSError?) -> Void)!) {
+            shoes.append(shoe)
             completion(true, nil)
-            
-        //}
-        
+    }
+    
+    func addWorkout(workout: Workout, completion: ( (Bool, NSError?) -> Void)!) {
+        workouts.append(workout)
+        completion(true, nil)
     }
     
 }

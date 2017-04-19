@@ -17,14 +17,36 @@ public class AddShoeTableViewController: UITableViewController {
     @IBOutlet weak var shoeNicknameCell: TextCell!
     
     @IBOutlet weak var shoeMileageCell: NumberCell!
+    @IBOutlet weak var shoeDistanceUnit: UISegmentedControl!
     
+    @IBOutlet weak var numberOfWorkouts: NumberCell!
     
+    var editShoe: Shoe!
+
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         shoeDateCell.inputMode = .date
         shoeDateCell.updateDateTimeLabel()
         shoeMileageCell.doubleValue = 500.0
+        
+        if let editShoe = editShoe {
+            self.shoeBrandCell.textField.text = editShoe.brand
+            if editShoe.distanceUnit == "Kilometers" {
+                self.shoeDistanceUnit.isEnabledForSegment(at: DistanceUnit.Kilometers.rawValue)
+            }
+            self.shoeDistanceUnit.isEnabled = false
+            self.shoeModelCell.textField.text = editShoe.model
+            self.shoeNicknameCell.textField.text = editShoe.uuid
+            self.shoeMileageCell.doubleValue = editShoe.distance
+            self.shoeDateCell.date = editShoe.dateAdded! as Date
+            self.numberOfWorkouts.integerValue = editShoe.workoutData.count
+        }
+    }
+    
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        
     }
 
     
@@ -58,4 +80,13 @@ public class AddShoeTableViewController: UITableViewController {
             return shoeDateCell.date
         }
     }
+    
+    var distanceUnit:DistanceUnit {
+        get {
+            let distanceUnitInput = DistanceUnit(rawValue: shoeDistanceUnit.selectedSegmentIndex)!
+            return distanceUnitInput
+        }
+    }
+    
+    
 }

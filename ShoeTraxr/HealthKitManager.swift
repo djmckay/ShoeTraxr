@@ -12,7 +12,8 @@ import HealthKit
 class HealthKitManager {
     
     let healthKitStore:HKHealthStore = HKHealthStore()
-    
+    var workouts = [HKWorkout]()
+
     
     func authorizeHealthKit(completion: ((_ success:Bool, _ error:NSError?) -> Void)!)
     {
@@ -59,6 +60,7 @@ class HealthKitManager {
             if let queryError = error {
                 print( "There was an error while reading the samples: \(queryError.localizedDescription)")
             }
+            self.workouts = results as! [HKWorkout]
             completion(results,error as? NSError)
         }
         // 4. Execute the query

@@ -8,14 +8,17 @@
 
 import Foundation
 import UIKit
+import HealthKit
 
 public class ShoeTableViewController: UITableViewController {
 
-    var shoes = [ShoeModel]()
+    var shoes = [Shoe]()
     var modelController:ModelController?
     
     var distanceUnit = DistanceUnit.Miles
 
+    var editShoe: Shoe!
+    
     // MARK: - Formatters
     lazy var dateFormatter:DateFormatter = {
         
@@ -25,7 +28,8 @@ public class ShoeTableViewController: UITableViewController {
         return formatter;
         
     }()
-    
+    var healthManager:HealthKitManager?
+
     let durationFormatter = DateComponentsFormatter()
     let energyFormatter = EnergyFormatter()
     let distanceFormatter = LengthFormatter()
@@ -36,7 +40,7 @@ public class ShoeTableViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = false
         
         if modelController == nil {
-            modelController = ModelController()
+            modelController = ModelController.sharedInstance
         }
         
         self.shoes = (modelController?.shoes)!
@@ -51,6 +55,8 @@ public class ShoeTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let shoe  = shoes[indexPath.row]
         print(shoe.brand)
+        editShoe = shoe
+        self.performSegue(withIdentifier: "editShoeDetails", sender: tableView)
     }
     
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,12 +65,42 @@ public class ShoeTableViewController: UITableViewController {
         
         // 1. Get workout for the row. Cell text: Workout Date
         let shoe  = shoes[indexPath.row]
-        cell.textLabel!.text = shoe.brand
+        cell.textLabel!.text = shoe.brand! + " " + shoe.model!
+        if (shoe.uuid?.characters.count)! > 0 {
+            cell.textLabel!.text = shoe.uuid
+
+        }
+        
+        var detailText = "Distance: "
+        
         // Max
-        var detailText = "Distance: " + "?" //durationFormatter.string(from: workout.duration)!
         // Distance in Km or miles depending on user selection
-        detailText += " Max Distance: \(shoe.distance)"
+        
+        if shoe.distanceUnit == "Kilometers" {
+            
+            var distanceInKM = shoe.distanceLogged
+            detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
+            detailText += " Max Distance: "
+
+            distanceInKM = shoe.distance
+            detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
+        }
+        else {
+            var distanceInMiles = shoe.distanceLogged
+            detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
+            detailText += " Max Distance: "
+
+            distanceInMiles = shoe.distance
+            detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
+            
+        }
         cell.detailTextLabel?.text = detailText;
+
+        cell.backgroundColor = UIColor.clear
+        if shoe.distanceLogged >= shoe.distance {
+            cell.backgroundColor = UIColor.red
+        }
+        
 
         return cell
     }
@@ -85,17 +121,15 @@ public class ShoeTableViewController: UITableViewController {
         
     }
 
-    func deleteShoe(_ shoe: ShoeModel) {
-        modelController?.deleteShoe(shoeModel: shoe, completion: { (status, error) in
+    func deleteShoe(_ shoe: Shoe) {
+        shoe.delete { (status, error) in
             self.shoes = (self.modelController?.shoes)!
             self.tableView.reloadData()
-
-        })
-
+        }
     }
     
     @IBAction func addShoe(_ sender: Any) {
-        
+        editShoe = nil
     }
     
     // MARK: - Segues
@@ -106,19 +140,22 @@ public class ShoeTableViewController: UITableViewController {
             print("save")
 
             if let addShoe:AddShoeTableViewController = segue.source as? AddShoeTableViewController {
-                let shoe = ShoeModel()
-                shoe.brand = addShoe.brand
-                shoe.model = addShoe.model
-                shoe.uuid = addShoe.nickname
-                shoe.distance = addShoe.distance
-                shoe.date = addShoe.date!
-                modelController?.addShoe(shoeModel: shoe, completion: { (status, error) in
-                    print(addShoe.brand)
-                    print(addShoe.model)
-                    print(self.dateFormatter.string(from: addShoe.date!))
-                    print(addShoe.nickname)
-                    print(addShoe.distance)
-                    self.shoes = (self.modelController?.shoes)!
+                if editShoe == nil {
+                    editShoe = Shoe()
+
+                }
+                editShoe.brand = addShoe.brand
+                editShoe.model = addShoe.model
+                editShoe.uuid = addShoe.nickname
+                editShoe.distance = addShoe.distance
+                editShoe.distanceUnit = "Miles"
+                if addShoe.distanceUnit == .Kilometers {
+                    editShoe.distanceUnit = "Kilometers"
+                }
+
+                editShoe.dateAdded = addShoe.date! as NSDate
+                self.shoes = (self.modelController?.shoes)!
+                DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
                 
@@ -126,6 +163,18 @@ public class ShoeTableViewController: UITableViewController {
             }
         }
         
+        
     }
 
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "editShoeDetails" {
+                let navigation = segue.destination as! UINavigationController
+                let editShoeDetails = navigation.viewControllers[0] as! AddShoeTableViewController
+                editShoeDetails.editShoe = self.editShoe
+
+            }
+        }
+    }
+    
 }

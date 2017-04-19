@@ -22,4 +22,15 @@ class NumberCell: UITableViewCell {
             numberTextField.text = "\(newValue)"
         }
     }
+    
+    var integerValue:Int {
+        
+        get {
+            let numberString:NSString = NSString(string:numberTextField.text!)
+            return numberString.integerValue;
+        }
+        set (newValue) {
+            numberTextField.text = "\(newValue)"
+        }
+    }
 }

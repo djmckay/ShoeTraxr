@@ -14,13 +14,15 @@ public enum DistanceUnit:Int {
 }
 
 public class RunningWorkoutTableViewController: UITableViewController {
-    
+    var modelController:ModelController?
+
     let kAddWorkoutReturnOKSegue = "addWorkoutOKSegue"
     let kAddWorkoutSegue  = "addWorkoutSegue"
     
     var distanceUnit = DistanceUnit.Miles
     var healthManager:HealthKitManager?
     var workouts = [HKWorkout]()
+    var selectedWorkout: HKWorkout!
     
     // MARK: - Formatters
     lazy var dateFormatter:DateFormatter = {
@@ -43,6 +45,10 @@ public class RunningWorkoutTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = false
         
+        if modelController == nil {
+            modelController = ModelController.sharedInstance
+        }
+        
         healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
             if( error != nil )
             {
@@ -54,7 +60,7 @@ public class RunningWorkoutTableViewController: UITableViewController {
                 print("Workouts read successfully!")
             }
             
-            //Kkeep workouts and refresh tableview in main thread
+            //Keep workouts and refresh tableview in main thread
             self.workouts = results as! [HKWorkout]
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
@@ -106,9 +112,11 @@ public class RunningWorkoutTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let workout  = workouts[indexPath.row]
-        print(workout.uuid)
-        print(workout.description)
+        selectedWorkout  = workouts[indexPath.row]
+        print(selectedWorkout.uuid)
+        print(selectedWorkout.description)
+        self.performSegue(withIdentifier: "assignShoe", sender: tableView)
+
     }
     
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,7 +147,52 @@ public class RunningWorkoutTableViewController: UITableViewController {
         detailText += " Energy: " + energyFormatter.string(fromJoules: energyBurned!)
         cell.detailTextLabel?.text = detailText;
         
+        cell.accessoryType = .none
+        for shoeLoggedWorkout in (modelController?.workouts)! {
+            if shoeLoggedWorkout.uuid == workout.uuid.uuidString {
+               cell.accessoryType = .checkmark
+            }
+        }
         return cell
+    }
+    
+    // MARK: - Segues
+    @IBAction func unwindToSegue (_ segue : UIStoryboardSegue) {
+        
+        if( segue.identifier == "selectShoeOK" )
+        {
+            print("save")
+            
+            if let assignShoe:AssignShoeWorkoutTableViewController = segue.source as? AssignShoeWorkoutTableViewController {
+                print(assignShoe.selectedShoe.brand!)
+                let workout = Workout()
+                
+
+                workout.uuid = selectedWorkout.uuid.uuidString
+                
+                if assignShoe.distanceUnit == .Kilometers {
+                    workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!
+                }
+                else {
+                    workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.mile()))!
+                    
+                }
+
+                assignShoe.selectedShoe.addToWorkouts(workout)
+                modelController?.workouts.append(workout)
+                DispatchQueue.main.async(execute: {
+                    if assignShoe.selectedShoe.distanceLogged >= assignShoe.selectedShoe.distance {
+                        let alert = UIAlertController(title: assignShoe.selectedShoe.brand, message: "Shoe has exceeded allowed limit.  Consider retiring.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.popoverPresentationController?.sourceView = self.view
+                        
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    self.tableView.reloadData()
+                })
+                
+            }
+        }
     }
     
     

@@ -2,17 +2,21 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Shoe" representedClassName="Shoe" syncable="YES" codeGenerationType="class">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="maxMileage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="distanceUnit" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" syncable="YES"/>
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="shoe" inverseEntity="Workout" syncable="YES"/>
     </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES" codeGenerationType="class">
-        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" syncable="YES"/>
+        <relationship name="shoe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shoe" inverseName="workouts" inverseEntity="Shoe" syncable="YES"/>
     </entity>
+    <fetchRequest name="FetchRequest" entity="Shoe"/>
     <elements>
-        <element name="Shoe" positionX="-380" positionY="-33" width="128" height="133"/>
-        <element name="Workout" positionX="-54" positionY="18" width="128" height="60"/>
+        <element name="Shoe" positionX="-380" positionY="-33" width="128" height="150"/>
+        <element name="Workout" positionX="-54" positionY="18" width="128" height="90"/>
     </elements>
 </model>
