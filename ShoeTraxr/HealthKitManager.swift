@@ -64,7 +64,7 @@ class HealthKitManager {
                 print( "There was an error while reading the samples: \(queryError.localizedDescription)")
             }
             self.workouts = results as! [HKWorkout]
-            completion(results,error as? NSError)
+            completion(results,error as NSError?)
         }
         // 4. Execute the query
         healthKitStore.execute(sampleQuery)

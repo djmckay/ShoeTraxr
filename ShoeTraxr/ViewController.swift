@@ -26,10 +26,11 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             {
                 print("HealthKit authorization denied!")
                 if error != nil {
-                    print("\(error)")
+                    print("\(String(describing: error))")
                 }
             }
         }
+        
     }
     
     override func viewDidLoad() {
