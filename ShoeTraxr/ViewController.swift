@@ -14,6 +14,9 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 
     let healthManager:HealthKitManager = HealthKitManager()
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var myShoesButton: UIButton!
+    @IBOutlet weak var myRunsButton: UIButton!
+    @IBOutlet weak var myWalksButton: UIButton!
     
     
     func authorizeHealthKit()
@@ -21,6 +24,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         healthManager.authorizeHealthKit { (authorized,  error) -> Void in
             if authorized {
                 print("HealthKit authorization received.")
+                
             }
             else
             {
@@ -36,7 +40,9 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+//        myShoesButton.layer.cornerRadius = 10
+//        myRunsButton.layer.cornerRadius = 10
+//        myWalksButton.layer.cornerRadius = 10
         bannerView.adUnitID = "ca-app-pub-1011036572239562/3191605335"
         bannerView.rootViewController = self
         bannerView.delegate = self as GADBannerViewDelegate

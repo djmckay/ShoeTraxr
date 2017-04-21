@@ -69,6 +69,8 @@ class HealthKitManager {
         // 4. Execute the query
         healthKitStore.execute(sampleQuery)
         
+        
+        
     }
 
     func readWalkingWorkouts(completion: (([AnyObject]?, NSError?) -> Void)!) {
@@ -95,6 +97,13 @@ class HealthKitManager {
         // 4. Execute the query
         healthKitStore.execute(sampleQuery)
         
+        
+    }
+    
+    func enableBackground(completion: @escaping (Bool, Error?) -> Swift.Void) {
+        healthKitStore.enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!, frequency: .immediate) { (complete, error) in
+                completion(complete, error)
+        }
     }
 
     func readSummary(completion: (([HKActivitySummary]?, NSError?) -> Void)!) {

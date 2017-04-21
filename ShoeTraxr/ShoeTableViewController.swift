@@ -10,13 +10,19 @@ import Foundation
 import UIKit
 import HealthKit
 
+public enum ShoeTypes:Int {
+    case Active=0, Retired=1
+}
+
 public class ShoeTableViewController: UITableViewController {
 
     var shoes = [Shoe]()
+    var retiredShoes = [Shoe]()
+
     var modelController:ModelController?
     
     var distanceUnit = DistanceUnit.Miles
-
+    var shoeType = ShoeTypes.Active
     var editShoe: Shoe!
     
     // MARK: - Formatters
@@ -34,6 +40,14 @@ public class ShoeTableViewController: UITableViewController {
     let energyFormatter = EnergyFormatter()
     let distanceFormatter = LengthFormatter()
     
+    
+    @IBAction func unitsChanged(sender:UISegmentedControl) {
+        
+        shoeType  = ShoeTypes(rawValue: sender.selectedSegmentIndex)!
+        tableView.reloadData()
+        
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +62,12 @@ public class ShoeTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoes.count
+        if shoeType == .Active {
+            return shoes.count
+        }
+        else {
+            return retiredShoes.count
+        }
         
     }
     
@@ -61,9 +80,15 @@ public class ShoeTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shoecellid", for: indexPath)
         
-        
+        var shoe: Shoe!
         // 1. Get workout for the row. Cell text: Workout Date
-        let shoe  = shoes[indexPath.row]
+        if shoeType == .Active {
+            shoe  = shoes[indexPath.row]
+        }
+        else {
+            shoe = retiredShoes[indexPath.row]
+        }
+        
         cell.textLabel!.text = shoe.brand! + " " + shoe.model!
         if (shoe.uuid?.characters.count)! > 0 {
             cell.textLabel!.text = shoe.uuid
@@ -105,7 +130,7 @@ public class ShoeTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Delete"
+        return "Retire"
     }
     
     
@@ -114,8 +139,11 @@ public class ShoeTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        deleteShoe(shoes[indexPath.row])
-        
+        if (shoeType == .Retired) {
+            deleteShoe(shoes[indexPath.row])
+        } else {
+            retireShoe(shoes[indexPath.row])
+        }
         
     }
 
@@ -125,6 +153,14 @@ public class ShoeTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
+    func retireShoe(_ shoe: Shoe) {
+        shoe.retire { (status, error) in
+            self.shoes = (self.modelController?.shoes)!
+            self.tableView.reloadData()
+        }
+    }
+
     
     @IBAction func addShoe(_ sender: Any) {
         editShoe = nil

@@ -102,6 +102,9 @@
                     <navigationItem key="navigationItem" title="ShoeTraxR" id="HXT-IY-aLh"/>
                     <connections>
                         <outlet property="bannerView" destination="H9v-8c-LCH" id="KCc-xv-rDR"/>
+                        <outlet property="myRunsButton" destination="M6G-H3-fu9" id="gI2-wF-P5D"/>
+                        <outlet property="myShoesButton" destination="30e-x6-QPJ" id="9N5-lR-2cE"/>
+                        <outlet property="myWalksButton" destination="0Ge-ka-cpZ" id="B8c-Ft-Rdl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8c-cF-QBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,9 +190,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="ZCe-Yz-KK6">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OZv-NB-m07">
+                                    <rect key="frame" x="129" y="8" width="117" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Active"/>
+                                        <segment title="Retired"/>
+                                    </segments>
+                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="unitsChangedWithSender:" destination="BUF-jL-mCh" eventType="valueChanged" id="G5o-ax-4hE"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="shoecellid" textLabel="pcy-PW-a6w" detailTextLabel="i0B-Qk-k3t" style="IBUITableViewCellStyleSubtitle" id="Pna-7O-uoe">
-                                <rect key="frame" x="0.0" y="28" width="320" height="64"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pna-7O-uoe" id="t4c-5h-1Cd">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
@@ -294,7 +316,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pe-dl-BXL">
-                                                    <rect key="frame" x="67" y="7" width="222" height="30"/>
+                                                    <rect key="frame" x="67" y="7" width="221" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -328,7 +350,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9z-4v-u2t">
-                                                    <rect key="frame" x="67" y="2" width="222" height="26"/>
+                                                    <rect key="frame" x="67" y="1" width="221" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -355,7 +377,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Optional" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJx-90-Yac">
-                                                    <rect key="frame" x="102" y="7" width="187" height="30"/>
+                                                    <rect key="frame" x="101" y="7" width="187" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -389,7 +411,7 @@
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XpJ-Io-VnT">
-                                                    <rect key="frame" x="177" y="8" width="137" height="29"/>
+                                                    <rect key="frame" x="176" y="8" width="138" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="Miles"/>

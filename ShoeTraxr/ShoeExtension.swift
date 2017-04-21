@@ -74,6 +74,11 @@ extension Shoe {
         }
     }
     
+    func retire(completion: ( (Bool, NSError?) -> Void)!) {
+        print("retire")
+        completion(true, nil)
+    }
+    
     convenience init() {
         let entityDescription =
             NSEntityDescription.entity(forEntityName: "Shoe",

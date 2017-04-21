@@ -224,6 +224,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
                         alert.popoverPresentationController?.sourceView = self.view
                         
                         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Retire", style: UIAlertActionStyle.default, handler: nil))
+
                         self.present(alert, animated: true, completion: nil)
                     }
                     self.tableView.reloadData()
