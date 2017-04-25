@@ -83,6 +83,17 @@ extension Shoe {
         }
     }
     
+    func unRetire(completion: ( (Bool, NSError?) -> Void)!) {
+        print("retire")
+        ModelController.sharedInstance.unRetireShoe(shoe: self, completion: { (status, error) in
+            self.retired = false
+            self.retiredDate = nil
+        })
+        if completion != nil {
+            completion(true, nil)
+        }
+    }
+    
     func retire(completion: ( (Bool, NSError?) -> Void)!) {
         print("retire")
         ModelController.sharedInstance.retireShoe(shoe: self, completion: { (status, error) in

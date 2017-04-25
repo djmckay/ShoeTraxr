@@ -73,8 +73,12 @@ public class ShoeTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let shoe  = shoes[indexPath.row]
-        editShoe = shoe
+        if (shoeType == .Active) {
+             editShoe = shoes[indexPath.row]
+        }
+        else {
+            editShoe = retiredShoes[indexPath.row]
+        }
         self.performSegue(withIdentifier: "editShoeDetails", sender: tableView)
     }
     
@@ -132,7 +136,7 @@ public class ShoeTableViewController: UITableViewController {
     
     override public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         if (shoeType == .Active) {
-        return "Retire"
+            return "Retire"
         } else {
             return "Delete"
         }
@@ -194,6 +198,9 @@ public class ShoeTableViewController: UITableViewController {
                 }
 
                 editShoe.dateAdded = addShoe.date! as NSDate
+                if editShoe.retired && editShoe.distance > editShoe.distanceLogged {
+                    editShoe.unRetire(completion: nil)
+                }
                 self.shoes = (self.modelController?.shoes)!
                 self.retiredShoes = (self.modelController?.retiredShoes)!
                 DispatchQueue.main.async(execute: {

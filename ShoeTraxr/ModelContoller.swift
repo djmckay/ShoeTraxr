@@ -76,6 +76,12 @@ class ModelController: NSObject {
         completion(true, nil)
     }
     
+    func unRetireShoe(shoe: Shoe, completion: ( (Bool, NSError?) -> Void)!) {
+        shoes.append(shoe)
+        retiredShoes.remove(at: retiredShoes.index(of: shoe)!)
+        completion(true, nil)
+    }
+    
     func retireShoe(shoe: Shoe, completion: ( (Bool, NSError?) -> Void)!) {
         retiredShoes.append(shoe)
         shoes.remove(at: shoes.index(of: shoe)!)

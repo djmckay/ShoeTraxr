@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ShoeTableViewController.swift"
-            timestampString = "514837041.88112"
+            timestampString = "514839761.635446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "unwindToSegue(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -192,22 +192,6 @@
             startingLineNumber = "135"
             endingLineNumber = "135"
             landmarkName = "textFieldShouldReturn(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/RunningWorkoutTableViewController.swift"
-            timestampString = "514838091.514824"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "unwindToSegue(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
