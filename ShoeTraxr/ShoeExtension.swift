@@ -51,6 +51,15 @@ extension Shoe {
         }
     }
     
+    var distanceUnitType: DistanceUnit {
+        if self.distanceUnit == "Kilometers" {
+            return DistanceUnit.Kilometers
+        }
+        else {
+            return DistanceUnit.Miles
+        }
+    }
+    
     var distanceFormatted:String {
         get {
             let distanceFormatter = LengthFormatter()
@@ -76,6 +85,10 @@ extension Shoe {
     
     func retire(completion: ( (Bool, NSError?) -> Void)!) {
         print("retire")
+        ModelController.sharedInstance.retireShoe(shoe: self, completion: { (status, error) in
+            self.retired = true
+            self.retiredDate = Date() as NSDate
+        })
         completion(true, nil)
     }
     

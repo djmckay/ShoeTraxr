@@ -16,6 +16,7 @@
 		2207695F1EA54F4700B98B6B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2207695E1EA54F4700B98B6B /* HealthKit.framework */; };
 		220769611EA54FEF00B98B6B /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220769601EA54FEF00B98B6B /* HealthKitManager.swift */; };
 		220769631EA552C300B98B6B /* RunningWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220769621EA552C300B98B6B /* RunningWorkoutTableViewController.swift */; };
+		2259A1471EAA439A0048433C /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259A1461EAA439A0048433C /* PickerTextField.swift */; };
 		2276B5051EA5AF5500F84083 /* ShoeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B5041EA5AF5500F84083 /* ShoeTableViewController.swift */; };
 		2276B5071EA5B12F00F84083 /* ModelContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B5061EA5B12F00F84083 /* ModelContoller.swift */; };
 		2276B50D1EA63B8A00F84083 /* AddShoeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B50C1EA63B8A00F84083 /* AddShoeTableViewController.swift */; };
@@ -27,6 +28,7 @@
 		2276B5211EA6BBFF00F84083 /* WorkoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B5201EA6BBFF00F84083 /* WorkoutExtension.swift */; };
 		2276B5271EA6FF8B00F84083 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */; };
 		22E1FC451EA7EF770092A3F4 /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1FC441EA7EF770092A3F4 /* PickerCell.swift */; };
+		22F069681EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F069671EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,7 @@
 		2207695E1EA54F4700B98B6B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		220769601EA54FEF00B98B6B /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		220769621EA552C300B98B6B /* RunningWorkoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningWorkoutTableViewController.swift; sourceTree = "<group>"; };
+		2259A1461EAA439A0048433C /* PickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		2276B5041EA5AF5500F84083 /* ShoeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeTableViewController.swift; sourceTree = "<group>"; };
 		2276B5061EA5B12F00F84083 /* ModelContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelContoller.swift; sourceTree = "<group>"; };
 		2276B50C1EA63B8A00F84083 /* AddShoeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShoeTableViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		2276B5201EA6BBFF00F84083 /* WorkoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExtension.swift; sourceTree = "<group>"; };
 		2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		22E1FC441EA7EF770092A3F4 /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
+		22F069671EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeBrandPickerViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 				2276B5141EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift */,
 				2276B5251EA6E68100F84083 /* Cells */,
 				2276B50C1EA63B8A00F84083 /* AddShoeTableViewController.swift */,
+				22F069671EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift */,
 				220769601EA54FEF00B98B6B /* HealthKitManager.swift */,
 				2207694B1EA54F3F00B98B6B /* Main.storyboard */,
 				220769511EA54F3F00B98B6B /* Assets.xcassets */,
@@ -131,6 +136,7 @@
 			children = (
 				2276B5101EA63E4200F84083 /* NumberCell.swift */,
 				2276B5121EA6479900F84083 /* TextCell.swift */,
+				2259A1461EAA439A0048433C /* PickerTextField.swift */,
 				2276B50E1EA63C5300F84083 /* DatePickerCell.swift */,
 				22E1FC441EA7EF770092A3F4 /* PickerCell.swift */,
 			);
@@ -219,9 +225,11 @@
 				2276B5071EA5B12F00F84083 /* ModelContoller.swift in Sources */,
 				220769481EA54F3F00B98B6B /* AppDelegate.swift in Sources */,
 				2276B50F1EA63C5300F84083 /* DatePickerCell.swift in Sources */,
+				22F069681EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift in Sources */,
 				220769611EA54FEF00B98B6B /* HealthKitManager.swift in Sources */,
 				2276B51F1EA6BBD000F84083 /* ShoeExtension.swift in Sources */,
 				220769501EA54F3F00B98B6B /* ShoeTraxr.xcdatamodeld in Sources */,
+				2259A1471EAA439A0048433C /* PickerTextField.swift in Sources */,
 				2276B5131EA6479900F84083 /* TextCell.swift in Sources */,
 				2276B5211EA6BBFF00F84083 /* WorkoutExtension.swift in Sources */,
 				2276B50D1EA63B8A00F84083 /* AddShoeTableViewController.swift in Sources */,

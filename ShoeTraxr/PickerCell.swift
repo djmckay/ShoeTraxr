@@ -13,6 +13,8 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
     
     let pickerView: UIPickerView
     
+    
+    
     convenience init() {
         
         let size = CGSize(width: 320, height: 216)
@@ -42,7 +44,6 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
         
         pickerView.delegate = self
         pickerView.dataSource = self
-        
         addSubview(pickerView)
         
         pickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,4 +75,9 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
         
         return "row"
     }
+    
+   
+    
+    
+    
 }

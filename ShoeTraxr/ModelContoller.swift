@@ -13,6 +13,7 @@ import CoreData
 class ModelController: NSObject {
 
     var shoes = [Shoe]()
+    var retiredShoes = [Shoe]()
     var workouts = [Workout]()
 
     var managedContext:NSManagedObjectContext!
@@ -42,9 +43,15 @@ class ModelController: NSObject {
         let sectionSortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
         let sortDescriptors = [sectionSortDescriptor]
         fetchRequest.sortDescriptors = sortDescriptors
+        
+
         //3
         do {
+            fetchRequest.predicate = NSPredicate(format: "retired == false")
             shoes = try managedContext.fetch(fetchRequest)
+            fetchRequest.predicate = NSPredicate(format: "retired == true")
+            retiredShoes = try managedContext.fetch(fetchRequest)
+
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -65,6 +72,12 @@ class ModelController: NSObject {
     func deleteShoe(shoe: Shoe, completion: ( (Bool, NSError?) -> Void)!) {
         managedContext.delete(shoe)
         
+        retiredShoes.remove(at: retiredShoes.index(of: shoe)!)
+        completion(true, nil)
+    }
+    
+    func retireShoe(shoe: Shoe, completion: ( (Bool, NSError?) -> Void)!) {
+        retiredShoes.append(shoe)
         shoes.remove(at: shoes.index(of: shoe)!)
         completion(true, nil)
     }

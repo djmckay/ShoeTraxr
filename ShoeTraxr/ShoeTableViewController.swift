@@ -58,6 +58,7 @@ public class ShoeTableViewController: UITableViewController {
         }
         
         self.shoes = (modelController?.shoes)!
+        self.retiredShoes = (modelController?.retiredShoes)!
         
     }
     
@@ -130,7 +131,11 @@ public class ShoeTableViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        if (shoeType == .Active) {
         return "Retire"
+        } else {
+            return "Delete"
+        }
     }
     
     
@@ -140,7 +145,7 @@ public class ShoeTableViewController: UITableViewController {
     
     override public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (shoeType == .Retired) {
-            deleteShoe(shoes[indexPath.row])
+            deleteShoe(retiredShoes[indexPath.row])
         } else {
             retireShoe(shoes[indexPath.row])
         }
@@ -150,6 +155,7 @@ public class ShoeTableViewController: UITableViewController {
     func deleteShoe(_ shoe: Shoe) {
         shoe.delete { (status, error) in
             self.shoes = (self.modelController?.shoes)!
+            self.retiredShoes = (self.modelController?.retiredShoes)!
             self.tableView.reloadData()
         }
     }
@@ -157,6 +163,7 @@ public class ShoeTableViewController: UITableViewController {
     func retireShoe(_ shoe: Shoe) {
         shoe.retire { (status, error) in
             self.shoes = (self.modelController?.shoes)!
+            self.retiredShoes = (self.modelController?.retiredShoes)!
             self.tableView.reloadData()
         }
     }
@@ -188,6 +195,7 @@ public class ShoeTableViewController: UITableViewController {
 
                 editShoe.dateAdded = addShoe.date! as NSDate
                 self.shoes = (self.modelController?.shoes)!
+                self.retiredShoes = (self.modelController?.retiredShoes)!
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })

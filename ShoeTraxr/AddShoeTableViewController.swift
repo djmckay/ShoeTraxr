@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class AddShoeTableViewController: UITableViewController {
+public class AddShoeTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var shoeDateCell: DatePickerCell!
     @IBOutlet weak var shoeBrandCell: TextCell!
@@ -22,6 +22,10 @@ public class AddShoeTableViewController: UITableViewController {
     @IBOutlet weak var numberOfWorkouts: NumberCell!
     @IBOutlet weak var shoeDistanceLogged: TextCell!
 
+    @IBOutlet weak var shoeBrandPickerTextField: PickerTextField!
+    
+    @IBOutlet weak var shoeBrandDelegate: ShoeBrandPickerViewDelegate!
+    
     var editShoe: Shoe!
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -30,7 +34,9 @@ public class AddShoeTableViewController: UITableViewController {
         shoeDateCell.inputMode = .date
         shoeDateCell.updateDateTimeLabel()
         shoeMileageCell.doubleValue = 500.0
-        
+//        let brandData = ShoeBrandPickerViewDelegate()
+//        shoeBrandPickerTextField.pickerDelegate = brandData
+//        shoeBrandPickerTextField.pickerDataSource = brandData
         if let editShoe = editShoe {
             self.title = "Shoe Details"
             self.shoeBrandCell.textField.text = editShoe.brand
@@ -124,4 +130,10 @@ public class AddShoeTableViewController: UITableViewController {
         }
     }
     
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return false
+    }
+        
 }

@@ -208,7 +208,7 @@ public class RunningWorkoutTableViewController: UITableViewController {
 
                 workout.uuid = selectedWorkout.uuid.uuidString
                 
-                if assignShoe.distanceUnit == .Kilometers {
+                if assignShoe.selectedShoe.distanceUnitType == .Kilometers {
                     workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!
                 }
                 else {
@@ -224,7 +224,11 @@ public class RunningWorkoutTableViewController: UITableViewController {
                         alert.popoverPresentationController?.sourceView = self.view
                         
                         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
-                        alert.addAction(UIAlertAction(title: "Retire", style: UIAlertActionStyle.default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Retire", style: UIAlertActionStyle.default, handler: { action in
+                            assignShoe.selectedShoe.retire(completion: { (status, error) in
+                                self.tableView.reloadData()
+                            })
+                        }))
 
                         self.present(alert, animated: true, completion: nil)
                     }
