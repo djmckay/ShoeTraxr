@@ -16,6 +16,34 @@ class ModelController: NSObject {
     var retiredShoes = [Shoe]()
     var workouts = [Workout]()
 
+    var brands: [Brand] = [Brand("adidas"),
+                           Brand("Altra"),
+                           Brand("ASICS"),
+                           Brand("Brooks"),
+                           Brand("Columbia"),
+                           Brand("HOKA ONE ONE"),
+                           Brand("INOV-8"),
+                           Brand("La Sportiva"),
+                           Brand("Merrell"),
+                           Brand("Mizuno"),
+                           Brand("New Balance"),
+                           Brand("Newton"),
+                           Brand("Nike"),
+                           Brand("On"),
+                           Brand("Pearl Izumi"),
+                           Brand("Salming"),
+                           Brand("Salomon"),
+                           Brand("Saucony"),
+                           Brand("Scott"),
+                           Brand("Skechers"),
+                           Brand("The North Face"),
+                           Brand("Topo Athletic"),
+                           Brand("Under Armour"),
+                           Brand("Under Armour"),
+                           Brand("Other")
+                           
+    ]
+    
     var managedContext:NSManagedObjectContext!
     
     static let sharedInstance: ModelController = {

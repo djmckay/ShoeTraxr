@@ -14,52 +14,34 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
     let pickerView: UIPickerView
     
     
-    
-    convenience init() {
-        
-        let size = CGSize(width: 320, height: 216)
-        let origin = CGPoint(x: 0, y: 0)
-        let frame = CGRect(origin: origin, size: size)
-        self.init()
-        //self.init(frame: frame)
-    }
-    
-//    override init(frame: CGRect) {
-//        
-//        pickerView = UIPickerView(frame: frame)
-//        
-//        super.init(frame: frame)
-//        commonInit()
-//    }
-    
     required init?(coder aDecoder: NSCoder) {
-        
         pickerView = UIPickerView()
-        
         super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    func commonInit() {
-        
         pickerView.delegate = self
         pickerView.dataSource = self
-        addSubview(pickerView)
         
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
         
-        let topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: pickerView, attribute: .top, multiplier: 1, constant: 0)
-        
-        let bottomConstraint = NSLayoutConstraint(item: pickerView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        let leftConstraint = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: pickerView, attribute: .leading, multiplier: 1.0, constant: 0)
-        
-        let rightConstraint = NSLayoutConstraint(item: pickerView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0)
-        
-        self.addConstraints([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
         
     }
     
+    open override var canBecomeFirstResponder : Bool {
+        return true;
+    }
+    
+    open override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if( selected ) {
+            self.becomeFirstResponder()
+        }
+        
+    }
+    
+    open override var inputView: UIView! {
+        get {
+            return pickerView
+        }
+    }
+        
     // Delegate/Datasource implementations
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
@@ -77,7 +59,9 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
    
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.detailTextLabel?.text = "row"
+    }
     
     
 }

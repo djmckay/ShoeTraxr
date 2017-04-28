@@ -22,9 +22,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var numberOfWorkouts: NumberCell!
     @IBOutlet weak var shoeDistanceLogged: TextCell!
 
-    @IBOutlet weak var shoeBrandPickerTextField: PickerTextField!
-    
-    @IBOutlet weak var shoeBrandDelegate: ShoeBrandPickerViewDelegate!
+    @IBOutlet weak var shoeBrandPickerCell: PickerCell!
     
     var editShoe: Shoe!
 
@@ -34,12 +32,12 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         shoeDateCell.inputMode = .date
         shoeDateCell.updateDateTimeLabel()
         shoeMileageCell.doubleValue = 500.0
-//        let brandData = ShoeBrandPickerViewDelegate()
-//        shoeBrandPickerTextField.pickerDelegate = brandData
-//        shoeBrandPickerTextField.pickerDataSource = brandData
+        self.shoeBrandPickerCell.detailTextLabel?.text = "Required"
+
         if let editShoe = editShoe {
             self.title = "Shoe Details"
-            self.shoeBrandCell.textField.text = editShoe.brand
+            //self.shoeBrandCell.textField.text = editShoe.brand
+            self.shoeBrandPickerCell.detailTextLabel?.text = editShoe.brand
             if editShoe.distanceUnit == "Kilometers" {
                 self.shoeDistanceUnit.isEnabledForSegment(at: DistanceUnit.Kilometers.rawValue)
             }
@@ -72,7 +70,9 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     
     var brand:String {
         get {
-            return shoeBrandCell.value
+            print(shoeBrandPickerCell.detailTextLabel?.text!)
+            return (shoeBrandPickerCell.detailTextLabel?.text)!
+            //return shoeBrandCell.value
         }
     }
     
