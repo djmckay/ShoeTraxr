@@ -32,6 +32,7 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
         super.setSelected(selected, animated: animated)
         if( selected ) {
             self.becomeFirstResponder()
+            self.select()
         }
         
     }
@@ -63,5 +64,8 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
         self.detailTextLabel?.text = "row"
     }
     
+
+    func select() {
+    }
     
 }

@@ -22,9 +22,18 @@ class BrandPickerCell: PickerCell {
         return data[row].name
     }
     
-    
+    override func select() {
+        for row in 0..<data.count {
+        if self.detailTextLabel?.text! == data[row].name! {
+            pickerView.selectRow(row, inComponent: 0, animated: true)
+        }
+    }
+}
+
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.detailTextLabel?.text = data[row].name
     }
+    
+    
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Brand {
+class Brand: NSObject {
     
     var name: String?
     

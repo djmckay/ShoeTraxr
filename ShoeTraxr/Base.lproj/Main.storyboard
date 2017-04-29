@@ -308,38 +308,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SUU-qG-aR7" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SUU-qG-aR7" id="bPY-J5-1AF">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pe-dl-BXL">
-                                                    <rect key="frame" x="67" y="7" width="220" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="4vh-pl-TyR" id="8VJ-Os-VE9"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwD-DO-6db">
-                                                    <rect key="frame" x="15" y="10" width="46" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="textField" destination="8pe-dl-BXL" id="pcS-pb-XV1"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="xwt-JL-Mm8" detailTextLabel="RUr-at-1Yw" style="IBUITableViewCellStyleValue1" id="7XH-i2-9pn" customClass="BrandPickerCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7XH-i2-9pn" id="oXl-C9-ajO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -363,7 +333,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zRb-uK-wbq" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zRb-uK-wbq" id="24Z-x7-fkU">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -393,7 +363,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sAi-Ge-oph" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sAi-Ge-oph" id="7C5-LF-BC2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -423,7 +393,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OXB-an-8ze" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="220" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OXB-an-8ze" id="eUg-6b-31P" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -459,7 +429,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mbd-Ic-6KF" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="264" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mbd-Ic-6KF" id="gYV-yz-t4F" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -486,7 +456,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XDg-TG-tFk" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="308" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="264" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XDg-TG-tFk" id="oZa-JI-YBt" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -534,7 +504,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="numberOfWorkouts" destination="mbd-Ic-6KF" id="54d-Hp-HT1"/>
-                        <outlet property="shoeBrandCell" destination="SUU-qG-aR7" id="PR9-we-EcN"/>
                         <outlet property="shoeBrandPickerCell" destination="7XH-i2-9pn" id="C0c-X0-Awt"/>
                         <outlet property="shoeDateCell" destination="eEa-i9-PHr" id="rUd-j1-b7M"/>
                         <outlet property="shoeDistanceLogged" destination="XDg-TG-tFk" id="PAg-bP-JhG"/>
