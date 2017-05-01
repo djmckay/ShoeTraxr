@@ -34,7 +34,6 @@ public class ShoeTableViewController: UITableViewController {
         return formatter;
         
     }()
-    //var healthManager:HealthKitManager?
 
     let durationFormatter = DateComponentsFormatter()
     let energyFormatter = EnergyFormatter()
