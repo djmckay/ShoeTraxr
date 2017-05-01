@@ -22,7 +22,7 @@ public class RunningWorkoutTableViewController: UITableViewController {
     let kAddWorkoutSegue  = "addWorkoutSegue"
     
     var distanceUnit = DistanceUnit.Miles
-    var healthManager:HealthKitManager?
+    //var healthManager:HealthKitManager?
     var workouts = [HKWorkout]()
     var selectedWorkout: HKWorkout!
     
@@ -52,43 +52,51 @@ public class RunningWorkoutTableViewController: UITableViewController {
         }
         
         if type == HKWorkoutActivityType.running {
-            healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
-                if( error != nil )
-                {
-                    print("Error reading workouts: \(error?.localizedDescription)")
-                    return;
-                }
-                else
-                {
-                    print("Workouts read successfully!")
-                }
-                
-                //Keep workouts and refresh tableview in main thread
-                self.workouts = results as! [HKWorkout]
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
-                
+            self.workouts = (modelController?.runningHKWorkouts)!
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
             })
+//            healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
+//                if( error != nil )
+//                {
+//                    print("Error reading workouts: \(error?.localizedDescription)")
+//                    return;
+//                }
+//                else
+//                {
+//                    print("Workouts read successfully!")
+//                }
+//                
+//                //Keep workouts and refresh tableview in main thread
+//                self.workouts = results as! [HKWorkout]
+//                DispatchQueue.main.async(execute: {
+//                    self.tableView.reloadData()
+//                })
+//                
+//            })
         } else if type == HKWorkoutActivityType.walking {
-            healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
-                if( error != nil )
-                {
-                    print("Error reading workouts: \(error?.localizedDescription)")
-                    return;
-                }
-                else
-                {
-                    print("Workouts read successfully!")
-                }
-                
-                //Keep workouts and refresh tableview in main thread
-                self.workouts = results as! [HKWorkout]
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
-                
+            self.workouts = (modelController?.walkingHKWorkouts)!
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
             })
+//            healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
+//                if( error != nil )
+//                {
+//                    print("Error reading workouts: \(error?.localizedDescription)")
+//                    return;
+//                }
+//                else
+//                {
+//                    print("Workouts read successfully!")
+//                }
+//                
+//                //Keep workouts and refresh tableview in main thread
+//                self.workouts = results as! [HKWorkout]
+//                DispatchQueue.main.async(execute: {
+//                    self.tableView.reloadData()
+//                })
+//                
+//            })
         }
         
     }
@@ -151,8 +159,9 @@ public class RunningWorkoutTableViewController: UITableViewController {
         
         // 2. Detail text: Duration - Distance
         // Duration
-        var detailText = "Duration: " + durationFormatter.string(from: workout.duration)!
+        //var detailText = "Duration: " + durationFormatter.string(from: workout.duration)!
         // Distance in Km or miles depending on user selection
+        var detailText = String()
         detailText += " Distance: "
         if distanceUnit == .Kilometers {
             let distanceInKM = workout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo))
@@ -164,20 +173,28 @@ public class RunningWorkoutTableViewController: UITableViewController {
             
         }
         // 3. Detail text: Energy Burned
-        let energyBurned = workout.totalEnergyBurned?.doubleValue(for: HKUnit.joule())
-        detailText += " Energy: " + energyFormatter.string(fromJoules: energyBurned!)
-        cell.detailTextLabel?.text = detailText;
+//        let energyBurned = workout.totalEnergyBurned?.doubleValue(for: HKUnit.joule())
+//        detailText += " Energy: " + energyFormatter.string(fromJoules: energyBurned!)
+        cell.detailTextLabel?.text = detailText
         
         cell.accessoryType = .none
         let shoeAvatar = cell.viewWithTag(1) as! UIImageView
         shoeAvatar.isHidden = true
-        for shoeLoggedWorkout in (modelController?.workouts)! {
-            if shoeLoggedWorkout.uuid == workout.uuid.uuidString {
-               cell.accessoryType = .checkmark
-                shoeAvatar.isHidden = false
-                shoeAvatar.backgroundColor = UIColor.green
+        if let workout = modelController?.getWorkout(hkWorkout: workout) {
+            shoeAvatar.isHidden = false
+            shoeAvatar.backgroundColor = UIColor.green
+            if let shoe = workout.shoe {
+                detailText += " Shoe: " + shoe.getTitle()
+                cell.detailTextLabel?.text = detailText
             }
         }
+//        for shoeLoggedWorkout in (modelController?.workouts)! {
+//            if shoeLoggedWorkout.uuid == workout.uuid.uuidString {
+//               cell.accessoryType = .checkmark
+//                shoeAvatar.isHidden = false
+//                shoeAvatar.backgroundColor = UIColor.green
+//            }
+//        }
         return cell
     }
     
@@ -186,12 +203,16 @@ public class RunningWorkoutTableViewController: UITableViewController {
             if identifier == "assignShoe" {
                 let navigation = segue.destination as! UINavigationController
                 let assignShoe = navigation.viewControllers[0] as! AssignShoeWorkoutTableViewController
-                for shoeLoggedWorkout in (modelController?.workouts)! {
-                    if shoeLoggedWorkout.uuid == selectedWorkout.uuid.uuidString {
-                        assignShoe.selectedShoe = shoeLoggedWorkout.shoe
-                        assignShoe.workout = shoeLoggedWorkout
-                    }
+                if let shoeLoggedWorkout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
+                    assignShoe.selectedShoe = shoeLoggedWorkout.shoe
+                    assignShoe.workout = shoeLoggedWorkout
                 }
+//                for shoeLoggedWorkout in (modelController?.workouts)! {
+//                    if shoeLoggedWorkout.uuid == selectedWorkout.uuid.uuidString {
+//                        assignShoe.selectedShoe = shoeLoggedWorkout.shoe
+//                        assignShoe.workout = shoeLoggedWorkout
+//                    }
+//                }
             }
         }
     }
@@ -203,10 +224,14 @@ public class RunningWorkoutTableViewController: UITableViewController {
         {
             
             if let assignShoe:AssignShoeWorkoutTableViewController = segue.source as? AssignShoeWorkoutTableViewController {
-                let workout = Workout()
-                
+                var workout: Workout!
+                if let existingWorkout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
+                    workout = existingWorkout
+                } else {
+                    let workout = Workout()
+                    workout.uuid = selectedWorkout.uuid.uuidString
+                }
 
-                workout.uuid = selectedWorkout.uuid.uuidString
                 
                 if assignShoe.selectedShoe.distanceUnitType == .Kilometers {
                     workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!

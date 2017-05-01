@@ -135,5 +135,14 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         textField.resignFirstResponder()
         return false
     }
-        
+    
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        if let identifier = segue.identifier {
+            if identifier == "shoeWorkouts" {
+                let shoeWorkouts = segue.destination as! ShoeWorkoutTableViewController
+                shoeWorkouts.shoe = editShoe
+            }
+        }
+    }
 }

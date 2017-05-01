@@ -24,7 +24,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         healthManager.authorizeHealthKit { (authorized,  error) -> Void in
             if authorized {
                 print("HealthKit authorization received.")
-                
             }
             else
             {
@@ -34,7 +33,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
                 }
             }
         }
-        
     }
     
     override func viewDidLoad() {
@@ -51,6 +49,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
         
         bannerView.load(request)
+        ModelController.sharedInstance.healthManager = self.healthManager
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,19 +65,19 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             if identifier == "ShowRunningWorkouts" {
                 authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
-                runningWorkoutController.healthManager = self.healthManager
+                //runningWorkoutController.healthManager = self.healthManager
                 runningWorkoutController.type = healthManager.running
             }
             if identifier == "ShowWalkingWorkouts" {
                 authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
-                runningWorkoutController.healthManager = self.healthManager
+                //runningWorkoutController.healthManager = self.healthManager
                 runningWorkoutController.type = healthManager.walking
             }
             if identifier == "ShowShoes" {
                 authorizeHealthKit()
                 let shoeController = segue.destination as! ShoeTableViewController
-                shoeController.healthManager = self.healthManager
+                //shoeController.healthManager = self.healthManager
             }
         }
     }

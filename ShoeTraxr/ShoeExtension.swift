@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import HealthKit
 
 extension Shoe {
     
@@ -126,5 +127,24 @@ extension Shoe {
         }
         
         return title
+    }
+    
+    func getHKWorkouts() -> [HKWorkout] {
+        var hkWorkouts = [HKWorkout]()
+        for workoutSet in workouts! {
+            for hkWorkout in ModelController.sharedInstance.runningHKWorkouts {
+                let workout = workoutSet as! Workout
+                if hkWorkout.uuid.uuidString == workout.uuid {
+                    hkWorkouts.append(hkWorkout)
+                }
+            }
+            for hkWorkout in ModelController.sharedInstance.walkingHKWorkouts {
+                let workout = workoutSet as! Workout
+                if hkWorkout.uuid.uuidString == workout.uuid {
+                    hkWorkouts.append(hkWorkout)
+                }
+            }
+        }
+        return hkWorkouts
     }
 }

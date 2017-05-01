@@ -9,12 +9,50 @@
 import Foundation
 import UIKit
 import CoreData
+import HealthKit
 
 class ModelController: NSObject {
 
     var shoes = [Shoe]()
     var retiredShoes = [Shoe]()
     var workouts = [Workout]()
+    var runningHKWorkouts = [HKWorkout]()
+    var walkingHKWorkouts = [HKWorkout]()
+    var healthManager:HealthKitManager? {
+        
+        didSet {
+            healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
+                if( error != nil )
+                {
+                    print("Error reading workouts: \(error?.localizedDescription)")
+                    return;
+                }
+                else
+                {
+                    print("Workouts read successfully!")
+                }
+                
+                //Keep workouts and refresh tableview in main thread
+                self.runningHKWorkouts = results as! [HKWorkout]
+                
+            })
+            healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
+                if( error != nil )
+                {
+                    print("Error reading workouts: \(error?.localizedDescription)")
+                    return;
+                }
+                else
+                {
+                    print("Workouts read successfully!")
+                }
+                
+                //Keep workouts and refresh tableview in main thread
+                self.walkingHKWorkouts = results as! [HKWorkout]
+                
+            })
+        }
+    }
 
     var brands: [Brand] = [Brand("adidas"),
                            Brand("Altra"),
@@ -34,13 +72,12 @@ class ModelController: NSObject {
                            Brand("Salming"),
                            Brand("Salomon"),
                            Brand("Saucony"),
-                           Brand("Scott"),
                            Brand("Skechers"),
                            Brand("The North Face"),
                            Brand("Topo Athletic"),
                            Brand("Under Armour"),
-                           Brand("Under Armour"),
-                           Brand("Other")
+                           Brand("Scott")
+
                            
     ]
     
@@ -61,6 +98,7 @@ class ModelController: NSObject {
             UIApplication.shared.delegate as? AppDelegate else {
                 return
         }
+
         
         managedContext =
             appDelegate.persistentContainer.viewContext
@@ -93,7 +131,16 @@ class ModelController: NSObject {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-          
+        brands.sort { (lhs, rhs) -> Bool in
+            if lhs < rhs {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        brands.append(Brand("Other"))
+        
         
     }
     
@@ -132,5 +179,19 @@ class ModelController: NSObject {
         workouts.append(workout)
         completion(true, nil)
     }
+    
+    func getWorkout(hkWorkout: HKWorkout) -> Workout? {
+        var returnWorkout: Workout?
+        for workout in (self.workouts) {
+            if workout.uuid == hkWorkout.uuid.uuidString {
+                returnWorkout = workout
+                if workout.shoe != nil {
+                    break
+                }
+            }
+        }
+        return returnWorkout
+    }
+
     
 }
