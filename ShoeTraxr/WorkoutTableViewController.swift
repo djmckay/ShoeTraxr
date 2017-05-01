@@ -107,13 +107,7 @@ class WorkoutTableViewController: UITableViewController {
                 cell.detailTextLabel?.text = detailText
             }
         }
-        //        for shoeLoggedWorkout in (modelController?.workouts)! {
-        //            if shoeLoggedWorkout.uuid == workout.uuid.uuidString {
-        //               cell.accessoryType = .checkmark
-        //                shoeAvatar.isHidden = false
-        //                shoeAvatar.backgroundColor = UIColor.green
-        //            }
-        //        }
+    
         return cell
     }
 

@@ -65,19 +65,16 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             if identifier == "ShowRunningWorkouts" {
                 authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
-                //runningWorkoutController.healthManager = self.healthManager
                 runningWorkoutController.type = healthManager.running
             }
             if identifier == "ShowWalkingWorkouts" {
                 authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
-                //runningWorkoutController.healthManager = self.healthManager
                 runningWorkoutController.type = healthManager.walking
             }
             if identifier == "ShowShoes" {
                 authorizeHealthKit()
                 let shoeController = segue.destination as! ShoeTableViewController
-                //shoeController.healthManager = self.healthManager
             }
         }
     }
