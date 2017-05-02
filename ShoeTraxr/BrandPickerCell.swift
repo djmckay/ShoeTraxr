@@ -31,7 +31,9 @@ class BrandPickerCell: PickerCell {
 }
 
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.detailTextLabel?.text = data[row].name
+        self.detailTextLabel?.text = self.data[row].name!
+        self.detailTextLabel?.textColor = UIColor.black
+
     }
     
     

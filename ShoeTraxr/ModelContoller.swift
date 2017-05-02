@@ -54,7 +54,7 @@ class ModelController: NSObject {
         }
     }
 
-    var brands: [Brand] = [Brand("adidas"),
+    var brands: [Brand] = [Brand(""), Brand("adidas"),
                            Brand("Altra"),
                            Brand("ASICS"),
                            Brand("Brooks"),

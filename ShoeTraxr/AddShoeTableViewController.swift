@@ -33,7 +33,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         
         shoeDateCell.inputMode = .date
         shoeDateCell.updateDateTimeLabel()
-        shoeMileageCell.doubleValue = 500.0
+        //shoeMileageCell.doubleValue = 500.0
         self.shoeBrandPickerCell.detailTextLabel?.text = "Required"
         self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[0]
         self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[0]
@@ -114,7 +114,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     @IBAction func validateRequiredData(_ sender: Any) {
-        if self.brand.characters.count == 0 {
+        if self.brand.characters.count == 0 || self.brand == "Required" {
             let alert = UIAlertController(title: "Required Data", message: "Brand is required.", preferredStyle: UIAlertControllerStyle.alert)
             alert.popoverPresentationController?.sourceView = self.view
             
@@ -122,14 +122,14 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.present(alert, animated: true, completion: nil)
         }
         else if self.model.characters.count == 0 {
-            let alert = UIAlertController(title: "Required Data", message: "Model/Product is required.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Required Data", message: "Model/Product Name is required.", preferredStyle: UIAlertControllerStyle.alert)
             alert.popoverPresentationController?.sourceView = self.view
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if self.distance == 0 {
-            let alert = UIAlertController(title: "Required Data", message: "Distance limit is required.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Required Data", message: "Max Distance is required.", preferredStyle: UIAlertControllerStyle.alert)
             alert.popoverPresentationController?.sourceView = self.view
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
