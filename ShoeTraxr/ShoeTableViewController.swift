@@ -24,6 +24,7 @@ public class ShoeTableViewController: UITableViewController {
     var distanceUnit = DistanceUnit.Miles
     var shoeType = ShoeTypes.Active
     var editShoe: Shoe!
+    var addShoe: Bool = false
     
     // MARK: - Formatters
     lazy var dateFormatter:DateFormatter = {
@@ -173,7 +174,8 @@ public class ShoeTableViewController: UITableViewController {
 
     
     @IBAction func addShoe(_ sender: Any) {
-        editShoe = nil
+        //editShoe = nil
+        addShoe = true
     }
     
     // MARK: - Segues
@@ -182,22 +184,23 @@ public class ShoeTableViewController: UITableViewController {
         if( segue.identifier == "addShoeSave" )
         {
 
-            if let addShoe:AddShoeTableViewController = segue.source as? AddShoeTableViewController {
-                if editShoe == nil {
+            if let addShoeController:AddShoeTableViewController = segue.source as? AddShoeTableViewController {
+                //if editShoe == nil {
+                if addShoe {
                     editShoe = Shoe()
 
                 }
-                editShoe.brand = addShoe.brand
-                editShoe.model = addShoe.model
-                editShoe.uuid = addShoe.nickname
-                editShoe.distance = addShoe.distance
-                editShoe.colorAvatarIndex = Int16(addShoe.colorAvatarIndex)
+                editShoe.brand = addShoeController.brand
+                editShoe.model = addShoeController.model
+                editShoe.uuid = addShoeController.nickname
+                editShoe.distance = addShoeController.distance
+                editShoe.colorAvatarIndex = Int16(addShoeController.colorAvatarIndex)
                 editShoe.distanceUnit = "Miles"
-                if addShoe.distanceUnit == .Kilometers {
+                if addShoeController.distanceUnit == .Kilometers {
                     editShoe.distanceUnit = "Kilometers"
                 }
 
-                editShoe.dateAdded = addShoe.date! as NSDate
+                editShoe.dateAdded = addShoeController.date! as NSDate
                 if editShoe.retired && editShoe.distance > editShoe.distanceLogged {
                     editShoe.unRetire(completion: nil)
                 }
@@ -220,7 +223,10 @@ public class ShoeTableViewController: UITableViewController {
                 let navigation = segue.destination as! UINavigationController
                 let editShoeDetails = navigation.viewControllers[0] as! AddShoeTableViewController
                 editShoeDetails.editShoe = self.editShoe
-
+                addShoe = false
+            }
+            if identifier == "addShoe" {
+                addShoe = true
             }
         }
     }

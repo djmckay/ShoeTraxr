@@ -37,6 +37,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        authorizeHealthKit()
+
         // Do any additional setup after loading the view, typically from a nib.
 //        myShoesButton.layer.cornerRadius = 10
 //        myRunsButton.layer.cornerRadius = 10
@@ -49,7 +51,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
         
         bannerView.load(request)
-        ModelController.sharedInstance.healthManager = self.healthManager
 
     }
 
@@ -61,19 +62,18 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        ModelController.sharedInstance.healthManager = self.healthManager
+
         if let identifier = segue.identifier {
             if identifier == "ShowRunningWorkouts" {
-                authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
                 runningWorkoutController.type = healthManager.running
             }
             if identifier == "ShowWalkingWorkouts" {
-                authorizeHealthKit()
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
                 runningWorkoutController.type = healthManager.walking
             }
             if identifier == "ShowShoes" {
-                authorizeHealthKit()
                 let shoeController = segue.destination as! ShoeTableViewController
             }
         }

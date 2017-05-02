@@ -12,7 +12,7 @@ import HealthKit
 class HealthKitManager {
     
     let healthKitStore:HKHealthStore = HKHealthStore()
-    var workouts = [HKWorkout]()
+    //var workouts = [HKWorkout]()
 
     let running = HKWorkoutActivityType.running
     let walking = HKWorkoutActivityType.walking
@@ -42,7 +42,8 @@ class HealthKitManager {
         
         // 4.  Request HealthKit authorization
         healthKitStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead) { (success, error) -> Void in
-            
+            ModelController.sharedInstance.healthManager = self
+
             if( completion != nil )
             {
                 completion(success,nil)
@@ -51,25 +52,7 @@ class HealthKitManager {
     }
     
     func readRunningWorkOuts(completion: (([AnyObject]?, NSError?) -> Void)!) {
-        
-        // 1. Predicate to read only running workouts
-        let predicate =  HKQuery.predicateForWorkouts(with: HKWorkoutActivityType.running)
-        // 2. Order the workouts by date
-        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
-        // 3. Create the query
-        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor])
-        { (sampleQuery, results, error ) -> Void in
-            
-            if let queryError = error {
-                print( "There was an error while reading the samples: \(queryError.localizedDescription)")
-            }
-            self.workouts = results as! [HKWorkout]
-            completion(results,error as NSError?)
-        }
-        // 4. Execute the query
-        healthKitStore.execute(sampleQuery)
-        
-        
+        readWorkouts(type: HKWorkoutActivityType.running, completion: completion)
         
     }
 
@@ -91,7 +74,7 @@ class HealthKitManager {
             if let queryError = error {
                 print( "There was an error while reading the samples: \(queryError.localizedDescription)")
             }
-            self.workouts = results as! [HKWorkout]
+            //self.workouts = results as! [HKWorkout]
             completion(results,error as? NSError)
         }
         // 4. Execute the query
