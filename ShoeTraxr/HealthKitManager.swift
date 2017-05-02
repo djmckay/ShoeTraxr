@@ -75,7 +75,7 @@ class HealthKitManager {
                 print( "There was an error while reading the samples: \(queryError.localizedDescription)")
             }
             //self.workouts = results as! [HKWorkout]
-            completion(results,error as? NSError)
+            completion(results,error as NSError?)
         }
         // 4. Execute the query
         healthKitStore.execute(sampleQuery)
@@ -102,7 +102,7 @@ class HealthKitManager {
         dateComponents.calendar = calendar
         
         // 1. Predicate to read todays summary
-        let predicate =  HKQuery.predicateForActivitySummary(with: dateComponents)
+        //let predicate =  HKQuery.predicateForActivitySummary(with: dateComponents)
         
         // 3. Create the query
         //let query = HKActivitySummaryQuery(predicate: predicate) { (query, summaries, error) in
@@ -110,7 +110,7 @@ class HealthKitManager {
             guard let summaries = summaries, summaries.count > 0
                 else {
                     // No data returned. Perhaps check for error
-                    completion(nil, error as! NSError)
+                    completion(nil, error as NSError?)
                     return
             }
             // Handle the activity rings data here

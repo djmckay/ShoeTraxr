@@ -24,7 +24,7 @@ class ModelController: NSObject {
             healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
                 if( error != nil )
                 {
-                    print("Error reading workouts: \(error?.localizedDescription)")
+                    print("Error reading workouts: \(String(describing: error?.localizedDescription))")
                     return;
                 }
                 else
@@ -39,7 +39,7 @@ class ModelController: NSObject {
             healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
                 if( error != nil )
                 {
-                    print("Error reading workouts: \(error?.localizedDescription)")
+                    print("Error reading workouts: \(String(describing: error?.localizedDescription))")
                     return;
                 }
                 else

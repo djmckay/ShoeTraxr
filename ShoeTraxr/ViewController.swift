@@ -43,7 +43,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 //        myShoesButton.layer.cornerRadius = 10
 //        myRunsButton.layer.cornerRadius = 10
 //        myWalksButton.layer.cornerRadius = 10
-        bannerView.adUnitID = "ca-app-pub-1011036572239562/3191605335"
+        bannerView.adUnitID = "ca-app-pub-1011036572239562/4571143334"
         bannerView.rootViewController = self
         bannerView.delegate = self as GADBannerViewDelegate
         
@@ -74,7 +74,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
                 runningWorkoutController.type = healthManager.walking
             }
             if identifier == "ShowShoes" {
-                let shoeController = segue.destination as! ShoeTableViewController
+                _ = segue.destination as! ShoeTableViewController
             }
         }
     }

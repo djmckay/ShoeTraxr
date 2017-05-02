@@ -21,7 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>This app would like to access your health data to track shoe health.</string>
+	<string>This app reads workout data to help track shoe health.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>This app reads workout data to help track shoe health.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
