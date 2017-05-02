@@ -109,11 +109,11 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
         let startDate = dateFormatter.string(from: workout.startDate)
         cell.textLabel!.text = startDate
         
-        // 2. Detail text: Duration - Distance
-        // Duration
-        //var detailText = "Duration: " + durationFormatter.string(from: workout.duration)!
-        // Distance in Km or miles depending on user selection
         var detailText = String()
+
+        // 2. Detail text: Duration - Distance
+        
+        // Distance in Km or miles depending on user selection
         
         detailText += " Distance: "
         
@@ -126,6 +126,10 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
             detailText += distanceFormatter.string(fromValue: distanceInMiles!, unit: LengthFormatter.Unit.mile)
             
         }
+        
+        // Duration
+        detailText += " Duration: " + durationFormatter.string(from: workout.duration)!
+        
         // 3. Detail text: Energy Burned
         //        let energyBurned = workout.totalEnergyBurned?.doubleValue(for: HKUnit.joule())
         //        detailText += " Energy: " + energyFormatter.string(fromJoules: energyBurned!)
@@ -142,7 +146,7 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
         if let workout = modelController.getWorkout(hkWorkout: workout) {
             shoeAvatar.isHidden = false
             if let shoe = workout.shoe {
-                detailText += " Shoe: " + shoe.getTitle()
+                //detailText += " Shoe: " + shoe.getTitle()
                 cell.detailTextLabel?.text = detailText
                 shoeAvatar.backgroundColor = ModelController.colors[Int(shoe.colorAvatarIndex)]
 

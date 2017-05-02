@@ -130,6 +130,10 @@ public class ShoeTableViewController: UITableViewController {
             cell.backgroundColor = UIColor.red
         }
         
+        let shoeAvatar = cell.viewWithTag(1) as! UIImageView
+        shoeAvatar.isHidden = false
+        shoeAvatar.backgroundColor = ModelController.colors[Int(shoe.colorAvatarIndex)]
+        
 
         return cell
     }
