@@ -16,7 +16,6 @@ class WorkoutTableViewController: UITableViewController {
     var type: HKWorkoutActivityType!
     
     var distanceUnit = DistanceUnit.Miles
-    var workouts = [HKWorkout]()
     var selectedWorkout: HKWorkout!
     
     // MARK: - Formatters
@@ -52,65 +51,7 @@ class WorkoutTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workouts.count
-        
-    }
     
-    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutcellid", for: indexPath)
-        
-        
-        // 1. Get workout for the row. Cell text: Workout Date
-        let workout  = workouts[indexPath.row]
-        let startDate = dateFormatter.string(from: workout.startDate)
-        cell.textLabel!.text = startDate
-        
-        // 2. Detail text: Duration - Distance
-        // Duration
-        //var detailText = "Duration: " + durationFormatter.string(from: workout.duration)!
-        // Distance in Km or miles depending on user selection
-        var detailText = String()
-        
-        if workout.workoutActivityType == .running {
-            detailText += " Ran "
-            
-        } else if workout.workoutActivityType == .walking {
-            detailText += " Walked "
-            
-        }
-        if distanceUnit == .Kilometers {
-            let distanceInKM = workout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo))
-            detailText += distanceFormatter.string(fromValue: distanceInKM!, unit: LengthFormatter.Unit.kilometer)
-        }
-        else {
-            let distanceInMiles = workout.totalDistance?.doubleValue(for: HKUnit.mile())
-            detailText += distanceFormatter.string(fromValue: distanceInMiles!, unit: LengthFormatter.Unit.mile)
-            
-        }
-        // 3. Detail text: Energy Burned
-        //        let energyBurned = workout.totalEnergyBurned?.doubleValue(for: HKUnit.joule())
-        //        detailText += " Energy: " + energyFormatter.string(fromJoules: energyBurned!)
-        
-        
-
-        cell.detailTextLabel?.text = detailText
-        
-        cell.accessoryType = .none
-        let shoeAvatar = cell.viewWithTag(1) as! UIImageView
-        shoeAvatar.isHidden = true
-        if let workout = modelController.getWorkout(hkWorkout: workout) {
-            shoeAvatar.isHidden = false
-            shoeAvatar.backgroundColor = UIColor.green
-            if let shoe = workout.shoe {
-                detailText += " Shoe: " + shoe.getTitle()
-                cell.detailTextLabel?.text = detailText
-            }
-        }
-    
-        return cell
-    }
-
     /*
     // MARK: - Navigation
 

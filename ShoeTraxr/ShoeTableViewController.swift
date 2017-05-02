@@ -191,6 +191,7 @@ public class ShoeTableViewController: UITableViewController {
                 editShoe.model = addShoe.model
                 editShoe.uuid = addShoe.nickname
                 editShoe.distance = addShoe.distance
+                editShoe.colorAvatarIndex = Int16(addShoe.colorAvatarIndex)
                 editShoe.distanceUnit = "Miles"
                 if addShoe.distanceUnit == .Kilometers {
                     editShoe.distanceUnit = "Kilometers"

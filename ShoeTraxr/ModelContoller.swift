@@ -81,6 +81,25 @@ class ModelController: NSObject {
                            
     ]
     
+    static var colors: [UIColor] = [UIColor.green,
+                             UIColor.red,
+                             UIColor.blue,
+                             UIColor.yellow,
+                             UIColor.purple,
+                             UIColor.black,
+                             UIColor.brown,
+                             UIColor.gray]
+    
+    static var colorNames: [String] = ["Green",
+                                "Red",
+                                "Blue",
+                                "Yellow",
+                                "Purple",
+                                "Black",
+                                "Brown",
+                                "Gray"]
+
+    
     var managedContext:NSManagedObjectContext!
     
     static let sharedInstance: ModelController = {
@@ -128,6 +147,8 @@ class ModelController: NSObject {
         //3
         do {
             workouts = try managedContext.fetch(workoutFetchRequest)
+            //print(workouts.count)
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }

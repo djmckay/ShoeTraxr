@@ -24,6 +24,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
 
     @IBOutlet weak var shoeBrandPickerCell: PickerCell!
     
+    @IBOutlet weak var shoeAvatarColorPIckerCell: ColorPickerCell!
+    
     var editShoe: Shoe!
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -33,7 +35,9 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         shoeDateCell.updateDateTimeLabel()
         shoeMileageCell.doubleValue = 500.0
         self.shoeBrandPickerCell.detailTextLabel?.text = "Required"
-
+        self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[0]
+        self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[0]
+        
         if let editShoe = editShoe {
             self.title = "Shoe Details"
             //self.shoeBrandCell.textField.text = editShoe.brand
@@ -48,6 +52,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.shoeDateCell.date = editShoe.dateAdded! as Date
             self.numberOfWorkouts.integerValue = editShoe.workoutData.count
             self.shoeDistanceLogged.value = editShoe.distanceLoggedFormatted
+            self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[Int(editShoe.colorAvatarIndex)]
+            self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[Int(editShoe.colorAvatarIndex)]
         }
         else {
             //adding new shoe don't need to show a few fields.
@@ -57,10 +63,15 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        //print(indexPath.row)
         
     }
 
+    var colorAvatarIndex: Int {
+        get {
+            return ModelController.colorNames.index(of: (shoeAvatarColorPIckerCell.detailTextLabel?.text)!)!
+        }
+    }
     
     var distance:Double {
         get {
@@ -70,7 +81,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     
     var brand:String {
         get {
-            print(shoeBrandPickerCell.detailTextLabel?.text!)
+            //print(shoeBrandPickerCell.detailTextLabel?.text!)
             return (shoeBrandPickerCell.detailTextLabel?.text)!
             //return shoeBrandCell.value
         }

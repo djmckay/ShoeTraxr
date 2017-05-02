@@ -131,14 +131,42 @@ extension Shoe {
     
     func getHKWorkouts() -> [HKWorkout] {
         var hkWorkouts = [HKWorkout]()
-        for workoutSet in workouts! {
-            for hkWorkout in ModelController.sharedInstance.runningHKWorkouts {
+        hkWorkouts.append(contentsOf: getWalkingHKWorkouts())
+        hkWorkouts.append(contentsOf: getRunningHKWorkouts())
+//        for workoutSet in workouts! {
+//            for hkWorkout in ModelController.sharedInstance.runningHKWorkouts {
+//                let workout = workoutSet as! Workout
+//                if hkWorkout.uuid.uuidString == workout.uuid {
+//                    hkWorkouts.append(hkWorkout)
+//                }
+//            }
+//            for hkWorkout in ModelController.sharedInstance.walkingHKWorkouts {
+//                let workout = workoutSet as! Workout
+//                if hkWorkout.uuid.uuidString == workout.uuid {
+//                    hkWorkouts.append(hkWorkout)
+//                }
+//            }
+//        }
+        return hkWorkouts
+    }
+    
+    func getWalkingHKWorkouts() -> [HKWorkout] {
+        var hkWorkouts = [HKWorkout]()
+        for hkWorkout in ModelController.sharedInstance.walkingHKWorkouts {
+            for workoutSet in workouts! {
                 let workout = workoutSet as! Workout
                 if hkWorkout.uuid.uuidString == workout.uuid {
                     hkWorkouts.append(hkWorkout)
                 }
             }
-            for hkWorkout in ModelController.sharedInstance.walkingHKWorkouts {
+        }
+        return hkWorkouts
+    }
+    
+    func getRunningHKWorkouts() -> [HKWorkout] {
+        var hkWorkouts = [HKWorkout]()
+        for hkWorkout in ModelController.sharedInstance.runningHKWorkouts {
+            for workoutSet in workouts! {
                 let workout = workoutSet as! Workout
                 if hkWorkout.uuid.uuidString == workout.uuid {
                     hkWorkouts.append(hkWorkout)

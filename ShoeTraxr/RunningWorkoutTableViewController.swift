@@ -96,6 +96,51 @@ public class RunningWorkoutTableViewController: UITableViewController {
 
     }
     
+    public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if type == HKWorkoutActivityType.walking {
+            return "Walking (\(workouts.count))"
+        }
+        else {
+            return "Running (\(workouts.count))"
+        }
+    }
+    
+    public override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        var footerText = String()
+        
+        if type == HKWorkoutActivityType.walking {
+            footerText += "Walking Total: "
+            
+        }
+        else {
+            footerText += "Running Total: "
+            
+        }
+        var distanceInKM: Double = 0.0
+        var distanceInMiles: Double = 0.0
+        
+        for workout in workouts {
+            if distanceUnit == .Kilometers {
+                distanceInKM += (workout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!
+            }
+            else {
+                distanceInMiles += (workout.totalDistance?.doubleValue(for: HKUnit.mile()))!
+                
+            }
+        }
+        
+        if distanceUnit == .Kilometers {
+            footerText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
+        }
+        else {
+            footerText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
+            
+        }
+        return footerText
+        
+    }
+
+    
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutcellid", for: indexPath) 
         
@@ -128,12 +173,18 @@ public class RunningWorkoutTableViewController: UITableViewController {
         cell.accessoryType = .none
         let shoeAvatar = cell.viewWithTag(1) as! UIImageView
         shoeAvatar.isHidden = true
+        shoeAvatar.backgroundColor = UIColor.white
+
         if let workout = modelController?.getWorkout(hkWorkout: workout) {
-            shoeAvatar.isHidden = false
-            shoeAvatar.backgroundColor = UIColor.green
             if let shoe = workout.shoe {
+                shoeAvatar.isHidden = false
                 detailText += " Shoe: " + shoe.getTitle()
                 cell.detailTextLabel?.text = detailText
+                shoeAvatar.backgroundColor = ModelController.colors[Int(shoe.colorAvatarIndex)]
+
+            }
+            else {
+                cell.accessoryType = .checkmark
             }
         }
 
@@ -165,7 +216,7 @@ public class RunningWorkoutTableViewController: UITableViewController {
                 if let existingWorkout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
                     workout = existingWorkout
                 } else {
-                    let workout = Workout()
+                    workout = Workout()
                     workout.uuid = selectedWorkout.uuid.uuidString
                 }
 

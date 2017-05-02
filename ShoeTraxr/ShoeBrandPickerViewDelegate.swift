@@ -27,7 +27,7 @@ class ShoeBrandPickerViewDelegate: PickerTextField {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("shoe brand \(row)")
+        //print("shoe brand \(row)")
         self.text = "shoe brand \(row)"
     }
 }
