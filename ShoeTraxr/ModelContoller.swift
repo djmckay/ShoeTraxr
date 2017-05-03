@@ -18,7 +18,7 @@ class ModelController: NSObject {
     var workouts = [Workout]()
     var runningHKWorkouts = [HKWorkout]()
     var walkingHKWorkouts = [HKWorkout]()
-    var healthManager:HealthKitManager? {
+    var healthManager:HealthKitManager? /*{
         
         didSet {
             healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
@@ -29,7 +29,7 @@ class ModelController: NSObject {
                 }
                 else
                 {
-                    print("Workouts read successfully!")
+                    print("Running Workouts read successfully!")
                 }
                 
                 //Keep workouts and refresh tableview in main thread
@@ -44,7 +44,7 @@ class ModelController: NSObject {
                 }
                 else
                 {
-                    print("Workouts read successfully!")
+                    print("Running Workouts read successfully!")
                 }
                 
                 //Keep workouts and refresh tableview in main thread
@@ -52,7 +52,7 @@ class ModelController: NSObject {
                 
             })
         }
-    }
+    }*/
 
     var brands: [Brand] = [Brand(""), Brand("adidas"),
                            Brand("Altra"),
@@ -212,6 +212,43 @@ class ModelController: NSObject {
             }
         }
         return returnWorkout
+    }
+
+    func getRunningWorkouts(completion: @escaping () -> Void) {
+        healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
+            if( error != nil )
+            {
+                print("Error reading workouts: \(String(describing: error?.localizedDescription))")
+                return;
+            }
+            else
+            {
+                print("Running Workouts read successfully!")
+            }
+            
+            //Keep workouts and refresh tableview in main thread
+            self.runningHKWorkouts = results as! [HKWorkout]
+            completion()
+
+        })
+    }
+    
+    func getWalkingWorkouts(completion: @escaping () -> Void) {
+        healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
+            if( error != nil )
+            {
+                print("Error reading workouts: \(String(describing: error?.localizedDescription))")
+                return;
+            }
+            else
+            {
+                print("Walking Workouts read successfully!")
+            }
+            
+            //Keep workouts and refresh tableview in main thread
+            self.walkingHKWorkouts = results as! [HKWorkout]
+            completion()
+        })
     }
 
     

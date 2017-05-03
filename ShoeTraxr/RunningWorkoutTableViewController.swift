@@ -38,7 +38,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
     let durationFormatter = DateComponentsFormatter()
     let energyFormatter = EnergyFormatter()
     let distanceFormatter = LengthFormatter()
-    
+    var refreshController: UIRefreshControl!
+
     // MARK: - Class Implementation
     
     public override func viewDidLoad() {
@@ -46,22 +47,30 @@ public class RunningWorkoutTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = false
         
+        self.refreshController = UIRefreshControl()
+        self.refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh workouts")
+        self.refreshController.addTarget(self, action: #selector(RunningWorkoutTableViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        self.view.addSubview(refreshController)
+        
         if modelController == nil {
             modelController = ModelController.sharedInstance
         }
-        
         if type == HKWorkoutActivityType.running {
-            self.workouts = (modelController?.runningHKWorkouts)!
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
+            modelController?.getRunningWorkouts {
+                self.workouts = (self.modelController?.runningHKWorkouts)!
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+            }
+            
 
         } else if type == HKWorkoutActivityType.walking {
-            self.workouts = (modelController?.walkingHKWorkouts)!
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-
+            modelController?.getWalkingWorkouts {
+                self.workouts = (self.modelController?.walkingHKWorkouts)!
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+            }
         }
         
     }
@@ -84,6 +93,36 @@ public class RunningWorkoutTableViewController: UITableViewController {
         
 
     }
+    
+    func refresh(_ sender:AnyObject) {
+        print("refresh called")
+        //self.refreshController.beginRefreshing()
+        
+        if type == HKWorkoutActivityType.running {
+            modelController?.getRunningWorkouts {
+                self.workouts = (self.modelController?.runningHKWorkouts)!
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                    self.refreshController.endRefreshing()
+                    print("refresh ended")
+
+                })
+            }
+            
+            
+        } else if type == HKWorkoutActivityType.walking {
+            modelController?.getWalkingWorkouts {
+                self.workouts = (self.modelController?.walkingHKWorkouts)!
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                    self.refreshController.endRefreshing()
+                    print("refresh ended")
+
+                })
+            }
+        }
+    }
+
     
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return workouts.count
@@ -252,6 +291,10 @@ public class RunningWorkoutTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func refreshWorkouts(_ sender: Any) {
+        self.refreshController.beginRefreshing()
+        self.refresh(sender as AnyObject)
+    }
     
     
 }
