@@ -251,5 +251,51 @@ class ModelController: NSObject {
         })
     }
 
+    func getMostRecentRunningWorkout(completion: @escaping (_ result: HKWorkout?) -> Void) {
+        healthManager?.readMostRecentRunningWorkOut(completion: { (results, error) -> Void in
+            if( error != nil )
+            {
+                print("Error reading workouts: \(String(describing: error?.localizedDescription))")
+                return;
+            }
+            else
+            {
+                print("Running Workouts read successfully!")
+            }
+            
+            //Keep workouts and refresh tableview in main thread
+            //self.runningHKWorkouts = results as! [HKWorkout]
+            if let workout = results?[0] {
+                completion(workout as? HKWorkout)
+            }
+            else {
+                completion(nil)
+            }
+            
+        })
+    }
     
+    func getMostRecentWalkingWorkout(completion: @escaping (_ result: HKWorkout?) -> Void) {
+        healthManager?.readMostRecentWalkingWorkout(completion: { (results, error) -> Void in
+            if( error != nil )
+            {
+                print("Error reading workouts: \(String(describing: error?.localizedDescription))")
+                return;
+            }
+            else
+            {
+                print("Walking Workouts read successfully!")
+            }
+            
+            //Keep workouts and refresh tableview in main thread
+            //self.runningHKWorkouts = results as! [HKWorkout]
+            if let workout = results?[0] {
+                completion(workout as? HKWorkout)
+            }
+            else {
+                completion(nil)
+            }
+            
+        })
+    }
 }

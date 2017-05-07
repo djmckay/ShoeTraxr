@@ -22,12 +22,23 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+
         if shoe != nil {
-            self.walkingWorkouts = shoe.getWalkingHKWorkouts()
-            self.runningWorkouts = shoe.getRunningHKWorkouts()
             
             self.title = shoe.getTitle()
+
+            ModelController.sharedInstance.getRunningWorkouts {
+                self.runningWorkouts = self.shoe.getRunningHKWorkouts()
+
+                ModelController.sharedInstance.getWalkingWorkouts {
+                    self.walkingWorkouts = self.shoe.getWalkingHKWorkouts()
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                }
+            }
+            
         }
     }
 

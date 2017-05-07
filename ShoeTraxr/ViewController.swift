@@ -51,7 +51,46 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
         
         bannerView.load(request)
+        
+//        ModelController.sharedInstance.getMostRecentRunningWorkout(completion: { (workout) in
+//            if workout != nil {
+//                print("send alert")
+//                self.checkForRunAlert()
+//                
+//            }
+//            else {
+//                ModelController.sharedInstance.getMostRecentWalkingWorkout(completion: { (workout) in
+//                    if workout != nil {
+//                        print("send alert")
+//                        self.checkForWalkAlert()
+//
+//                    }
+//                })
+//            }
+//        })
 
+    }
+    
+    func checkForWalkAlert() -> Void {
+        let message = NSLocalizedString("Recent Walking Workout Found", comment: "Recent Walking Workout Found")
+        let alertController = UIAlertController(title: "ShoeTraxR", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert Cancel button"), style: .cancel, handler: nil))
+
+        alertController.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action) in
+            self.performSegue(withIdentifier: "ShowWalkingWorkouts", sender: self)
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func checkForRunAlert() -> Void {
+        let message = NSLocalizedString("Recent Running Workout Found", comment: "Recent Running Workout Found")
+        let alertController = UIAlertController(title: "ShoeTraxR", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action) in
+            self.performSegue(withIdentifier: "ShowRunningWorkouts", sender: self)
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

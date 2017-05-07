@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "206"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
@@ -207,8 +207,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "healthManager"
-            landmarkType = "24">
+            landmarkName = "ModelController"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -250,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -262,11 +262,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "515386432.401154"
+            timestampString = "515860524.368079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -438,7 +438,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/RunningWorkoutTableViewController.swift"
@@ -480,6 +480,150 @@
             startingLineNumber = "117"
             endingLineNumber = "117"
             landmarkName = "refresh(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/ModelContoller.swift"
+            timestampString = "515860524.368079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "sharedInstance"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/ModelContoller.swift"
+            timestampString = "515860524.368079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "getMostRecentRunningWorkout(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/ViewController.swift"
+            timestampString = "515860320.977884"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoeTraxr.ViewController.viewDidLoad () -&gt; ()"
+                  moduleName = "ShoeTraxr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/ViewController.swift"
+                  timestampString = "515860690.732797"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "1280">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoeTraxr.ViewController.(viewDidLoad () -&gt; ()).(closure #1)"
+                  moduleName = "ShoeTraxr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/ViewController.swift"
+                  timestampString = "515860690.735913"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/ModelContoller.swift"
+            timestampString = "515860476.14936"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "getMostRecentRunningWorkout(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoeTraxr.ModelController.getMostRecentRunningWorkout (completion : (Swift.Optional&lt;__ObjC.HKWorkout&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ShoeTraxr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/ModelContoller.swift"
+                  timestampString = "515860690.744279"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoeTraxr.ModelController.(getMostRecentRunningWorkout (completion : (Swift.Optional&lt;__ObjC.HKWorkout&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "ShoeTraxr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/ModelContoller.swift"
+                  timestampString = "515860690.746802"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/ViewController.swift"
+            timestampString = "515860726.394775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

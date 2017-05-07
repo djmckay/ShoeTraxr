@@ -52,23 +52,23 @@ class HealthKitManager {
     }
     
     func readRunningWorkOuts(completion: (([AnyObject]?, NSError?) -> Void)!) {
-        readWorkouts(type: HKWorkoutActivityType.running, completion: completion)
+        readWorkouts(type: HKWorkoutActivityType.running, limit: 0, completion: completion)
         
     }
 
     func readWalkingWorkouts(completion: (([AnyObject]?, NSError?) -> Void)!) {
-         readWorkouts(type: HKWorkoutActivityType.walking, completion: completion)
+        readWorkouts(type: HKWorkoutActivityType.walking, limit: 0, completion: completion)
         
     }
 
-    private func readWorkouts(type: HKWorkoutActivityType, completion: (([AnyObject]?, NSError?) -> Void)!) {
+    private func readWorkouts(type: HKWorkoutActivityType, limit: Int, completion: (([AnyObject]?, NSError?) -> Void)!) {
         
         // 1. Predicate to read only running workouts
         let predicate =  HKQuery.predicateForWorkouts(with: type)
         // 2. Order the workouts by date
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
         // 3. Create the query
-        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor])
+        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor])
         { (sampleQuery, results, error ) -> Void in
             
             if let queryError = error {
@@ -120,4 +120,16 @@ class HealthKitManager {
         healthKitStore.execute(query)
 
     }
+    
+    func readMostRecentRunningWorkOut(completion: (([AnyObject]?, NSError?) -> Void)!) {
+        readWorkouts(type: HKWorkoutActivityType.running, limit: 1, completion: completion)
+        
+    }
+    
+    func readMostRecentWalkingWorkout(completion: (([AnyObject]?, NSError?) -> Void)!) {
+        readWorkouts(type: HKWorkoutActivityType.walking, limit: 1, completion: completion)
+        
+    }
+    
+    
 }
