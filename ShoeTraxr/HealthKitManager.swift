@@ -8,6 +8,7 @@
 
 import Foundation
 import HealthKit
+import UserNotifications
 
 class HealthKitManager {
     
@@ -60,6 +61,16 @@ class HealthKitManager {
         readWorkouts(type: HKWorkoutActivityType.walking, limit: 0, completion: completion)
         
     }
+    
+    func observeRunningWorkOuts(completion: ((Bool, Error?) -> Void)!) {
+        observeWorkouts(type: HKWorkoutActivityType.running, limit: 0, completion: completion)
+        
+    }
+    
+    func observeWalkingWorkouts(completion: ((Bool, Error?) -> Void)!) {
+        observeWorkouts(type: HKWorkoutActivityType.walking, limit: 0, completion: completion)
+        
+    }
 
     private func readWorkouts(type: HKWorkoutActivityType, limit: Int, completion: (([AnyObject]?, NSError?) -> Void)!) {
         
@@ -79,6 +90,39 @@ class HealthKitManager {
         }
         // 4. Execute the query
         healthKitStore.execute(sampleQuery)
+        
+        
+    }
+    
+    private func observeWorkouts(type: HKWorkoutActivityType, limit: Int, completion: ((Bool, Error?) -> Void)!) {
+        
+        // 1. Predicate to read only running workouts
+        let predicate =  HKQuery.predicateForWorkouts(with: type)
+        // 2. Create the observer query
+        let sampleQuery = HKObserverQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, updateHandler:
+        { (query, completionHandler, error) -> Void in
+            
+            if let queryError = error {
+                print( "There was an error while reading the samples: \(queryError.localizedDescription)")
+            }
+            //send notification?
+            self.sendNotification()
+            completionHandler()
+        })
+        // 3. Execute the query
+        healthKitStore.execute(sampleQuery)
+        // 4. Enable in background
+        enableBackground { (succeeded, error) in
+            if succeeded{
+                print("Enabled background delivery of \(type) changes")
+            } else {
+                if let theError = error{
+                    print("Failed to enable background delivery. ")
+                    print("Error = \(theError)")
+                }
+            }
+            completion(succeeded, error)
+        }
         
         
     }
@@ -131,5 +175,27 @@ class HealthKitManager {
         
     }
     
+    private func sendNotification() {
+        // 1
+        let content = UNMutableNotificationContent()
+        content.title = "ShoeTraxR"
+        content.subtitle = "New Workout added"
+        content.body = "Add Shoe?"
+        
+        // 2
+//        let imageName = "applelogo"
+//        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }
+//        
+//        let attachment = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
+//        
+//        content.attachments = [attachment]
+        
+        // 3
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let request = UNNotificationRequest(identifier: "notification.id.01", content: content, trigger: trigger)
+        
+        // 4
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
     
 }

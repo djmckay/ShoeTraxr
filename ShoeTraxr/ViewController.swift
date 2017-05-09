@@ -24,6 +24,28 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         healthManager.authorizeHealthKit { (authorized,  error) -> Void in
             if authorized {
                 print("HealthKit authorization received.")
+                self.healthManager.observeRunningWorkOuts(completion: { (success, error) in
+                    if( error != nil )
+                    {
+                        print("Error observing workouts: \(String(describing: error?.localizedDescription))")
+                        return;
+                    }
+                    else
+                    {
+                        print("Running Workouts observed successfully!")
+                    }
+                })
+                self.healthManager.observeWalkingWorkouts(completion: { (success, error) in
+                    if( error != nil )
+                    {
+                        print("Error observing workouts: \(String(describing: error?.localizedDescription))")
+                        return;
+                    }
+                    else
+                    {
+                        print("Running Workouts observed successfully!")
+                    }
+                })
             }
             else
             {
@@ -52,47 +74,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         
         bannerView.load(request)
         
-//        ModelController.sharedInstance.getMostRecentRunningWorkout(completion: { (workout) in
-//            if workout != nil {
-//                print("send alert")
-//                self.checkForRunAlert()
-//                
-//            }
-//            else {
-//                ModelController.sharedInstance.getMostRecentWalkingWorkout(completion: { (workout) in
-//                    if workout != nil {
-//                        print("send alert")
-//                        self.checkForWalkAlert()
-//
-//                    }
-//                })
-//            }
-//        })
+
 
     }
     
-    func checkForWalkAlert() -> Void {
-        let message = NSLocalizedString("Recent Walking Workout Found", comment: "Recent Walking Workout Found")
-        let alertController = UIAlertController(title: "ShoeTraxR", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert Cancel button"), style: .cancel, handler: nil))
-
-        alertController.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: "ShowWalkingWorkouts", sender: self)
-        }))
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func checkForRunAlert() -> Void {
-        let message = NSLocalizedString("Recent Running Workout Found", comment: "Recent Running Workout Found")
-        let alertController = UIAlertController(title: "ShoeTraxR", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: "ShowRunningWorkouts", sender: self)
-        }))
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
