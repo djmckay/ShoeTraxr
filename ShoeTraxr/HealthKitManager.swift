@@ -9,6 +9,7 @@
 import Foundation
 import HealthKit
 import UserNotifications
+import UIKit
 
 class HealthKitManager {
     
@@ -106,13 +107,33 @@ class HealthKitManager {
                 print( "There was an error while reading the samples: \(queryError.localizedDescription)")
             }
             //send notification?
-            self.sendNotification()
+            
+            if type == HKWorkoutActivityType.running {
+                ModelController.sharedInstance.getMostRecentRunningWorkout {workout in
+                    if let workout = ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                        if workout.shoe == nil {
+                            self.sendNotification(type: type)
+                        }
+                    }
+                }
+                
+                
+            } else if type == HKWorkoutActivityType.walking {
+                ModelController.sharedInstance.getMostRecentWalkingWorkout {workout in
+                    if let workout = ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                        if workout.shoe == nil {
+                            self.sendNotification(type: type)
+                        }
+                    }
+                }
+            }
+            
             completionHandler()
         })
         // 3. Execute the query
         healthKitStore.execute(sampleQuery)
         // 4. Enable in background
-        enableBackground { (succeeded, error) in
+        enableBackground(type: type) { (succeeded, error) in
             if succeeded{
                 print("Enabled background delivery of \(type) changes")
             } else {
@@ -127,8 +148,8 @@ class HealthKitManager {
         
     }
     
-    func enableBackground(completion: @escaping (Bool, Error?) -> Swift.Void) {
-        healthKitStore.enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!, frequency: .immediate) { (complete, error) in
+    func enableBackground(type: HKWorkoutActivityType, completion: @escaping (Bool, Error?) -> Swift.Void) {
+        healthKitStore.enableBackgroundDelivery(for: HKObjectType.workoutType(), frequency: .immediate) { (complete, error) in
                 completion(complete, error)
         }
     }
@@ -175,13 +196,19 @@ class HealthKitManager {
         
     }
     
-    private func sendNotification() {
+    private func sendNotification(type: HKWorkoutActivityType) {
         // 1
         let content = UNMutableNotificationContent()
         content.title = "ShoeTraxR"
-        content.subtitle = "New Workout added"
-        content.body = "Add Shoe?"
-        
+        var typeString = "walking"
+        if type == .running {
+            typeString = "running"
+        }
+        content.body = "New Workout added for \(typeString)"
+        content.sound = UNNotificationSound.default()
+        var currentBadge: Int = UIApplication.shared.applicationIconBadgeNumber
+        currentBadge += 1
+        content.badge = currentBadge as NSNumber
         // 2
 //        let imageName = "applelogo"
 //        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }
@@ -191,8 +218,8 @@ class HealthKitManager {
 //        content.attachments = [attachment]
         
         // 3
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        let request = UNNotificationRequest(identifier: "notification.id.01", content: content, trigger: trigger)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         // 4
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
