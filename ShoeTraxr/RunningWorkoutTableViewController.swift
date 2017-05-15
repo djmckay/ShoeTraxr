@@ -251,25 +251,26 @@ public class RunningWorkoutTableViewController: UITableViewController {
         {
             
             if let assignShoe:AssignShoeWorkoutTableViewController = segue.source as? AssignShoeWorkoutTableViewController {
-                var workout: Workout!
-                if let existingWorkout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
-                    workout = existingWorkout
-                } else {
-                    workout = Workout()
-                    workout.uuid = selectedWorkout.uuid.uuidString
-                }
-
-                
-                if assignShoe.selectedShoe.distanceUnitType == .Kilometers {
-                    workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!
-                }
-                else {
-                    workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.mile()))!
-                    
-                }
-
-                assignShoe.selectedShoe.addToWorkouts(workout)
-                modelController?.workouts.append(workout)
+//                var workout: Workout!
+//                if let existingWorkout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
+//                    workout = existingWorkout
+//                } else {
+//                    workout = Workout()
+//                    workout.uuid = selectedWorkout.uuid.uuidString
+//                }
+//
+//                
+//                if assignShoe.selectedShoe.distanceUnitType == .Kilometers {
+//                    workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!
+//                }
+//                else {
+//                    workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.mile()))!
+//                    
+//                }
+//
+//                assignShoe.selectedShoe.addToWorkouts(workout)
+//                modelController?.workouts.append(workout)
+                assignShoe.selectedShoe.addWorkout(selectedWorkout: selectedWorkout)
                 DispatchQueue.main.async(execute: {
                     if assignShoe.selectedShoe.distanceLogged >= assignShoe.selectedShoe.distance {
                         let alert = UIAlertController(title: assignShoe.selectedShoe.getTitle(), message: "Shoe has exceeded allowed limit of \(assignShoe.selectedShoe.distanceFormatted).  Consider retiring.", preferredStyle: UIAlertControllerStyle.alert)

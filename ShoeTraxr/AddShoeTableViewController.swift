@@ -26,6 +26,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBOutlet weak var shoeAvatarColorPIckerCell: ColorPickerCell!
     
+    @IBOutlet weak var defaultPickerCell: DefaultPickerCell!
+    
     var editShoe: Shoe!
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -37,6 +39,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         self.shoeBrandPickerCell.detailTextLabel?.text = "Required"
         self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[0]
         self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[0]
+
         
         if let editShoe = editShoe {
             self.title = "Shoe Details"
@@ -54,6 +57,10 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.shoeDistanceLogged.value = editShoe.distanceLoggedFormatted
             self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[Int(editShoe.colorAvatarIndex)]
             self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[Int(editShoe.colorAvatarIndex)]
+            if let defaultWorkout = editShoe.defaultWorkout {
+                self.defaultPickerCell.detailTextLabel?.text = ModelController.defaultWorkoutTypes[Int(defaultWorkout.type)]
+                self.defaultPickerCell.select()
+            }
         }
         else {
             //adding new shoe don't need to show a few fields.
@@ -106,6 +113,18 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
+    var defaultWorkout: DefaultShoe? {
+        get {
+            for type in ModelController.defaultWorkoutTypes {
+                if self.defaultPickerCell.detailTextLabel?.text! == type.value {
+                    
+                    return ModelController.sharedInstance.defaultWorkout(forType: type.key)
+                }
+            }
+            return nil
+        }
+    }
+    
     var distanceUnit:DistanceUnit {
         get {
             let distanceUnitInput = DistanceUnit(rawValue: shoeDistanceUnit.selectedSegmentIndex)!
@@ -154,6 +173,16 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                 let shoeWorkouts = segue.destination as! ShoeWorkoutTableViewController
                 shoeWorkouts.shoe = editShoe
             }
+        }
+    }
+    
+    func deleteShoe(_ shoe: Shoe) {
+        editShoe.delete { (status, error) in
+        }
+    }
+    
+    func retireShoe(_ shoe: Shoe) {
+        editShoe.retire { (status, error) in
         }
     }
 }

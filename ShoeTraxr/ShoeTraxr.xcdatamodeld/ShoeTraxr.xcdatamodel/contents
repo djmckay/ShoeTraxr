@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DefaultShoe" representedClassName="DefaultShoe" syncable="YES" codeGenerationType="class">
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="shoe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shoe" inverseName="defaultWorkout" inverseEntity="Shoe" syncable="YES"/>
+    </entity>
     <entity name="Shoe" representedClassName="Shoe" syncable="YES" codeGenerationType="class">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorAvatarIndex" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -10,6 +14,7 @@
         <attribute name="retired" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="retiredDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="defaultWorkout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DefaultShoe" inverseName="shoe" inverseEntity="DefaultShoe" syncable="YES"/>
         <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="shoe" inverseEntity="Workout" syncable="YES"/>
     </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES" codeGenerationType="class">
@@ -19,7 +24,8 @@
     </entity>
     <fetchRequest name="FetchRequest" entity="Shoe"/>
     <elements>
-        <element name="Shoe" positionX="-380" positionY="-33" width="128" height="195"/>
+        <element name="Shoe" positionX="-380" positionY="-33" width="128" height="210"/>
         <element name="Workout" positionX="-54" positionY="18" width="128" height="90"/>
+        <element name="DefaultShoe" positionX="-216" positionY="54" width="128" height="75"/>
     </elements>
 </model>

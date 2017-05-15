@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="92Y-M0-7Be" kind="relationship" relationship="rootViewController" id="TDq-r0-yxf"/>
+                        <segue destination="y97-aH-bqn" kind="relationship" relationship="rootViewController" id="11l-92-hba"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KAV-JP-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,9 +74,6 @@
                                 <state key="normal" title="My Walks">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="Ylt-gi-uwi" kind="show" identifier="ShowWalkingWorkouts" id="1Yt-sU-exG"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -110,6 +108,139 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8c-cF-QBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.5" y="-65"/>
+        </scene>
+        <!--ShoeTraxR-->
+        <scene sceneID="x9u-Dj-oXF">
+            <objects>
+                <viewController id="y97-aH-bqn" customClass="ShoeCollectionViewController" customModule="ShoeTraxr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H7J-vW-NTc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pir-uI-eRW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M2Y-ZW-O9W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ir7-ee-O6W" customClass="ShoeCollectionView" customModule="ShoeTraxr" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="320" height="165"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Drj-pq-a3s">
+                                    <size key="itemSize" width="152" height="93"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShoeCell" id="SYq-Wb-ujB" customClass="ShoeCollectionViewCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="152" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="152" height="93"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eco-0z-2Pr" customClass="RingGraph" customModule="ShoeTraxr" customModuleProvider="target">
+                                                    <rect key="frame" x="26" y="-4" width="100" height="100"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw1-6W-5G6">
+                                                    <rect key="frame" x="0.0" y="4" width="152" height="83"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Eco-0z-2Pr" firstAttribute="top" secondItem="SYq-Wb-ujB" secondAttribute="topMargin" constant="-12" id="8aK-Km-7KN"/>
+                                            <constraint firstItem="Eco-0z-2Pr" firstAttribute="leading" secondItem="SYq-Wb-ujB" secondAttribute="leadingMargin" constant="18" id="H0k-cN-yUc"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="dw1-6W-5G6" secondAttribute="bottom" constant="-2" id="gqN-Wi-Ft3"/>
+                                            <constraint firstItem="Eco-0z-2Pr" firstAttribute="centerY" secondItem="SYq-Wb-ujB" secondAttribute="centerY" id="nt0-uK-kxS"/>
+                                            <constraint firstAttribute="trailing" secondItem="dw1-6W-5G6" secondAttribute="trailing" id="rSZ-Yz-wnB"/>
+                                            <constraint firstItem="dw1-6W-5G6" firstAttribute="top" secondItem="SYq-Wb-ujB" secondAttribute="topMargin" constant="-4" id="rpL-8u-hMH"/>
+                                            <constraint firstItem="Eco-0z-2Pr" firstAttribute="centerX" secondItem="dw1-6W-5G6" secondAttribute="centerX" id="v4n-qq-oez"/>
+                                            <constraint firstItem="dw1-6W-5G6" firstAttribute="leading" secondItem="SYq-Wb-ujB" secondAttribute="leading" id="vdO-Re-wkZ"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="y97-aH-bqn" id="a4N-Pe-6pG"/>
+                                    <outlet property="delegate" destination="y97-aH-bqn" id="ioy-1v-Xk6"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyx-e6-gRU">
+                                <rect key="frame" x="0.0" y="363" width="320" height="117"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="117" id="9k4-06-8Nq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <state key="normal" title="Walking Workouts">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ylt-gi-uwi" kind="show" identifier="ShowWalkingWorkouts" id="Gw8-IH-zIK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvK-58-XeW">
+                                <rect key="frame" x="0.0" y="245" width="320" height="117"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="117" id="ikn-BV-XT6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <state key="normal" title="Running Workouts">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ylt-gi-uwi" kind="show" identifier="ShowRunningWorkouts" id="XhZ-fF-Etg"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iJV-8k-SEK">
+                                <rect key="frame" x="102" y="72" width="117" height="29"/>
+                                <segments>
+                                    <segment title="Active"/>
+                                    <segment title="Retired"/>
+                                </segments>
+                                <connections>
+                                    <action selector="unitsChangedWithSender:" destination="y97-aH-bqn" eventType="valueChanged" id="aZC-Vw-GYG"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ir7-ee-O6W" firstAttribute="leading" secondItem="DvK-58-XeW" secondAttribute="leading" id="5ch-gN-qKv"/>
+                            <constraint firstItem="Dyx-e6-gRU" firstAttribute="bottom" secondItem="Pir-uI-eRW" secondAttribute="top" id="8c6-GI-Lw1"/>
+                            <constraint firstItem="DvK-58-XeW" firstAttribute="top" secondItem="ir7-ee-O6W" secondAttribute="bottom" constant="8" symbolic="YES" id="Aba-Id-D0s"/>
+                            <constraint firstItem="ir7-ee-O6W" firstAttribute="centerX" secondItem="iJV-8k-SEK" secondAttribute="centerX" id="Ceb-ny-u6f"/>
+                            <constraint firstItem="DvK-58-XeW" firstAttribute="trailing" secondItem="Dyx-e6-gRU" secondAttribute="trailing" id="LnI-z7-Qur"/>
+                            <constraint firstItem="DvK-58-XeW" firstAttribute="leading" secondItem="Dyx-e6-gRU" secondAttribute="leading" id="N2s-dr-3qN"/>
+                            <constraint firstAttribute="trailing" secondItem="ir7-ee-O6W" secondAttribute="trailing" id="Rah-3K-eeo"/>
+                            <constraint firstItem="ir7-ee-O6W" firstAttribute="top" secondItem="iJV-8k-SEK" secondAttribute="top" id="cTJ-Ay-R8q"/>
+                            <constraint firstItem="ir7-ee-O6W" firstAttribute="trailing" secondItem="DvK-58-XeW" secondAttribute="trailing" id="cdH-e9-qYM"/>
+                            <constraint firstItem="Dyx-e6-gRU" firstAttribute="top" secondItem="DvK-58-XeW" secondAttribute="bottom" constant="1" id="lA5-3u-mQE"/>
+                            <constraint firstItem="ir7-ee-O6W" firstAttribute="leading" secondItem="M2Y-ZW-O9W" secondAttribute="leading" id="pFz-Xt-r12"/>
+                            <constraint firstItem="ir7-ee-O6W" firstAttribute="top" secondItem="H7J-vW-NTc" secondAttribute="bottom" constant="8" symbolic="YES" id="tEz-PS-kne"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ShoeTraxR" id="yuU-MP-sbD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Agg-NG-omh">
+                            <connections>
+                                <action selector="addShoe:" destination="y97-aH-bqn" id="LxT-hM-CNW"/>
+                                <segue destination="4jU-14-YP4" kind="presentation" identifier="addShoe" id="1Cs-mZ-Gyp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="myRunsButton" destination="DvK-58-XeW" id="qlh-uL-SNb"/>
+                        <outlet property="myWalksButton" destination="Dyx-e6-gRU" id="8kU-xe-fWQ"/>
+                        <outlet property="shoeCollectionView" destination="ir7-ee-O6W" id="Krn-L5-kIH"/>
+                        <segue destination="BUF-jL-mCh" kind="show" identifier="ShowShoes" id="Peu-1q-8Ur"/>
+                        <segue destination="4jU-14-YP4" kind="presentation" identifier="editShoeDetails" id="xPi-dN-KUF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pPf-IY-Sgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-270" y="783.75"/>
         </scene>
         <!--Running Workout Table View Controller-->
         <scene sceneID="B6R-w9-Dou">
@@ -283,7 +414,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4Y-Eh-F3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786" y="773"/>
+            <point key="canvasLocation" x="1768" y="1254"/>
         </scene>
         <!--New Shoe-->
         <scene sceneID="clk-WB-l8w">
@@ -304,7 +435,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Purchased Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NYe-wP-F7H">
-                                                    <rect key="frame" x="16" y="12" width="122" height="20.5"/>
+                                                    <rect key="frame" x="15" y="12" width="122" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -328,7 +459,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xwt-JL-Mm8">
-                                                    <rect key="frame" x="16" y="12" width="45.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="12" width="45.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -448,7 +579,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="ShoeTraxR Avatar Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jZT-Zw-V7g">
-                                                    <rect key="frame" x="16" y="12" width="180" height="20.5"/>
+                                                    <rect key="frame" x="15" y="12" width="180" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -464,12 +595,37 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="exZ-va-eJ7" detailTextLabel="e5r-zj-uj7" style="IBUITableViewCellStyleValue1" id="I4e-hO-4ef" customClass="DefaultPickerCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="292" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I4e-hO-4ef" id="W8v-IV-EzQ" customClass="DefaultPickerCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Use as default for:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="exZ-va-eJ7">
+                                                    <rect key="frame" x="15" y="12" width="140" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e5r-zj-uj7">
+                                                    <rect key="frame" x="264" y="12" width="41" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Workout Summary" id="G9i-du-3qc">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mbd-Ic-6KF" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mbd-Ic-6KF" id="gYV-yz-t4F" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -497,7 +653,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XDg-TG-tFk" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="408" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XDg-TG-tFk" id="oZa-JI-YBt" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -531,6 +687,7 @@
                             <outlet property="delegate" destination="4vh-pl-TyR" id="qBF-1e-IB9"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="New Shoe" id="AQe-D9-FoH" userLabel="New Shoe">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yaY-Co-aJP">
                             <connections>
@@ -543,7 +700,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="defaultPickerCell" destination="I4e-hO-4ef" id="Orz-Y5-VeM"/>
                         <outlet property="numberOfWorkouts" destination="mbd-Ic-6KF" id="54d-Hp-HT1"/>
                         <outlet property="shoeAvatarColorPIckerCell" destination="LfE-hQ-Fax" id="6vm-rb-5oW"/>
                         <outlet property="shoeBrandPickerCell" destination="7XH-i2-9pn" id="C0c-X0-Awt"/>
@@ -578,14 +737,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sn4-bk-gjc">
-                                            <rect key="frame" x="26" y="15" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="25" y="15" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="haW-a6-f8e">
-                                            <rect key="frame" x="26" y="35.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="25" y="35.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -679,14 +838,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JXG-WO-iq3">
-                                            <rect key="frame" x="26" y="15" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="25" y="15" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ywt-vX-qa6">
-                                            <rect key="frame" x="26" y="35.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="25" y="35.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -715,7 +874,8 @@
         <image name="ico_29" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CAa-d7-bG2"/>
+        <segue reference="Peu-1q-8Ur"/>
+        <segue reference="XhZ-fF-Etg"/>
         <segue reference="2SC-93-7VR"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,6 +16,9 @@ class ModelController: NSObject {
     var shoes = [Shoe]()
     var retiredShoes = [Shoe]()
     var workouts = [Workout]()
+    var walkingDefault: DefaultShoe?
+    var runningDefault: DefaultShoe?
+    
     var runningHKWorkouts = [HKWorkout]()
     var walkingHKWorkouts = [HKWorkout]()
     var healthManager:HealthKitManager? /*{
@@ -99,6 +102,7 @@ class ModelController: NSObject {
                                 "Brown",
                                 "Gray"]
 
+    static var defaultWorkoutTypes: [Int : String] = [Int(HKWorkoutActivityType.running.rawValue): "Running", Int(HKWorkoutActivityType.walking.rawValue): "Walking"]
     
     var managedContext:NSManagedObjectContext!
     
@@ -152,6 +156,29 @@ class ModelController: NSObject {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+        
+        let defaultsFetchRequest =
+            NSFetchRequest<DefaultShoe>(entityName: "DefaultShoe")
+        
+        //3
+        do {
+            let defaults = try managedContext.fetch(defaultsFetchRequest)
+            print(defaults.count)
+            
+                for defaultWorkout in defaults {
+                    if defaultWorkout.type == Int16(HKWorkoutActivityType.walking.rawValue) {
+                        walkingDefault = defaultWorkout
+                    }
+                    else if defaultWorkout.type == Int16(HKWorkoutActivityType.running.rawValue) {
+                        runningDefault = defaultWorkout
+                    }
+
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
         brands.sort { (lhs, rhs) -> Bool in
             if lhs < rhs {
                 return true
@@ -212,6 +239,17 @@ class ModelController: NSObject {
             }
         }
         return returnWorkout
+    }
+    
+    func defaultWorkout(forType: Int) -> DefaultShoe? {
+        if forType == Int(HKWorkoutActivityType.walking.rawValue) {
+            return walkingDefault
+        } else if forType == Int(HKWorkoutActivityType.running.rawValue) {
+            return runningDefault
+        }
+        else {
+            return nil
+        }
     }
 
     func getRunningWorkouts(completion: @escaping () -> Void) {

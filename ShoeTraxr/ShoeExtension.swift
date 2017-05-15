@@ -175,4 +175,27 @@ extension Shoe {
         }
         return hkWorkouts
     }
+    
+    func addWorkout(selectedWorkout: HKWorkout) {
+        var workout: Workout!
+        if let existingWorkout = ModelController.sharedInstance.getWorkout(hkWorkout: selectedWorkout) {
+            workout = existingWorkout
+        } else {
+            workout = Workout()
+            workout.uuid = selectedWorkout.uuid.uuidString
+        }
+        
+        
+        if self.distanceUnitType == .Kilometers {
+            workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.meterUnit(with: HKMetricPrefix.kilo)))!
+        }
+        else {
+            workout.distance = (selectedWorkout.totalDistance?.doubleValue(for: HKUnit.mile()))!
+            
+        }
+        
+        self.addToWorkouts(workout)
+        ModelController.sharedInstance.workouts.append(workout)
+
+    }
 }

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+    let toolBar = UIToolbar()
+
     let pickerView: UIPickerView
     
     
@@ -20,10 +21,25 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
         pickerView.delegate = self
         pickerView.dataSource = self
         
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.black
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PickerCell.resignFirstResponder))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
         
         
     }
     
+    open override var inputAccessoryView: UIView? {
+        get {
+            return toolBar
+        }
+    }
+
     open override var canBecomeFirstResponder : Bool {
         return true;
     }

@@ -8,8 +8,6 @@
 
 import Foundation
 import HealthKit
-import UserNotifications
-import UIKit
 
 class HealthKitManager {
     
@@ -110,18 +108,27 @@ class HealthKitManager {
             
             if type == HKWorkoutActivityType.running {
                 ModelController.sharedInstance.getMostRecentRunningWorkout {workout in
-                    if let workout = ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
-                        if workout.shoe == nil {
+                    if nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                        if let defaultShoe = ModelController.sharedInstance.runningDefault?.shoe {
+                            defaultShoe.addWorkout(selectedWorkout: workout!)
+                            self.sendNotification(type: type, shoe: defaultShoe)
+                        }
+                        else {
                             self.sendNotification(type: type)
                         }
+
                     }
                 }
                 
                 
             } else if type == HKWorkoutActivityType.walking {
                 ModelController.sharedInstance.getMostRecentWalkingWorkout {workout in
-                    if let workout = ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
-                        if workout.shoe == nil {
+                    if nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                        if let defaultShoe = ModelController.sharedInstance.walkingDefault?.shoe {
+                            defaultShoe.addWorkout(selectedWorkout: workout!)
+                            self.sendNotification(type: type, shoe: defaultShoe)
+                        }
+                        else {
                             self.sendNotification(type: type)
                         }
                     }
@@ -197,32 +204,69 @@ class HealthKitManager {
     }
     
     private func sendNotification(type: HKWorkoutActivityType) {
-        // 1
-        let content = UNMutableNotificationContent()
-        content.title = "ShoeTraxR"
-        var typeString = "walking"
-        if type == .running {
-            typeString = "running"
-        }
-        content.body = "New Workout added for \(typeString)"
-        content.sound = UNNotificationSound.default()
-        var currentBadge: Int = UIApplication.shared.applicationIconBadgeNumber
-        currentBadge += 1
-        content.badge = currentBadge as NSNumber
-        // 2
-//        let imageName = "applelogo"
-//        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }
+        NotificationManager.sendNotification(type: type)
+//        // 1
+//        let content = UNMutableNotificationContent()
+//        content.title = "ShoeTraxR"
+//        var typeString = "walking"
+//        if type == .running {
+//            typeString = "running"
+//        }
+//        content.body = "New Workout added for \(typeString) needs shoe assigned."
+//        content.sound = UNNotificationSound.default()
+//        var currentBadge: Int = UIApplication.shared.applicationIconBadgeNumber
+//        currentBadge += 1
+//        content.badge = currentBadge as NSNumber
+//        // 2
+////        let imageName = "applelogo"
+////        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }
+////        
+////        let attachment = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
+////        
+////        content.attachments = [attachment]
 //        
-//        let attachment = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
+//        // 3
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 //        
-//        content.attachments = [attachment]
-        
-        // 3
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        // 4
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//        // 4
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
+    
+    private func sendNotification(type: HKWorkoutActivityType, shoe: Shoe) {
+        NotificationManager.sendNotification(type: type, shoe: shoe)
+        // 1
+//        let content = UNMutableNotificationContent()
+//        content.title = "ShoeTraxR"
+//        if shoe.distanceLogged >= shoe.distance {
+//            content.body = "\(shoe.getTitle()) has reached limit \(shoe.distanceLoggedFormatted)."
+//            var currentBadge: Int = UIApplication.shared.applicationIconBadgeNumber
+//            currentBadge += 1
+//            content.badge = currentBadge as NSNumber
+//        } else {
+//            var typeString = "walking"
+//            if type == .running {
+//                typeString = "running"
+//            }
+//            content.body = "\(shoe.getTitle()) used for new \(typeString) workout."
+//        }
+//        content.sound = UNNotificationSound.default()
+//        
+//        // 2
+//        //        let imageName = "applelogo"
+//        //        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }
+//        //
+//        //        let attachment = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
+//        //
+//        //        content.attachments = [attachment]
+//        
+//        // 3
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+//        
+//        // 4
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+
     
 }

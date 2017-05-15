@@ -8,7 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
-import UserNotifications
+import HealthKit
 
 class ViewController: UIViewController, GADBannerViewDelegate {
 
@@ -18,7 +18,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var myShoesButton: UIButton!
     @IBOutlet weak var myRunsButton: UIButton!
     @IBOutlet weak var myWalksButton: UIButton!
-    
+//    @IBOutlet weak var circleGraph: RingGraph!
+
     
     func authorizeHealthKit()
     {
@@ -60,14 +61,14 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+        NotificationManager.authorize { (granted, error) in
             if granted {
                 print("notifications granted!")
             } else {
                 print("notifications denied")
-            }        }
+            }
+        }
+        
         
         authorizeHealthKit()
         
@@ -76,6 +77,9 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 //        myShoesButton.layer.cornerRadius = 10
 //        myRunsButton.layer.cornerRadius = 10
 //        myWalksButton.layer.cornerRadius = 10
+        guard (bannerView != nil) else {
+            return
+        }
         bannerView.adUnitID = "ca-app-pub-1011036572239562/4571143334"
         bannerView.rootViewController = self
         bannerView.delegate = self as GADBannerViewDelegate
@@ -84,7 +88,12 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
         
         bannerView.load(request)
-        
+        /*let backgroundTrackColor = UIColor(white: 0.15, alpha: 1.0)
+        circleGraph.backgroundColor = UIColor.black
+        circleGraph.arcBackgroundColor = backgroundTrackColor
+        circleGraph.arcWidth = 10.0
+        circleGraph.endArc = 0.75
+        circleGraph.arcColor = UIColor.blue*/
 
 
     }
@@ -104,6 +113,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         ModelController.sharedInstance.healthManager = self.healthManager
 
+        if  ModelController.sharedInstance.walkingDefault == nil {
+            ModelController.sharedInstance.walkingDefault = DefaultShoe()
+            ModelController.sharedInstance.walkingDefault?.type = Int16(HKWorkoutActivityType.walking.rawValue)
+        }
+        if  ModelController.sharedInstance.runningDefault == nil {
+            ModelController.sharedInstance.runningDefault = DefaultShoe()
+            ModelController.sharedInstance.runningDefault?.type = Int16(HKWorkoutActivityType.running.rawValue)
+        }
+        
         if let identifier = segue.identifier {
             if identifier == "ShowRunningWorkouts" {
                 let runningWorkoutController = segue.destination as! RunningWorkoutTableViewController
