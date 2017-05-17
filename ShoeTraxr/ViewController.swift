@@ -26,7 +26,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         healthManager.authorizeHealthKit { (authorized,  error) -> Void in
             if authorized {
                 print("HealthKit authorization received.")
-                self.healthManager.observeRunningWorkOuts(completion: { (success, error) in
+                self.healthManager.observeWorkOuts(completion: { (success, error) in
                     if( error != nil )
                     {
                         print("Error observing workouts: \(String(describing: error?.localizedDescription))")
@@ -34,10 +34,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
                     }
                     else
                     {
-                        print("Running Workouts observed successfully!")
+                        print("Workouts observed successfully!")
                     }
                 })
-                self.healthManager.observeWalkingWorkouts(completion: { (success, error) in
+                /*self.healthManager.observeWalkingWorkouts(completion: { (success, error) in
                     if( error != nil )
                     {
                         print("Error observing workouts: \(String(describing: error?.localizedDescription))")
@@ -47,7 +47,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
                     {
                         print("Walking Workouts observed successfully!")
                     }
-                })
+                })*/
             }
             else
             {

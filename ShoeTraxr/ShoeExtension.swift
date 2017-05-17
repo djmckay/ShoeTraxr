@@ -176,7 +176,7 @@ extension Shoe {
         return hkWorkouts
     }
     
-    func addWorkout(selectedWorkout: HKWorkout) {
+    func addWorkout(selectedWorkout: HKWorkout) -> Workout {
         var workout: Workout!
         if let existingWorkout = ModelController.sharedInstance.getWorkout(hkWorkout: selectedWorkout) {
             workout = existingWorkout
@@ -196,6 +196,6 @@ extension Shoe {
         
         self.addToWorkouts(workout)
         ModelController.sharedInstance.workouts.append(workout)
-
+        return workout
     }
 }

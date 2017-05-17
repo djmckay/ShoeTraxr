@@ -60,17 +60,44 @@ class HealthKitManager {
         readWorkouts(type: HKWorkoutActivityType.walking, limit: 0, completion: completion)
         
     }
-    
+    /*
     func observeRunningWorkOuts(completion: ((Bool, Error?) -> Void)!) {
-        observeWorkouts(type: HKWorkoutActivityType.running, limit: 0, completion: completion)
+        observeWorkouts(type: HKWorkoutActivityType.running, limit: 1, completion: completion)
         
     }
     
     func observeWalkingWorkouts(completion: ((Bool, Error?) -> Void)!) {
-        observeWorkouts(type: HKWorkoutActivityType.walking, limit: 0, completion: completion)
+        observeWorkouts(type: HKWorkoutActivityType.walking, limit: 1, completion: completion)
         
     }
+    */
+    func observeWorkOuts(completion: ((Bool, Error?) -> Void)!) {
+        /*disableBackground { (success, error) in
+            if success {
+                print("Disabled background delivery of workout changes changes")
+            } else {
+                if let theError = error{
+                    print("Failed to enable background delivery. ")
+                    print("Error = \(theError)")
+                }
+            }
+        }*/
+        observeWorkouts(type: HKWorkoutActivityType.running)
+        observeWorkouts(type: HKWorkoutActivityType.walking)
+        enableBackground() { (succeeded, error) in
+            if succeeded{
+                print("Enabled background delivery of workout changes changes")
+            } else {
+                if let theError = error{
+                    print("Failed to enable background delivery. ")
+                    print("Error = \(theError)")
+                }
+            }
+            completion(succeeded, error)
+        }
 
+    }
+    
     private func readWorkouts(type: HKWorkoutActivityType, limit: Int, completion: (([AnyObject]?, NSError?) -> Void)!) {
         
         // 1. Predicate to read only running workouts
@@ -92,7 +119,7 @@ class HealthKitManager {
         
         
     }
-    
+    /*
     private func observeWorkouts(type: HKWorkoutActivityType, limit: Int, completion: ((Bool, Error?) -> Void)!) {
         
         // 1. Predicate to read only running workouts
@@ -100,7 +127,6 @@ class HealthKitManager {
         // 2. Create the observer query
         let sampleQuery = HKObserverQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, updateHandler:
         { (query, completionHandler, error) -> Void in
-            
             if let queryError = error {
                 print( "There was an error while reading the samples: \(queryError.localizedDescription)")
             }
@@ -108,10 +134,10 @@ class HealthKitManager {
             
             if type == HKWorkoutActivityType.running {
                 ModelController.sharedInstance.getMostRecentRunningWorkout {workout in
-                    if nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                    if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
                         if let defaultShoe = ModelController.sharedInstance.runningDefault?.shoe {
-                            defaultShoe.addWorkout(selectedWorkout: workout!)
-                            self.sendNotification(type: type, shoe: defaultShoe)
+                            _ = defaultShoe.addWorkout(selectedWorkout: workout!)
+                            self.sendNotification(type: (workout?.workoutActivityType)!, shoe: defaultShoe)
                         }
                         else {
                             self.sendNotification(type: type)
@@ -123,7 +149,7 @@ class HealthKitManager {
                 
             } else if type == HKWorkoutActivityType.walking {
                 ModelController.sharedInstance.getMostRecentWalkingWorkout {workout in
-                    if nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                    if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
                         if let defaultShoe = ModelController.sharedInstance.walkingDefault?.shoe {
                             defaultShoe.addWorkout(selectedWorkout: workout!)
                             self.sendNotification(type: type, shoe: defaultShoe)
@@ -154,13 +180,77 @@ class HealthKitManager {
         
         
     }
+ */
+    
+    private func observeWorkouts(type: HKWorkoutActivityType) {
+        
+        // 1. Predicate to read only running workouts
+        let predicate =  HKQuery.predicateForWorkouts(with: type)
+        // 2. Create the observer query
+        let sampleQuery = HKObserverQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, updateHandler:
+        { (query, completionHandler, error) -> Void in
+            if let queryError = error {
+                print( "There was an error while reading the samples: \(queryError.localizedDescription)")
+            }
+            //send notification?
+            print(type.rawValue)
+            if type == HKWorkoutActivityType.running {
+                ModelController.sharedInstance.getMostRecentRunningWorkout {workout in
+                    if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                        if let defaultShoe = ModelController.sharedInstance.runningDefault?.shoe {
+                            _ = defaultShoe.addWorkout(selectedWorkout: workout!)
+                            self.sendNotification(type: (workout?.workoutActivityType)!, shoe: defaultShoe)
+                        }
+                        else {
+                            self.sendNotification(type: (workout?.workoutActivityType)!)
+                        }
+                    }
+                    completionHandler()
+                }
+            
+            
+                
+            } else if type == HKWorkoutActivityType.walking {
+                ModelController.sharedInstance.getMostRecentWalkingWorkout {workout in
+                    if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+                        if let defaultShoe = ModelController.sharedInstance.walkingDefault?.shoe {
+                            _ = defaultShoe.addWorkout(selectedWorkout: workout!)
+                            self.sendNotification(type: (workout?.workoutActivityType)!, shoe: defaultShoe)
+                        }
+                        else {
+                            self.sendNotification(type: (workout?.workoutActivityType)!)
+                        }
+                    }
+                    completionHandler()
+            
+                }
+            }
+            
+        })
+        // 3. Execute the query
+        healthKitStore.execute(sampleQuery)
+        
+        
+    }
     
     func enableBackground(type: HKWorkoutActivityType, completion: @escaping (Bool, Error?) -> Swift.Void) {
         healthKitStore.enableBackgroundDelivery(for: HKObjectType.workoutType(), frequency: .immediate) { (complete, error) in
                 completion(complete, error)
         }
     }
-
+    
+    func enableBackground(completion: @escaping (Bool, Error?) -> Swift.Void) {
+        healthKitStore.enableBackgroundDelivery(for: HKObjectType.workoutType(), frequency: .immediate) { (complete, error) in
+            completion(complete, error)
+        }
+    }
+    
+    func disableBackground(completion: @escaping (Bool, Error?) -> Swift.Void) {
+        healthKitStore.disableAllBackgroundDelivery { (complete, error) in
+            completion(complete, error)
+        }
+    }
+    
     func readSummary(completion: (([HKActivitySummary]?, NSError?) -> Void)!) {
         
         let calendar = Calendar.autoupdatingCurrent

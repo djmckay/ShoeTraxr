@@ -119,6 +119,7 @@ class ModelController: NSObject {
         //1
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
+                print("this can't be good")
                 return
         }
 
@@ -298,13 +299,15 @@ class ModelController: NSObject {
             }
             else
             {
-                print("Running Workouts read successfully!")
+                print(results?.count)
+                print("Most Recent Running Workouts read successfully!")
             }
             
             //Keep workouts and refresh tableview in main thread
             //self.runningHKWorkouts = results as! [HKWorkout]
-            if let workout = results?[0] {
-                completion(workout as? HKWorkout)
+            if let workout = results?[0] as? HKWorkout{
+                print(workout.uuid.uuidString)
+                completion(workout)
             }
             else {
                 completion(nil)
@@ -322,13 +325,15 @@ class ModelController: NSObject {
             }
             else
             {
-                print("Walking Workouts read successfully!")
+                print(results?.count)
+                print("Most Recent Walking Workouts read successfully!")
             }
             
             //Keep workouts and refresh tableview in main thread
             //self.runningHKWorkouts = results as! [HKWorkout]
-            if let workout = results?[0] {
-                completion(workout as? HKWorkout)
+            if let workout = results?[0] as? HKWorkout {
+                print(workout.uuid.uuidString)
+                completion(workout)
             }
             else {
                 completion(nil)
