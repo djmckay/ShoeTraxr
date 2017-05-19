@@ -59,11 +59,14 @@ class ShoeCollectionViewCell: UICollectionViewCell {
     }
     
     func setupShoe(shoe: Shoe) {
-        let endArc = CGFloat(shoe.distanceLogged / shoe.distance)
+        //let endArc = CGFloat(shoe.distanceLogged / shoe.distance)
+        ring.maxValue = shoe.distance
         for count in 0..<Int(shoe.distanceLogged) {
-            ring.endArc = CGFloat(count / Int(shoe.distance))
+            ring.value = Double(count)
+            //ring.endArc = CGFloat(count / Int(shoe.distance))
         }
-        ring.endArc = CGFloat(shoe.distanceLogged / shoe.distance)
+        //ring.endArc = CGFloat(shoe.distanceLogged / shoe.distance)
+        ring.value = shoe.distanceLogged
         ring.arcColor = UIColor.blue
         if ring.endArc > 0.95 {
             ring.arcColor = UIColor.red

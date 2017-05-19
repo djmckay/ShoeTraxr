@@ -19,6 +19,20 @@ class RingGraph: UIView {
     var arcBackgroundColor = UIColor.black
     var viewMargin: CGFloat = 4.0
     
+    var maxValue: Double = 0.0 {
+        didSet {
+            endArc = CGFloat(value / maxValue)
+            
+        }
+    }
+
+    var value: Double = 0.0 {
+        didSet {
+            endArc = CGFloat(value / maxValue)
+
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         
         //Important constants for circle

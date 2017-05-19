@@ -72,19 +72,30 @@ class HealthKitManager {
     }
     */
     func observeWorkOuts(completion: ((Bool, Error?) -> Void)!) {
-        /*disableBackground { (success, error) in
+        disableBackground { (success, error) in
             if success {
                 print("Disabled background delivery of workout changes changes")
+                self.enableBackground() { (succeeded, error) in
+                    if succeeded{
+                        print("Enabled background delivery of workout changes changes")
+                    } else {
+                        if let theError = error{
+                            print("Failed to enable background delivery. ")
+                            print("Error = \(theError)")
+                        }
+                    }
+                    completion(succeeded, error)
+                }
             } else {
                 if let theError = error{
                     print("Failed to enable background delivery. ")
                     print("Error = \(theError)")
                 }
             }
-        }*/
+        }
         observeWorkouts(type: HKWorkoutActivityType.running)
         observeWorkouts(type: HKWorkoutActivityType.walking)
-        enableBackground() { (succeeded, error) in
+        /*enableBackground() { (succeeded, error) in
             if succeeded{
                 print("Enabled background delivery of workout changes changes")
             } else {
@@ -94,7 +105,7 @@ class HealthKitManager {
                 }
             }
             completion(succeeded, error)
-        }
+        }*/
 
     }
     
@@ -199,10 +210,10 @@ class HealthKitManager {
                     if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
                         if let defaultShoe = ModelController.sharedInstance.runningDefault?.shoe {
                             _ = defaultShoe.addWorkout(selectedWorkout: workout!)
-                            self.sendNotification(type: (workout?.workoutActivityType)!, shoe: defaultShoe)
+                            self.sendNotification(type: HKWorkoutActivityType.running, shoe: defaultShoe)
                         }
                         else {
-                            self.sendNotification(type: (workout?.workoutActivityType)!)
+                            self.sendNotification(type: HKWorkoutActivityType.running)
                         }
                     }
                     completionHandler()
@@ -215,10 +226,10 @@ class HealthKitManager {
                     if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
                         if let defaultShoe = ModelController.sharedInstance.walkingDefault?.shoe {
                             _ = defaultShoe.addWorkout(selectedWorkout: workout!)
-                            self.sendNotification(type: (workout?.workoutActivityType)!, shoe: defaultShoe)
+                            self.sendNotification(type: HKWorkoutActivityType.walking, shoe: defaultShoe)
                         }
                         else {
-                            self.sendNotification(type: (workout?.workoutActivityType)!)
+                            self.sendNotification(type: HKWorkoutActivityType.walking)
                         }
                     }
                     completionHandler()

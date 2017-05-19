@@ -305,7 +305,10 @@ class ModelController: NSObject {
             
             //Keep workouts and refresh tableview in main thread
             //self.runningHKWorkouts = results as! [HKWorkout]
-            if let workout = results?[0] as? HKWorkout{
+            if results?.count == 0 {
+                completion(nil)
+            }
+            else if let workout = results?[0] as? HKWorkout{
                 print(workout.uuid.uuidString)
                 completion(workout)
             }
@@ -331,7 +334,10 @@ class ModelController: NSObject {
             
             //Keep workouts and refresh tableview in main thread
             //self.runningHKWorkouts = results as! [HKWorkout]
-            if let workout = results?[0] as? HKWorkout {
+            if results?.count == 0 {
+                completion(nil)
+            }
+            else if let workout = results?[0] as? HKWorkout {
                 print(workout.uuid.uuidString)
                 completion(workout)
             }
