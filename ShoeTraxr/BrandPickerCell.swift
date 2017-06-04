@@ -12,6 +12,24 @@ import UIKit
 class BrandPickerCell: PickerCell {
     var data = ModelController.sharedInstance.brands
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        ModelController.sharedInstance.fetchBrands { (brands, error) in
+            if let brands = brands, brands.count > 0 {
+                self.data = brands
+                self.data.sort { (lhs, rhs) -> Bool in
+                    if lhs < rhs {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                }
+                self.data.append(Brand("Other"))
+            }
+        }
+    }
+
     override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return data.count

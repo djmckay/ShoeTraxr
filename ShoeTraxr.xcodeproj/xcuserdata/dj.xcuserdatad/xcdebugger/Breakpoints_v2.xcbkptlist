@@ -246,7 +246,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/BrandPickerCell.swift"
-            timestampString = "515378684.624161"
+            timestampString = "518285877.045617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "select()"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/BrandPickerCell.swift"
-            timestampString = "515378860.683825"
+            timestampString = "518285877.045617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -470,7 +470,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
@@ -625,22 +625,6 @@
             endingLineNumber = "145"
             landmarkName = "HealthKitManager"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "516910096.850855"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "getMostRecentRunningWorkout(completion:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -810,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ShoeCollectionViewCell.swift"
-            timestampString = "516555059.790568"
+            timestampString = "517420325.041228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "longPressCallback"
             landmarkType = "24">
          </BreakpointContent>
@@ -822,15 +806,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ShoeCollectionViewCell.swift"
-            timestampString = "516556291.529973"
+            timestampString = "517420325.041228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "callback()"
             landmarkType = "7">
          </BreakpointContent>
@@ -954,11 +938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ShoeCollectionViewCell.swift"
-            timestampString = "516809540.044771"
+            timestampString = "517420325.041228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "setupShoe(shoe:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1030,7 +1014,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/HealthKitManager.swift"
@@ -1053,169 +1037,9 @@
             timestampString = "516810071.830868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "disableBackground(completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.disableBackground (completion : (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.747751"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "260"
-                  endingLineNumber = "260"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.(disableBackground (completion : (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.750352"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "261"
-                  endingLineNumber = "261"
-                  offsetFromSymbolStart = "34">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "disableBackground(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "observeWorkouts(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "308"
             endingLineNumber = "308"
             landmarkName = "sendNotification(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "observeWorkouts(type:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.((observeWorkouts in _EAC5EE11B0E3754116BF8A28685C9ADC) (type : __C.HKWorkoutActivityType) -&gt; ()).(closure #1)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.768691"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "35">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.((observeWorkouts in _EAC5EE11B0E3754116BF8A28685C9ADC) (type : __C.HKWorkoutActivityType) -&gt; ()).(closure #1)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.771101"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "118">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "observeWorkouts(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "516679247.959999"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "getMostRecentRunningWorkout(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1242,54 +1066,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "516910096.850855"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
-            landmarkName = "getMostRecentWalkingWorkout(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "516910096.850855"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
-            landmarkName = "getMostRecentWalkingWorkout(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "516679247.959999"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "getMostRecentRunningWorkout(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/ModelContoller.swift"
             timestampString = "516679247.959999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1302,103 +1078,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "observeWorkouts(type:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.((observeWorkouts in _EAC5EE11B0E3754116BF8A28685C9ADC) (type : __C.HKWorkoutActivityType) -&gt; ()).(closure #1)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.808332"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "209"
-                  endingLineNumber = "209"
-                  offsetFromSymbolStart = "1016">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.((observeWorkouts in _EAC5EE11B0E3754116BF8A28685C9ADC) (type : __C.HKWorkoutActivityType) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.810574"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "210"
-                  endingLineNumber = "210"
-                  offsetFromSymbolStart = "27">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "observeWorkouts(type:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.((observeWorkouts in _EAC5EE11B0E3754116BF8A28685C9ADC) (type : __C.HKWorkoutActivityType) -&gt; ()).(closure #1)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.815919"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "1284">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.((observeWorkouts in _EAC5EE11B0E3754116BF8A28685C9ADC) (type : __C.HKWorkoutActivityType) -&gt; ()).(closure #1).(closure #2)"
-                  moduleName = "ShoeTraxr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.81813"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "226"
-                  endingLineNumber = "226"
-                  offsetFromSymbolStart = "27">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
@@ -1414,7 +1094,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/ModelContoller.swift"
@@ -1430,7 +1110,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoeTraxr/AppDelegate.swift"
@@ -1449,44 +1129,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/HealthKitManager.swift"
-            timestampString = "516810071.830868"
+            filePath = "ShoeTraxr/BrandPickerCell.swift"
+            timestampString = "518285397.850702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "enableBackground(completion:)"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(coder:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.enableBackground (completion : (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "ShoeTraxr.BrandPickerCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;ShoeTraxr.BrandPickerCell&gt;"
                   moduleName = "ShoeTraxr"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.836725"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/BrandPickerCell.swift"
+                  timestampString = "518287757.024814"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "254"
-                  endingLineNumber = "254"
-                  offsetFromSymbolStart = "23">
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "204">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ShoeTraxr.HealthKitManager.(enableBackground (completion : (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "ShoeTraxr.BrandPickerCell.(init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;ShoeTraxr.BrandPickerCell&gt;).(closure #1)"
                   moduleName = "ShoeTraxr"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/HealthKitManager.swift"
-                  timestampString = "516910497.838981"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/BrandPickerCell.swift"
+                  timestampString = "518287757.029177"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "255"
-                  endingLineNumber = "255"
-                  offsetFromSymbolStart = "34">
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "28">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1497,13 +1177,93 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShoeTraxr/ModelContoller.swift"
-            timestampString = "516910271.046564"
+            filePath = "ShoeTraxr/BrandCloudKitControllerDelegate.swift"
+            timestampString = "518285128.101775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "getMostRecentRunningWorkout(completion:)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "fetchBrands(database:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/BrandCloudKitControllerDelegate.swift"
+            timestampString = "518287756.576386"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "fetchBrands(database:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/ShoeCollectionViewController.swift"
+            timestampString = "518287469.836219"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "promptRetire(shoe:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoeTraxr.ShoeCollectionViewController.promptRetire (shoe : ShoeTraxr.Shoe) -&gt; ()"
+                  moduleName = "ShoeTraxr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/ShoeCollectionViewController.swift"
+                  timestampString = "518287757.052921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "1624">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoeTraxr.ShoeCollectionViewController.promptRetire (shoe : ShoeTraxr.Shoe) -&gt; ()"
+                  moduleName = "ShoeTraxr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dj/Documents/Documents%20-%20DJ%E2%80%99s%20MacBook/ShoeTraxr/ShoeTraxr/ShoeCollectionViewController.swift"
+                  timestampString = "518287757.056795"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "1848">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoeTraxr/BrandCK.swift"
+            timestampString = "518287521.926097"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "init(record:database:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

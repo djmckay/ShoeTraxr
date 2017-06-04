@@ -163,6 +163,22 @@ extension ShoeCollectionViewController {
         alert.popoverPresentationController?.sourceView = self.view
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+        var shoeBrand: Brand?
+        
+        for brand in ModelController.sharedInstance.brands {
+            if brand.name == shoe.brand! {
+                shoeBrand = brand
+            }
+        }
+        if let website = shoeBrand?.website {
+            if let websiteURL = URL(string:website) {
+                
+                alert.addAction(UIAlertAction(title: "Visit \(shoeBrand?.name ?? "")", style: UIAlertActionStyle.default, handler: { action in
+                    UIApplication.shared.open(websiteURL, options: [:], completionHandler: nil)
+                    
+                }))
+            }
+        }
         alert.addAction(UIAlertAction(title: "Retire", style: UIAlertActionStyle.default, handler: { action in
             shoe.retire(completion: { (status, error) in
                 self.shoes = ModelController.sharedInstance.shoes

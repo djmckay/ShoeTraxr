@@ -347,4 +347,21 @@ class ModelController: NSObject {
             
         })
     }
+    
+    func fetchBrands(_ completion: @escaping (_ brands: [Brand]?, _ error: NSError?) -> ()) {
+        CloudKitController.sharedInstance.fetchBrands() { (brands, error) in
+            if let brands = brands, brands.count > 0 {
+                self.brands = brands
+            self.brands.sort { (lhs, rhs) -> Bool in
+                if lhs < rhs {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            }
+            completion(brands, error)
+        }
+    }
 }

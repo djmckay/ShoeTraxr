@@ -11,6 +11,8 @@ import HealthKit
 
 class ShoeCollectionViewCell: UICollectionViewCell {
  
+    let orbitBlue = UIColor(colorLiteralRed: 0, green: 0.6062946, blue: 0.752984, alpha: 1)
+
     var ring: RingGraph = RingGraph()
     var shoe: Shoe!
     var longPressCallback: ((_ shoe: Shoe) -> Void)? {
@@ -67,7 +69,8 @@ class ShoeCollectionViewCell: UICollectionViewCell {
         }
         //ring.endArc = CGFloat(shoe.distanceLogged / shoe.distance)
         ring.value = shoe.distanceLogged
-        ring.arcColor = UIColor.blue
+
+        ring.arcColor = orbitBlue
         if ring.endArc > 0.95 {
             ring.arcColor = UIColor.red
         }

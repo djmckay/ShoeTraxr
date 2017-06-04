@@ -16,6 +16,10 @@
 		2207695F1EA54F4700B98B6B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2207695E1EA54F4700B98B6B /* HealthKit.framework */; };
 		220769611EA54FEF00B98B6B /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220769601EA54FEF00B98B6B /* HealthKitManager.swift */; };
 		220769631EA552C300B98B6B /* RunningWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220769621EA552C300B98B6B /* RunningWorkoutTableViewController.swift */; };
+		220E1A451EE45F9200024016 /* CloudKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A441EE45F9200024016 /* CloudKitController.swift */; };
+		220E1A471EE460C800024016 /* BrandCloudKitControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A461EE460C800024016 /* BrandCloudKitControllerDelegate.swift */; };
+		220E1A491EE4621800024016 /* BrandCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A481EE4621800024016 /* BrandCK.swift */; };
+		220E1A4B1EE4657500024016 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E1A4A1EE4657500024016 /* CloudKit.framework */; };
 		22562A7C1EAFF6F4007010D6 /* BrandPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562A7B1EAFF6F4007010D6 /* BrandPickerCell.swift */; };
 		2259A1471EAA439A0048433C /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259A1461EAA439A0048433C /* PickerTextField.swift */; };
 		2274D25A1EB7CF46005813D5 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274D2591EB7CF46005813D5 /* ColorPickerCell.swift */; };
@@ -56,6 +60,10 @@
 		2207695E1EA54F4700B98B6B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		220769601EA54FEF00B98B6B /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		220769621EA552C300B98B6B /* RunningWorkoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningWorkoutTableViewController.swift; sourceTree = "<group>"; };
+		220E1A441EE45F9200024016 /* CloudKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitController.swift; sourceTree = "<group>"; };
+		220E1A461EE460C800024016 /* BrandCloudKitControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandCloudKitControllerDelegate.swift; sourceTree = "<group>"; };
+		220E1A481EE4621800024016 /* BrandCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandCK.swift; sourceTree = "<group>"; };
+		220E1A4A1EE4657500024016 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		22562A7B1EAFF6F4007010D6 /* BrandPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandPickerCell.swift; sourceTree = "<group>"; };
 		2259A1461EAA439A0048433C /* PickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		2274D2591EB7CF46005813D5 /* ColorPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
@@ -88,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220E1A4B1EE4657500024016 /* CloudKit.framework in Frameworks */,
 				2276B5271EA6FF8B00F84083 /* GoogleMobileAds.framework in Frameworks */,
 				2207695F1EA54F4700B98B6B /* HealthKit.framework in Frameworks */,
 			);
@@ -120,6 +129,8 @@
 				220769471EA54F3F00B98B6B /* AppDelegate.swift */,
 				2276B5221EA6BC1B00F84083 /* Extensions */,
 				2276B5061EA5B12F00F84083 /* ModelContoller.swift */,
+				220E1A441EE45F9200024016 /* CloudKitController.swift */,
+				220E1A461EE460C800024016 /* BrandCloudKitControllerDelegate.swift */,
 				220769491EA54F3F00B98B6B /* ViewController.swift */,
 				22FA05871EC89B5800201328 /* ShoeCollectionViewController.swift */,
 				220769621EA552C300B98B6B /* RunningWorkoutTableViewController.swift */,
@@ -139,6 +150,7 @@
 				220769561EA54F3F00B98B6B /* Info.plist */,
 				2207694E1EA54F3F00B98B6B /* ShoeTraxr.xcdatamodeld */,
 				2279CA1C1EB249CD0049AC99 /* Brand.swift */,
+				220E1A481EE4621800024016 /* BrandCK.swift */,
 				22FA05811EC7DB6800201328 /* RingGraph.swift */,
 			);
 			path = ShoeTraxr;
@@ -147,6 +159,7 @@
 		2207695D1EA54F4700B98B6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				220E1A4A1EE4657500024016 /* CloudKit.framework */,
 				2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */,
 				2207695E1EA54F4700B98B6B /* HealthKit.framework */,
 			);
@@ -217,6 +230,12 @@
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -279,11 +298,14 @@
 				2276B50D1EA63B8A00F84083 /* AddShoeTableViewController.swift in Sources */,
 				22FA05881EC89B5800201328 /* ShoeCollectionViewController.swift in Sources */,
 				2276B5111EA63E4300F84083 /* NumberCell.swift in Sources */,
+				220E1A471EE460C800024016 /* BrandCloudKitControllerDelegate.swift in Sources */,
+				220E1A451EE45F9200024016 /* CloudKitController.swift in Sources */,
 				2276B5051EA5AF5500F84083 /* ShoeTableViewController.swift in Sources */,
 				2276B5151EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift in Sources */,
 				22562A7C1EAFF6F4007010D6 /* BrandPickerCell.swift in Sources */,
 				220769631EA552C300B98B6B /* RunningWorkoutTableViewController.swift in Sources */,
 				22E1FC451EA7EF770092A3F4 /* PickerCell.swift in Sources */,
+				220E1A491EE4621800024016 /* BrandCK.swift in Sources */,
 				22E5C8651EB7A49C00CD0232 /* WorkoutTableViewController.swift in Sources */,
 				22FA05861EC89B1C00201328 /* ShoeCollectionViewCell.swift in Sources */,
 			);
