@@ -9,11 +9,21 @@
 import UIKit
 import HealthKit
 
+
+fileprivate enum SectionIdentifiers: Int  {
+    case Running, Walking, Count
+}
+
+fileprivate enum DefaultWalkingSectionIdentifiers: Int  {
+    case Walking, Running, Count
+}
+
 class ShoeWorkoutTableViewController: WorkoutTableViewController {
     var shoe: Shoe!
     var walkingWorkouts = [HKWorkout]()
     var runningWorkouts = [HKWorkout]()
-
+    var walkingShoeDefaultType: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +36,10 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
         if shoe != nil {
             
             self.title = shoe.getTitle()
-
+            
+            if shoe.defaultWorkout?.type == Int16(HKWorkoutActivityType.walking.rawValue) {
+                walkingShoeDefaultType = true
+            }
             ModelController.sharedInstance.getRunningWorkouts {
                 self.runningWorkouts = self.shoe.getRunningHKWorkouts()
 
@@ -43,32 +56,65 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
     }
 
     public override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return SectionIdentifiers.Count.rawValue
     }
     
     public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Walking (\(walkingWorkouts.count))"
+        
+        if walkingShoeDefaultType {
+            switch section {
+            case DefaultWalkingSectionIdentifiers.Running.rawValue:
+                return "Running (\(runningWorkouts.count))"
+                
+            case DefaultWalkingSectionIdentifiers.Walking.rawValue:
+                return "Walking (\(walkingWorkouts.count))"
+            default:
+                return "missing section \(section)"
+            }
+        } else {
+            
+            switch section {
+            case SectionIdentifiers.Running.rawValue:
+                return "Running (\(runningWorkouts.count))"
+                
+            case SectionIdentifiers.Walking.rawValue:
+                return "Walking (\(walkingWorkouts.count))"
+            default:
+                return "missing section \(section)"
+            }
         }
-        else {
-            return "Running (\(runningWorkouts.count))"
-        }
+        
     }
     
     public override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         var footerText = String()
-
+        
         var workouts: [HKWorkout]!
-        if section == 0 {
-            workouts = walkingWorkouts
-            footerText += "Walking Total: "
-
+        
+        if walkingShoeDefaultType {
+            switch section {
+            case DefaultWalkingSectionIdentifiers.Running.rawValue:
+                workouts = runningWorkouts
+                footerText += "Running Total: "
+            case DefaultWalkingSectionIdentifiers.Walking.rawValue:
+                workouts = walkingWorkouts
+                footerText += "Walking Total: "
+            default:
+                break
+            }
+        } else {
+            switch section {
+            case SectionIdentifiers.Running.rawValue:
+                workouts = runningWorkouts
+                footerText += "Running Total: "
+            case SectionIdentifiers.Walking.rawValue:
+                workouts = walkingWorkouts
+                footerText += "Walking Total: "
+            default:
+                break
+            }
         }
-        else {
-            workouts = runningWorkouts
-            footerText += "Running Total: "
 
-        }
         var distanceInKM: Double = 0.0
         var distanceInMiles: Double = 0.0
 
@@ -95,11 +141,27 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
 
     
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return walkingWorkouts.count
-        }
-        else {
-            return runningWorkouts.count
+        if walkingShoeDefaultType {
+            switch section {
+            case DefaultWalkingSectionIdentifiers.Running.rawValue:
+                return runningWorkouts.count
+                
+            case DefaultWalkingSectionIdentifiers.Walking.rawValue:
+                return walkingWorkouts.count
+            default:
+                return 0
+            }
+            
+        } else {
+            switch section {
+            case SectionIdentifiers.Running.rawValue:
+                return runningWorkouts.count
+                
+            case SectionIdentifiers.Walking.rawValue:
+                return walkingWorkouts.count
+            default:
+                return 0
+            }
         }
         
     }
@@ -110,11 +172,26 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
         
         // 1. Get workout for the row. Cell text: Workout Date
         var workout:HKWorkout!
-        if indexPath.section == 0 {
-            workout = walkingWorkouts[indexPath.row]
-        }
-        else {
-            workout = runningWorkouts[indexPath.row]
+        
+        if walkingShoeDefaultType {
+            switch indexPath.section {
+            case DefaultWalkingSectionIdentifiers.Running.rawValue:
+                workout = runningWorkouts[indexPath.row]
+            case DefaultWalkingSectionIdentifiers.Walking.rawValue:
+                workout = walkingWorkouts[indexPath.row]
+            default:
+                break
+            }
+        } else {
+            switch indexPath.section {
+            case SectionIdentifiers.Running.rawValue:
+                workout = runningWorkouts[indexPath.row]
+                
+            case SectionIdentifiers.Walking.rawValue:
+                workout = walkingWorkouts[indexPath.row]
+            default:
+                break
+            }
         }
         //let workout  = workouts[indexPath.row]
         let startDate = dateFormatter.string(from: workout.startDate)
