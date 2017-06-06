@@ -79,6 +79,29 @@ extension Shoe {
         }
     }
     
+    var distanceRemainingFormatted:String {
+        get {
+            let distanceFormatter = LengthFormatter()
+            var detailText = String()
+            if self.distanceUnit == "Kilometers" {
+                let distanceInKM = self.distance - self.distanceLogged
+                detailText += distanceFormatter.string(fromValue: distanceInKM, unit: LengthFormatter.Unit.kilometer)
+            }
+            else {
+                let distanceInMiles = self.distance - self.distanceLogged
+                detailText += distanceFormatter.string(fromValue: distanceInMiles, unit: LengthFormatter.Unit.mile)
+            }
+            
+            return detailText
+        }
+    }
+    
+    var percentRemaining: String {
+        let distanceRemaining = self.distance - self.distanceLogged
+        let distancePercentRemaining = Int(round(distanceRemaining / self.distance) * 100)
+        return distancePercentRemaining.description
+    }
+    
     func delete(completion: ( (Bool, NSError?) -> Void)!) {
         ModelController.sharedInstance.deleteShoe(shoe: self) { (status, error) in
             completion(status, error)

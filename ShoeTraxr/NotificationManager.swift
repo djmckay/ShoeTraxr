@@ -70,7 +70,7 @@ class NotificationManager {
             content.badge = currentBadge as NSNumber
         } else {
             
-            content.body = "\(shoe.getTitle()) used for new \(typeString) workout."
+            content.body = "\(shoe.getTitle()) used for new \(typeString) workout.  You have estimated \(shoe.distanceRemainingFormatted) (\(shoe.percentRemaining)%) remaining on this shoe."
         }
         content.sound = UNNotificationSound.default()
         
