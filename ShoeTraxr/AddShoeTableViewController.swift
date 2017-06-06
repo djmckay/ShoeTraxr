@@ -40,9 +40,10 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         self.shoeBrandPickerCell.detailTextLabel?.text = "Required"
         self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[0]
         self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[0]
-        self.brandProductPickerCell.isHidden = true
+//        self.brandProductPickerCell.isHidden = true
         self.shoeBrandPickerCell.brandProductPickerCell = self.brandProductPickerCell
-        
+        self.brandProductPickerCell.otherModelCell = self.shoeModelCell
+
         if let editShoe = editShoe {
             self.title = "Shoe Details"
             //self.shoeBrandCell.textField.text = editShoe.brand
@@ -144,7 +145,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        else if self.model.characters.count == 0 {
+        else if self.model.characters.count == 0 || self.model == "Required" {
             let alert = UIAlertController(title: "Required Data", message: "Model/Product Name is required.", preferredStyle: UIAlertControllerStyle.alert)
             alert.popoverPresentationController?.sourceView = self.view
             

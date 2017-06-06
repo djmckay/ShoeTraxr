@@ -48,8 +48,9 @@ class BrandPickerCell: PickerCell {
         if self.detailTextLabel?.text! == data[row].name! {
             pickerView.selectRow(row, inComponent: 0, animated: true)
             brandSelected = data[row]
-            brandProductPickerCell.addProducts(brand: brandSelected!)
-
+            DispatchQueue.main.async(execute: {
+            self.brandProductPickerCell.addProducts(brand: self.brandSelected!)
+            })
         }
     }
 }
@@ -58,7 +59,9 @@ class BrandPickerCell: PickerCell {
         self.detailTextLabel?.text = self.data[row].name!
         self.detailTextLabel?.textColor = UIColor.black
         brandSelected = data[row]
-        brandProductPickerCell.addProducts(brand: brandSelected!)
+        DispatchQueue.main.async(execute: {
+        self.brandProductPickerCell.addProducts(brand: self.brandSelected!)
+        })
     }
     
     
