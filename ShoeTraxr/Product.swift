@@ -1,18 +1,17 @@
 //
-//  Brand.swift
+//  Product.swift
 //  ShoeTraxr
 //
-//  Created by DJ McKay on 4/27/17.
+//  Created by DJ McKay on 6/5/17.
 //  Copyright © 2017 DJ McKay. All rights reserved.
 //
 
 import Foundation
 
-class Brand: Hashable {
+class Product: Hashable {
     
     var name: String?
-    var website: String?
-    var products: [Product] = []
+    var brand: Brand?
     
     init(_ name: String) {
         self.name = name
@@ -24,12 +23,12 @@ class Brand: Hashable {
         }
     }
     
-    static func ==(lhs: Brand, rhs: Brand) -> Bool {
+    static func ==(lhs: Product, rhs: Product) -> Bool {
         return lhs.name == rhs.name
     }
     
-    static func <(lhs: Brand, rhs: Brand) -> Bool {
+    static func <(lhs: Product, rhs: Product) -> Bool {
         return (lhs.name?.lowercased())! < (rhs.name?.lowercased())!
     }
-
+    
 }

@@ -11,23 +11,26 @@ import UIKit
 
 class BrandPickerCell: PickerCell {
     var data = ModelController.sharedInstance.brands
-    
+    var brandSelected: Brand?
+    var brandProductPickerCell: ProductPickerCell!
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        ModelController.sharedInstance.fetchBrands { (brands, error) in
-            if let brands = brands, brands.count > 0 {
-                self.data = brands
-                self.data.sort { (lhs, rhs) -> Bool in
-                    if lhs < rhs {
-                        return true
-                    }
-                    else {
-                        return false
-                    }
-                }
-                self.data.append(Brand("Other"))
-            }
-        }
+//        ModelController.sharedInstance.fetchBrands { (brands, error) in
+//            if let brands = brands, brands.count > 0 {
+//                self.data = brands
+//                self.data.append(Brand(""))
+//                self.data.sort { (lhs, rhs) -> Bool in
+//                    if lhs < rhs {
+//                        return true
+//                    }
+//                    else {
+//                        return false
+//                    }
+//                }
+//                self.data.append(Brand("Other"))
+//            }
+//        }
     }
 
     override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -44,6 +47,9 @@ class BrandPickerCell: PickerCell {
         for row in 0..<data.count {
         if self.detailTextLabel?.text! == data[row].name! {
             pickerView.selectRow(row, inComponent: 0, animated: true)
+            brandSelected = data[row]
+            brandProductPickerCell.addProducts(brand: brandSelected!)
+
         }
     }
 }
@@ -51,7 +57,8 @@ class BrandPickerCell: PickerCell {
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.detailTextLabel?.text = self.data[row].name!
         self.detailTextLabel?.textColor = UIColor.black
-
+        brandSelected = data[row]
+        brandProductPickerCell.addProducts(brand: brandSelected!)
     }
     
     

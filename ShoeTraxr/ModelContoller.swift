@@ -188,8 +188,23 @@ class ModelController: NSObject {
                 return false
             }
         }
-        brands.append(Brand("Other"))
+        self.brands.append(Brand("Other"))        
         
+        self.fetchBrands { (brands, error) in
+            if let brands = brands, brands.count > 0 {
+                self.brands = brands
+                self.brands.append(Brand(""))
+                self.brands.sort { (lhs, rhs) -> Bool in
+                    if lhs < rhs {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                }
+                self.brands.append(Brand("Other"))
+            }
+        }
         
     }
     
@@ -349,6 +364,7 @@ class ModelController: NSObject {
     }
     
     func fetchBrands(_ completion: @escaping (_ brands: [Brand]?, _ error: NSError?) -> ()) {
+        
         CloudKitController.sharedInstance.fetchBrands() { (brands, error) in
             if let brands = brands, brands.count > 0 {
                 self.brands = brands
@@ -362,6 +378,12 @@ class ModelController: NSObject {
             }
             }
             completion(brands, error)
+        }
+    }
+    
+    func fetchProducts(brand: Brand, _ completion: @escaping (_ brands: [Product]?, _ error: NSError?) -> ()) {
+        CloudKitController.sharedInstance.fetchProducts(brand: brand) { (products, error) in
+            completion(products, error)
         }
     }
 }

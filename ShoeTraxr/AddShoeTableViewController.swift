@@ -22,11 +22,12 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var numberOfWorkouts: NumberCell!
     @IBOutlet weak var shoeDistanceLogged: TextCell!
 
-    @IBOutlet weak var shoeBrandPickerCell: PickerCell!
+    @IBOutlet weak var shoeBrandPickerCell: BrandPickerCell!
     
     @IBOutlet weak var shoeAvatarColorPIckerCell: ColorPickerCell!
     
     @IBOutlet weak var defaultPickerCell: DefaultPickerCell!
+    @IBOutlet weak var brandProductPickerCell: ProductPickerCell!
     
     var editShoe: Shoe!
 
@@ -39,7 +40,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         self.shoeBrandPickerCell.detailTextLabel?.text = "Required"
         self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[0]
         self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[0]
-
+        self.brandProductPickerCell.isHidden = true
+        self.shoeBrandPickerCell.brandProductPickerCell = self.brandProductPickerCell
         
         if let editShoe = editShoe {
             self.title = "Shoe Details"
@@ -48,6 +50,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             if editShoe.distanceUnit == "Kilometers" {
                 self.shoeDistanceUnit.isEnabledForSegment(at: DistanceUnit.Kilometers.rawValue)
             }
+            self.shoeBrandPickerCell.select()
+            self.brandProductPickerCell.detailTextLabel?.text = editShoe.model
             self.shoeDistanceUnit.isEnabled = false
             self.shoeModelCell.textField.text = editShoe.model
             self.shoeNicknameCell.textField.text = editShoe.uuid
