@@ -691,7 +691,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lj8-NE-NVg">
-                                                    <rect key="frame" x="182" y="8" width="79" height="30"/>
+                                                    <rect key="frame" x="182" y="8" width="130" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -701,6 +701,33 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textField" destination="lj8-NE-NVg" id="xdK-tc-IxR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qa8-ED-Rpg" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="496" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qa8-ED-Rpg" id="JhJ-uO-LZN" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Percent Remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vuB-bP-sFK">
+                                                    <rect key="frame" x="15" y="12" width="159" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ryr-6a-fms">
+                                                    <rect key="frame" x="182" y="8" width="79" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="ryr-6a-fms" id="5rG-vA-hYC"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -737,6 +764,7 @@
                         <outlet property="shoeMileageCell" destination="OXB-an-8ze" id="PxE-Tp-dSI"/>
                         <outlet property="shoeModelCell" destination="zRb-uK-wbq" id="HpV-io-Lsf"/>
                         <outlet property="shoeNicknameCell" destination="sAi-Ge-oph" id="xDC-G4-feQ"/>
+                        <outlet property="shoePercentRemaining" destination="qa8-ED-Rpg" id="AHX-Hh-EtY"/>
                         <segue destination="e46-vo-XbM" kind="unwind" identifier="addShoeSave" unwindAction="unwindToSegue:" id="2ms-cV-gTP"/>
                     </connections>
                 </tableViewController>

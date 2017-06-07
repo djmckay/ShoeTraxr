@@ -29,6 +29,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var defaultPickerCell: DefaultPickerCell!
     @IBOutlet weak var brandProductPickerCell: ProductPickerCell!
     
+    @IBOutlet weak var shoePercentRemaining: TextCell!
     var editShoe: Shoe!
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -60,6 +61,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.shoeDateCell.date = editShoe.dateAdded! as Date
             self.numberOfWorkouts.integerValue = editShoe.workoutData.count
             self.shoeDistanceLogged.value = editShoe.distanceLoggedFormatted
+            self.shoePercentRemaining.value = "\(editShoe.percentRemaining)%"
             self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[Int(editShoe.colorAvatarIndex)]
             self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[Int(editShoe.colorAvatarIndex)]
             if let defaultWorkout = editShoe.defaultWorkout {
@@ -71,6 +73,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             //adding new shoe don't need to show a few fields.
             self.numberOfWorkouts.contentView.isHidden = true
             self.shoeDistanceLogged.contentView.isHidden = true
+            self.shoePercentRemaining.contentView.isHidden = true
         }
     }
     

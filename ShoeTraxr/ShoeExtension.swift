@@ -96,10 +96,10 @@ extension Shoe {
         }
     }
     
-    var percentRemaining: String {
+    var percentRemaining: Int {
         let distanceRemaining = self.distance - self.distanceLogged
         let distancePercentRemaining = Int((distanceRemaining / self.distance) * 100)
-        return distancePercentRemaining.description
+        return distancePercentRemaining
     }
     
     func delete(completion: ( (Bool, NSError?) -> Void)!) {

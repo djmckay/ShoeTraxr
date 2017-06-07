@@ -71,6 +71,9 @@ class NotificationManager {
         } else {
             
             content.body = "\(shoe.getTitle()) used for new \(typeString) workout.  You have estimated \(shoe.distanceRemainingFormatted) (\(shoe.percentRemaining)%) remaining on this shoe."
+            if shoe.percentRemaining <= 10 {
+                content.body += "  Time to visit the shoe store!"
+            }
         }
         content.sound = UNNotificationSound.default()
         

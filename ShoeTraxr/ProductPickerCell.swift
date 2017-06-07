@@ -49,12 +49,12 @@ class ProductPickerCell: PickerCell {
                 pickerView.selectRow(row, inComponent: 0, animated: true)
                 DispatchQueue.main.async(execute: {
                 if self.detailTextLabel?.text == "Other" {
-                    self.otherModelCell.isHidden = false
+                    self.otherModelCell.contentView.isHidden = false
                     if self.otherModelCell.textField.text == "Other" {
                         self.otherModelCell.textField.text = "Required"
                     }
                 } else {
-                    self.otherModelCell.isHidden = true
+                    self.otherModelCell.contentView.isHidden = true
                 }
                 })
             }
@@ -71,12 +71,12 @@ class ProductPickerCell: PickerCell {
                 self.otherModelCell.textField.text = self.detailTextLabel?.text
                 self.detailTextLabel?.textColor = UIColor.black
                 if self.detailTextLabel?.text == "Other" {
-                    self.otherModelCell.isHidden = false
+                    self.otherModelCell.contentView.isHidden = false
                     if self.otherModelCell.textField.text == "Other" {
                         self.otherModelCell.textField.text = "Required"
                     }
                 } else {
-                    self.otherModelCell.isHidden = true
+                    self.otherModelCell.contentView.isHidden = true
                 }
             }
         })
