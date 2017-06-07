@@ -98,7 +98,7 @@ extension Shoe {
     
     var percentRemaining: String {
         let distanceRemaining = self.distance - self.distanceLogged
-        let distancePercentRemaining = Int(round(distanceRemaining / self.distance) * 100)
+        let distancePercentRemaining = Int((distanceRemaining / self.distance) * 100)
         return distancePercentRemaining.description
     }
     
