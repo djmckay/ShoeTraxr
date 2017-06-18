@@ -90,7 +90,25 @@ class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, 
                 editShoe.distance = addShoeController.distance
                 editShoe.colorAvatarIndex = Int16(addShoeController.colorAvatarIndex)
                 editShoe.defaultWorkout = addShoeController.defaultWorkout
-
+                
+                healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+                    if authorized {
+                        print("HealthKit authorization received.")
+                        self.healthManager.observeWorkOuts(completion: { (success, error) in
+                            if( error != nil )
+                            {
+                                print("Error observing workouts: \(String(describing: error?.localizedDescription))")
+                                return;
+                            }
+                            else
+                            {
+                                print("Workouts observed successfully!")
+                            }
+                        })
+                        
+                    }
+                }
+                    
                 editShoe.distanceUnit = "Miles"
                 if addShoeController.distanceUnit == .Kilometers {
                     editShoe.distanceUnit = "Kilometers"

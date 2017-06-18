@@ -164,7 +164,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         }
         else {
             self.performSegue(withIdentifier: "addShoeSave", sender: tableView)
-
+            
         }
     }
     
@@ -193,4 +193,5 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         editShoe.retire { (status, error) in
         }
     }
+    
 }

@@ -164,9 +164,10 @@ class ModelController: NSObject {
         //3
         do {
             let defaults = try managedContext.fetch(defaultsFetchRequest)
-            print(defaults.count)
+            print("default count: \(defaults.count)")
             
                 for defaultWorkout in defaults {
+                    print(defaultWorkout.shoe)
                     if defaultWorkout.type == Int16(HKWorkoutActivityType.walking.rawValue) {
                         walkingDefault = defaultWorkout
                     }

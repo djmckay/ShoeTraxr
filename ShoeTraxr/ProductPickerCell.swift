@@ -51,7 +51,7 @@ class ProductPickerCell: PickerCell {
                 if self.detailTextLabel?.text == "Other" {
                     self.otherModelCell.contentView.isHidden = false
                     if self.otherModelCell.textField.text == "Other" {
-                        self.otherModelCell.textField.text = "Required"
+                        self.otherModelCell.textField.text = ""
                     }
                 } else {
                     self.otherModelCell.contentView.isHidden = true
@@ -73,7 +73,7 @@ class ProductPickerCell: PickerCell {
                 if self.detailTextLabel?.text == "Other" {
                     self.otherModelCell.contentView.isHidden = false
                     if self.otherModelCell.textField.text == "Other" {
-                        self.otherModelCell.textField.text = "Required"
+                        self.otherModelCell.textField.text = ""
                     }
                 } else {
                     self.otherModelCell.contentView.isHidden = true
