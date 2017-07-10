@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
+
 class DefaultPickerCell: PickerCell {
-    var data = ["None", "Running", "Walking"]
-    var dataColor = [UIColor.white, UIColor.yellow, UIColor.cyan]
+    var data = ["None", "Running", "Walking", "Running+Walking"]
+    var dataColor = [UIColor.white, UIColor.yellow, UIColor.cyan, UIColor(colorLiteralRed: 0, green: 0.6062946, blue: 0.752984, alpha: 1)]
     override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return data.count
     }
     
     override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         return data[row]
     }
     

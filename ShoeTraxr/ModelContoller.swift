@@ -18,6 +18,7 @@ class ModelController: NSObject {
     var workouts = [Workout]()
     var walkingDefault: DefaultShoe?
     var runningDefault: DefaultShoe?
+    fileprivate var walkingDefaultDB: DefaultShoe?
     
     var runningHKWorkouts = [HKWorkout]()
     var walkingHKWorkouts = [HKWorkout]()
@@ -102,7 +103,7 @@ class ModelController: NSObject {
                                 "Brown",
                                 "Gray"]
 
-    static var defaultWorkoutTypes: [Int : String] = [Int(HKWorkoutActivityType.running.rawValue): "Running", Int(HKWorkoutActivityType.walking.rawValue): "Walking"]
+    static var defaultWorkoutTypes: [Int : String] = [Int(HKWorkoutActivityType.running.rawValue): "Running", Int(HKWorkoutActivityType.walking.rawValue): "Walking", Int(HKWorkoutActivityType.other.rawValue): "Running+Walking"]
     
     var managedContext:NSManagedObjectContext!
     
@@ -168,11 +169,21 @@ class ModelController: NSObject {
             
                 for defaultWorkout in defaults {
                     print(defaultWorkout.shoe)
+                    print(defaultWorkout.type)
                     if defaultWorkout.type == Int16(HKWorkoutActivityType.walking.rawValue) {
+                        //managedContext.delete(defaultWorkout)
                         walkingDefault = defaultWorkout
+                        walkingDefaultDB = defaultWorkout
                     }
                     else if defaultWorkout.type == Int16(HKWorkoutActivityType.running.rawValue) {
+                        //managedContext.delete(defaultWorkout)
                         runningDefault = defaultWorkout
+                    }
+                    
+                    else if defaultWorkout.type == Int16(HKWorkoutActivityType.other.rawValue) {
+                        //managedContext.delete(defaultWorkout)
+                        runningDefault = defaultWorkout
+                        walkingDefault = defaultWorkout
                     }
 
             }
@@ -260,8 +271,24 @@ class ModelController: NSObject {
     
     func defaultWorkout(forType: Int) -> DefaultShoe? {
         if forType == Int(HKWorkoutActivityType.walking.rawValue) {
+            if runningDefault?.type == Int16(HKWorkoutActivityType.other.rawValue) {
+                runningDefault?.type = Int16(HKWorkoutActivityType.running.rawValue)
+                walkingDefault = walkingDefaultDB
+            }
             return walkingDefault
-        } else if forType == Int(HKWorkoutActivityType.running.rawValue) {
+        } else if forType == Int(HKWorkoutActivityType.running.rawValue)  {
+            if runningDefault?.type == Int16(HKWorkoutActivityType.other.rawValue) {
+                runningDefault?.type = Int16(HKWorkoutActivityType.running.rawValue)
+                walkingDefault = walkingDefaultDB
+                walkingDefault?.shoe = runningDefault?.shoe
+            }
+            return runningDefault
+        } else if forType == Int(HKWorkoutActivityType.other.rawValue) {
+            runningDefault?.type = Int16(HKWorkoutActivityType.other.rawValue)
+            if let walkingDefault = self.walkingDefault {
+                walkingDefault.shoe?.defaultWorkout = nil
+            }
+            walkingDefault = runningDefault
             return runningDefault
         }
         else {

@@ -84,6 +84,9 @@ class ShoeCollectionViewCell: UICollectionViewCell {
         else if shoe.defaultWorkout?.type == Int16(HKWorkoutActivityType.running.rawValue) {
             shoeName.textColor = UIColor.yellow
         }
+        else if shoe.defaultWorkout?.type == Int16(HKWorkoutActivityType.other.rawValue) {
+            shoeName.textColor = UIColor.gray
+        }
         shoeName.text = details
         self.shoe = shoe
         
