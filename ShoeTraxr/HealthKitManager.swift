@@ -205,18 +205,23 @@ class HealthKitManager {
             }
             //send notification?
             print(type.rawValue)
+            //ModelController.sharedInstance.defaultWorkout(forType: Int(type.rawValue))?.shoe
             if type == HKWorkoutActivityType.running {
                 ModelController.sharedInstance.getMostRecentRunningWorkout {workout in
                     if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
                         if let defaultShoe = ModelController.sharedInstance.runningDefault?.shoe {
                             _ = defaultShoe.addWorkout(selectedWorkout: workout!)
-                            self.sendNotification(type: HKWorkoutActivityType.running, shoe: defaultShoe)
+                            self.sendNotification(type: HKWorkoutActivityType.running, shoe: defaultShoe) {
+                                completionHandler()
+                            }
                         }
                         else {
-                            self.sendNotification(type: HKWorkoutActivityType.running)
+                            self.sendNotification(type: HKWorkoutActivityType.running) {
+                                completionHandler()
+                            }
                         }
                     }
-                    completionHandler()
+                    
                 }
             
             
@@ -226,14 +231,18 @@ class HealthKitManager {
                     if workout != nil && nil == ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
                         if let defaultShoe = ModelController.sharedInstance.walkingDefault?.shoe {
                             _ = defaultShoe.addWorkout(selectedWorkout: workout!)
-                            self.sendNotification(type: HKWorkoutActivityType.walking, shoe: defaultShoe)
+                            self.sendNotification(type: HKWorkoutActivityType.walking, shoe: defaultShoe) {
+                                completionHandler()
+                            }
                         }
                         else {
-                            self.sendNotification(type: HKWorkoutActivityType.walking)
+                            self.sendNotification(type: HKWorkoutActivityType.walking) {
+                                completionHandler()
+                            }
                         }
                     }
-                    completionHandler()
-            
+//                    completionHandler()
+                    
                 }
             }
             
@@ -304,8 +313,10 @@ class HealthKitManager {
         
     }
     
-    private func sendNotification(type: HKWorkoutActivityType) {
-        NotificationManager.sendNotification(type: type)
+    public func sendNotification(type: HKWorkoutActivityType, completion: @escaping () -> (Void)) {
+        NotificationManager.sendNotification(type: type) {
+            completion()
+        }
 //        // 1
 //        let content = UNMutableNotificationContent()
 //        content.title = "ShoeTraxR"
@@ -334,8 +345,10 @@ class HealthKitManager {
 //        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    private func sendNotification(type: HKWorkoutActivityType, shoe: Shoe) {
-        NotificationManager.sendNotification(type: type, shoe: shoe)
+    public func sendNotification(type: HKWorkoutActivityType, shoe: Shoe, completion: @escaping () -> (Void)) {
+        NotificationManager.sendNotification(type: type, shoe: shoe) {
+            completion()
+        }
         // 1
 //        let content = UNMutableNotificationContent()
 //        content.title = "ShoeTraxR"

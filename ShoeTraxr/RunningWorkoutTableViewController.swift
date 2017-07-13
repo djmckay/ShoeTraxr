@@ -56,8 +56,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
             modelController = ModelController.sharedInstance
         }
         if type == HKWorkoutActivityType.running {
-            modelController?.getRunningWorkouts {
-                self.workouts = (self.modelController?.runningHKWorkouts)!
+            modelController?.getRunningWorkouts { workouts in
+                self.workouts = workouts
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
@@ -65,8 +65,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
             
 
         } else if type == HKWorkoutActivityType.walking {
-            modelController?.getWalkingWorkouts {
-                self.workouts = (self.modelController?.walkingHKWorkouts)!
+            modelController?.getWalkingWorkouts { workouts in
+                self.workouts = workouts
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
@@ -99,8 +99,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
         //self.refreshController.beginRefreshing()
         
         if type == HKWorkoutActivityType.running {
-            modelController?.getRunningWorkouts {
-                self.workouts = (self.modelController?.runningHKWorkouts)!
+            modelController?.getRunningWorkouts { workouts in
+                self.workouts = workouts
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                     self.refreshController.endRefreshing()
@@ -111,8 +111,8 @@ public class RunningWorkoutTableViewController: UITableViewController {
             
             
         } else if type == HKWorkoutActivityType.walking {
-            modelController?.getWalkingWorkouts {
-                self.workouts = (self.modelController?.walkingHKWorkouts)!
+            modelController?.getWalkingWorkouts { workouts in
+                self.workouts = workouts
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                     self.refreshController.endRefreshing()
@@ -204,6 +204,7 @@ public class RunningWorkoutTableViewController: UITableViewController {
             detailText += distanceFormatter.string(fromValue: distanceInMiles!, unit: LengthFormatter.Unit.mile)
             
         }
+        
         // 3. Detail text: Energy Burned
 //        let energyBurned = workout.totalEnergyBurned?.doubleValue(for: HKUnit.joule())
 //        detailText += " Energy: " + energyFormatter.string(fromJoules: energyBurned!)

@@ -18,6 +18,7 @@ class ModelController: NSObject {
     var workouts = [Workout]()
     var walkingDefault: DefaultShoe?
     var runningDefault: DefaultShoe?
+    fileprivate var walkingRunningDefault: DefaultShoe?
     fileprivate var walkingDefaultDB: DefaultShoe?
     
     var runningHKWorkouts = [HKWorkout]()
@@ -153,7 +154,7 @@ class ModelController: NSObject {
         //3
         do {
             workouts = try managedContext.fetch(workoutFetchRequest)
-            //print(workouts.count)
+            print("Workout count: \(workouts.count)")
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -172,7 +173,9 @@ class ModelController: NSObject {
                     print(defaultWorkout.type)
                     if defaultWorkout.type == Int16(HKWorkoutActivityType.walking.rawValue) {
                         //managedContext.delete(defaultWorkout)
-                        walkingDefault = defaultWorkout
+                        if defaultWorkout == nil {
+                            walkingDefault = defaultWorkout
+                        }
                         walkingDefaultDB = defaultWorkout
                     }
                     else if defaultWorkout.type == Int16(HKWorkoutActivityType.running.rawValue) {
@@ -184,6 +187,7 @@ class ModelController: NSObject {
                         //managedContext.delete(defaultWorkout)
                         runningDefault = defaultWorkout
                         walkingDefault = defaultWorkout
+                        walkingRunningDefault = defaultWorkout
                     }
 
             }
@@ -296,7 +300,7 @@ class ModelController: NSObject {
         }
     }
 
-    func getRunningWorkouts(completion: @escaping () -> Void) {
+    func getRunningWorkouts(completion: @escaping (_ workouts: [HKWorkout]) -> Void) {
         healthManager?.readRunningWorkOuts(completion: { (results, error) -> Void in
             if( error != nil )
             {
@@ -310,12 +314,12 @@ class ModelController: NSObject {
             
             //Keep workouts and refresh tableview in main thread
             self.runningHKWorkouts = results as! [HKWorkout]
-            completion()
+            completion(self.runningHKWorkouts)
 
         })
     }
     
-    func getWalkingWorkouts(completion: @escaping () -> Void) {
+    func getWalkingWorkouts(completion: @escaping (_ workouts: [HKWorkout]) -> Void) {
         healthManager?.readWalkingWorkouts(completion: { (results, error) -> Void in
             if( error != nil )
             {
@@ -329,7 +333,7 @@ class ModelController: NSObject {
             
             //Keep workouts and refresh tableview in main thread
             self.walkingHKWorkouts = results as! [HKWorkout]
-            completion()
+            completion(self.walkingHKWorkouts)
         })
     }
 

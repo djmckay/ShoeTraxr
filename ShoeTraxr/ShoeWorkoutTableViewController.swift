@@ -40,10 +40,10 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
             if shoe.defaultWorkout?.type == Int16(HKWorkoutActivityType.walking.rawValue) {
                 walkingShoeDefaultType = true
             }
-            ModelController.sharedInstance.getRunningWorkouts {
+            ModelController.sharedInstance.getRunningWorkouts { workouts in
                 self.runningWorkouts = self.shoe.getRunningHKWorkouts()
 
-                ModelController.sharedInstance.getWalkingWorkouts {
+                ModelController.sharedInstance.getWalkingWorkouts { workouts in
                     self.walkingWorkouts = self.shoe.getWalkingHKWorkouts()
                     
                     DispatchQueue.main.async(execute: {

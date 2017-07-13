@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -28,12 +29,54 @@ class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, 
         retiredShoes = ModelController.sharedInstance.retiredShoes
         
         shoeCollectionView.backgroundColor = UIColor.black
+        
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async(execute: {
             self.shoeCollectionView.reloadData()
+            
+//            ModelController.sharedInstance.getMostRecentRunningWorkout {workout in
+//                if workout != nil && nil != ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+//                    if let defaultShoe = ModelController.sharedInstance.runningDefault?.shoe {
+//                        print(defaultShoe)
+//                        _ = defaultShoe.addWorkout(selectedWorkout: workout!)
+//                        self.healthManager.sendNotification(type: HKWorkoutActivityType.running, shoe: defaultShoe) {
+//                            print("completion handler")
+//                        }
+//                    }
+//                    else {
+//                        self.healthManager.sendNotification(type: HKWorkoutActivityType.running) {
+//                            print("completion handler")
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            
+//            
+//            ModelController.sharedInstance.getMostRecentWalkingWorkout {workout in
+//                if workout != nil && nil != ModelController.sharedInstance.getWorkout(hkWorkout: workout!) {
+//                    if let defaultShoe = ModelController.sharedInstance.walkingDefault?.shoe {
+//                        print(defaultShoe)
+//                        _ = defaultShoe.addWorkout(selectedWorkout: workout!)
+//                        self.healthManager.sendNotification(type: HKWorkoutActivityType.walking, shoe: defaultShoe) {
+//                            print("completion handler")
+//                        }
+//                    }
+//                    else {
+//                        self.healthManager.sendNotification(type: HKWorkoutActivityType.walking) {
+//                            print("completion handler")
+//                        }
+//                    }
+//                }
+//                
+//            }
+            
         })
     }
 
@@ -172,7 +215,8 @@ extension ShoeCollectionViewController {
 
         }
         cell.setupShoe(shoe:shoe)
-
+//        NotificationManager.sendNotification(type: HKWorkoutActivityType.running, shoe: shoe)
+//        NotificationManager.sendNotification(type: HKWorkoutActivityType.walking, shoe: shoe)
         return cell
     }
     

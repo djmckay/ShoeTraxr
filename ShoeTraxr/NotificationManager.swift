@@ -24,7 +24,7 @@ class NotificationManager {
             completionHandler(granted, error)
         }
     }
-    static func sendNotification(type: HKWorkoutActivityType) {
+    static func sendNotification(type: HKWorkoutActivityType, completion: @escaping () -> (Void)) {
         // 1
         let content = UNMutableNotificationContent()
         content.title = "New Workout Detected"
@@ -46,14 +46,19 @@ class NotificationManager {
         //        content.attachments = [attachment]
         
         // 3
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         // 4
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+            if error != nil {
+                print(error!)
+            }
+            completion()
+        })
     }
     
-    static func sendNotification(type: HKWorkoutActivityType, shoe: Shoe) {
+    static func sendNotification(type: HKWorkoutActivityType, shoe: Shoe, completion: @escaping () -> (Void)) {
         // 1
         let content = UNMutableNotificationContent()
         content.title = "New Workout Detected"
@@ -86,11 +91,16 @@ class NotificationManager {
         //        content.attachments = [attachment]
         
         // 3
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         // 4
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+            if error != nil {
+                print(error!)
+            }
+            completion()
+        })
     }
 
 }
