@@ -101,6 +101,8 @@ class ProductPickerCell: PickerCell {
                 
                 self.data = products
                 DispatchQueue.main.async(execute: {
+                    self.pickerView.reloadAllComponents()
+                    self.select()
                     self.isHidden = false
                 })
             } else {
@@ -109,12 +111,12 @@ class ProductPickerCell: PickerCell {
                     self.data.removeAll()
                     self.data.append(Product("Other"))
                     self.detailTextLabel?.text = "Other"
-                    
+                    self.pickerView.reloadAllComponents()
+                    self.select()
                 })
             }
             DispatchQueue.main.async(execute: {
-                self.pickerView.reloadAllComponents()
-                self.select()
+                
 
             })
         })

@@ -20,6 +20,7 @@ class ModelController: NSObject {
     var runningDefault: DefaultShoe?
     fileprivate var walkingRunningDefault: DefaultShoe?
     fileprivate var walkingDefaultDB: DefaultShoe?
+    fileprivate var runningDefaultDB: DefaultShoe?
     
     var runningHKWorkouts = [HKWorkout]()
     var walkingHKWorkouts = [HKWorkout]()
@@ -169,18 +170,25 @@ class ModelController: NSObject {
             print("default count: \(defaults.count)")
             
                 for defaultWorkout in defaults {
-                    print(defaultWorkout.shoe)
+                    print(defaultWorkout.shoe?.getTitle())
                     print(defaultWorkout.type)
+                    if defaultWorkout.shoe == nil {
+                        //delete
+                        managedContext.delete(defaultWorkout)
+                        print("delete invalid data, no shoe")
+                    } else {
                     if defaultWorkout.type == Int16(HKWorkoutActivityType.walking.rawValue) {
                         //managedContext.delete(defaultWorkout)
-                        if defaultWorkout == nil {
-                            walkingDefault = defaultWorkout
-                        }
+//                        if defaultWorkout == nil {
+//                            walkingDefault = defaultWorkout
+//                        }
+                        walkingDefault = defaultWorkout
                         walkingDefaultDB = defaultWorkout
                     }
                     else if defaultWorkout.type == Int16(HKWorkoutActivityType.running.rawValue) {
                         //managedContext.delete(defaultWorkout)
                         runningDefault = defaultWorkout
+                        runningDefaultDB = defaultWorkout
                     }
                     
                     else if defaultWorkout.type == Int16(HKWorkoutActivityType.other.rawValue) {
@@ -188,6 +196,7 @@ class ModelController: NSObject {
                         runningDefault = defaultWorkout
                         walkingDefault = defaultWorkout
                         walkingRunningDefault = defaultWorkout
+                    }
                     }
 
             }
