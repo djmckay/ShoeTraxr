@@ -75,8 +75,8 @@ class NotificationManager {
             content.badge = currentBadge as NSNumber
         } else {
             
-            content.body = "\(shoe.getTitle()) used for new \(typeString) workout.  You have an estimated \(shoe.distanceRemainingFormatted) (\(shoe.percentRemaining)%) remaining on this shoe."
-            if shoe.percentRemaining <= 10 {
+            content.body = "\(shoe.getTitle()) used for new \(typeString) workout.  You have an estimated \(shoe.distanceRemainingFormatted) remaining on this shoe."
+            if shoe.percentRemaining <= 25 {
                 content.body += "  Time to visit the running store!"
             }
         }
