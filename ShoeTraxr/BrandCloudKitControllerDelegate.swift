@@ -54,7 +54,7 @@ class BrandCloudKitControllerDelegate: CloudKitControllerSyncDelegate {
                 let brand = BrandCK(record: item, database: database)
                 self.items.append(brand)
             }
-            
+            print(error?.localizedDescription)
             completion(error as NSError?)
             
         }

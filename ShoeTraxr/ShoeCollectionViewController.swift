@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import StoreKit
 
 class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -37,6 +38,9 @@ class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if shoes.count > 0 {
+            SKStoreReviewController.requestReview()
+        }
         DispatchQueue.main.async(execute: {
             self.shoeCollectionView.reloadData()
             
