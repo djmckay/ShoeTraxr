@@ -16,7 +16,7 @@ class RingGraph: UIView {
     }
     var arcWidth:CGFloat = 10.0
     var arcColor = UIColor.yellow
-    var arcBackgroundColor = UIColor.black
+    var arcBackgroundColor = UIColor.white
     var viewMargin: CGFloat = 4.0
     
     var maxValue: Double = 0.0 {

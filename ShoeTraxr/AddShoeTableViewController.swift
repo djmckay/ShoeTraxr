@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import GoogleMobileAds
+import Charts
 
-public class AddShoeTableViewController: UITableViewController, UITextFieldDelegate {
+public class AddShoeTableViewController: UITableViewController, UITextFieldDelegate, GADInterstitialDelegate {
 
     @IBOutlet weak var shoeDateCell: DatePickerCell!
     @IBOutlet weak var shoeBrandCell: TextCell!
@@ -32,6 +34,10 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var shoePercentRemaining: TextCell!
     var editShoe: Shoe!
 
+    var interstitial: GADInterstitial!
+    
+    @IBOutlet weak var barChartView: BarChartView!
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -44,6 +50,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
 //        self.brandProductPickerCell.isHidden = true
         self.shoeBrandPickerCell.brandProductPickerCell = self.brandProductPickerCell
         self.brandProductPickerCell.otherModelCell = self.shoeModelCell
+        self.shoeAvatarColorPIckerCell.detailTextLabel?.backgroundColor = UIColor.gray
+        self.shoeAvatarColorPIckerCell.image( ModelController.colors[0])
 
         if let editShoe = editShoe {
             self.title = "Shoe Details"
@@ -64,6 +72,9 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.shoePercentRemaining.value = "\(editShoe.percentRemaining)%"
             self.shoeAvatarColorPIckerCell.detailTextLabel?.text = ModelController.colorNames[Int(editShoe.colorAvatarIndex)]
             self.shoeAvatarColorPIckerCell.detailTextLabel?.textColor = ModelController.colors[Int(editShoe.colorAvatarIndex)]
+            self.shoeAvatarColorPIckerCell.detailTextLabel?.backgroundColor = UIColor.gray
+            self.shoeAvatarColorPIckerCell.image(ModelController.colors[Int(editShoe.colorAvatarIndex)])
+            self.shoeAvatarColorPIckerCell.select()
             if let defaultWorkout = editShoe.defaultWorkout {
                 self.defaultPickerCell.detailTextLabel?.text = ModelController.defaultWorkoutTypes[Int(defaultWorkout.type)]
                 self.defaultPickerCell.select()
@@ -75,6 +86,10 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.shoeDistanceLogged.contentView.isHidden = true
             self.shoePercentRemaining.contentView.isHidden = true
         }
+        
+        self.interstitial = self.createAndLoadAd()
+        self.interstitial.delegate = self
+        
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -163,7 +178,15 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             self.present(alert, animated: true, completion: nil)
         }
         else {
-            self.performSegue(withIdentifier: "addShoeSave", sender: tableView)
+            
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+                self.performSegue(withIdentifier: "addShoeSave", sender: tableView)
+            }
+            
+//            self.performSegue(withIdentifier: "addShoeSave", sender: tableView)
             
         }
     }
@@ -194,4 +217,32 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
+    public func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        self.performSegue(withIdentifier: "addShoeSave", sender: tableView)
+    }
+    
+    func createAndLoadAd() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-1011036572239562/8452208546")
+        let request = GADRequest()
+        //request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
+        interstitial.load(request)
+        return interstitial
+    }
+    
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
+    }
+    
+    override open var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+        } else {
+            print("Portrait")
+        }
+        
+    }
 }

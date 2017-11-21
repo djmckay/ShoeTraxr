@@ -66,7 +66,7 @@ class CloudKitController {
     
     func fetchProducts(brand: Brand, _ completion: @escaping (_ products: [ProductCK]?, _ error: NSError?) -> () ) {
         if let brand = brand as? BrandCK {
-        self.productDelegate.fetchProducts(brand, completion: { (products, error) in
+        self.productDelegate.fetchProducts2(brand, completion: { (products, error) in
 //            for product in products! {
 //                product.brand = brand
 //            }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>814255281234-a4dikp31je4krbrt37g32perpr3nmfil.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.814255281234-a4dikp31je4krbrt37g32perpr3nmfil</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCAlIozyrKyrc646ezME7OnXNElUML1vCY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>814255281234</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jeanoelyse.ShoeTraxr.ShoeTraxr</string>
+	<key>PROJECT_ID</key>
+	<string>shoetraxr</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shoetraxr.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:814255281234:ios:caee493275e8185f</string>
+	<key>DATABASE_URL</key>
+	<string>https://shoetraxr.firebaseio.com</string>
+</dict>
+</plist>

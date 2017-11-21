@@ -31,16 +31,19 @@ class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, 
         
         shoeCollectionView.backgroundColor = UIColor.black
         
-        
+        StoreManager.requestReview()
         
         
     }
     
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+
         super.viewWillAppear(animated)
-        if shoes.count > 0 {
-            SKStoreReviewController.requestReview()
-        }
         DispatchQueue.main.async(execute: {
             self.shoeCollectionView.reloadData()
             

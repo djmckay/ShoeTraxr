@@ -77,17 +77,17 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 //        myShoesButton.layer.cornerRadius = 10
 //        myRunsButton.layer.cornerRadius = 10
 //        myWalksButton.layer.cornerRadius = 10
-        guard (bannerView != nil) else {
-            return
-        }
-        bannerView.adUnitID = "ca-app-pub-1011036572239562/4571143334"
-        bannerView.rootViewController = self
-        bannerView.delegate = self as GADBannerViewDelegate
+//        guard (bannerView != nil) else {
+//            return
+//        }
+//        bannerView.adUnitID = "ca-app-pub-1011036572239562/4571143334"
+//        bannerView.rootViewController = self
+//        bannerView.delegate = self as GADBannerViewDelegate
         
-        let request = GADRequest()
-        request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
-        
-        bannerView.load(request)
+//        let request = GADRequest()
+//        request.testDevices = ["90fc3240ee18c02d21731660481c9e7a"]
+//        
+//        bannerView.load(request)
         /*let backgroundTrackColor = UIColor(white: 0.15, alpha: 1.0)
         circleGraph.backgroundColor = UIColor.black
         circleGraph.arcBackgroundColor = backgroundTrackColor
@@ -136,5 +136,19 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
+    
+    
+}
+
+extension UINavigationController {
+    
+    override open var shouldAutorotate: Bool {
+        return visibleViewController?.shouldAutorotate ?? false
+    }
+    
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return (visibleViewController?.supportedInterfaceOrientations)!
+    }
+    
 }
 

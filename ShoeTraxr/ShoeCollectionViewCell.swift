@@ -40,7 +40,8 @@ class ShoeCollectionViewCell: UICollectionViewCell {
     func commonSetup() {
         self.backgroundColor = UIColor.black
 
-        let backgroundTrackColor = UIColor(white: 0.15, alpha: 1.0)
+        
+        let backgroundTrackColor = UIColor(white: 0.5, alpha: 1.0)
         
         ring = self.viewWithTag(2)! as! RingGraph
 //        ringView.addSubview(ring)
@@ -70,9 +71,10 @@ class ShoeCollectionViewCell: UICollectionViewCell {
         //ring.endArc = CGFloat(shoe.distanceLogged / shoe.distance)
         ring.value = shoe.distanceLogged
 
-        ring.arcColor = orbitBlue
-        if ring.endArc > 0.95 {
-            ring.arcColor = UIColor.red
+        ring.arcColor = ModelController.colors[Int(shoe.colorAvatarIndex)].withAlphaComponent(0.75)
+        
+        if ring.endArc > 1.0 {
+            ring.arcColor = ring.arcColor.withAlphaComponent(1.0)
         }
         var shoeName = self.viewWithTag(1) as! UILabel
         var details = String()

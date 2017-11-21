@@ -94,7 +94,8 @@ class ModelController: NSObject {
                              UIColor.purple,
                              UIColor.black,
                              UIColor.brown,
-                             UIColor.gray]
+                             UIColor.darkGray,
+                             UIColor.white]
     
     static var colorNames: [String] = ["Green",
                                 "Red",
@@ -103,7 +104,7 @@ class ModelController: NSObject {
                                 "Purple",
                                 "Black",
                                 "Brown",
-                                "Gray"]
+                                "Gray", "White"]
 
     static var defaultWorkoutTypes: [Int : String] = [Int(HKWorkoutActivityType.running.rawValue): "Running", Int(HKWorkoutActivityType.walking.rawValue): "Walking", Int(HKWorkoutActivityType.other.rawValue): "Running+Walking"]
     

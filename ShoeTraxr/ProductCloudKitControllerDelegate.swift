@@ -73,6 +73,27 @@ class ProductCloudKitControllerDelegate: CloudKitControllerSyncDelegate {
         
     }
     
+    func fetchProducts2(_ brand: BrandCK, completion:@escaping (_ : [ProductCK]?, _ error: NSError?) ->()) {
+
+        self.items.removeAll()
+        let recordToMatch = CKReference(recordID: brand.record.recordID, action: .deleteSelf)
+
+        let query = CKQuery(recordType: ProductCloudKitControllerDelegate.typeName, predicate: NSPredicate(format: "brand == %@", recordToMatch))
+        
+        brand.database.perform(query, inZoneWith: nil) { results, error in
+            if (results?.count)! > 0 {
+                self.items.removeAll(keepingCapacity: true)
+            }
+            for item in results! {
+                let product = ProductCK(record: item, database: brand.database)
+                self.items.append(product)
+            }
+            print(error?.localizedDescription)
+            completion(self.items, error as NSError?)
+            
+        }
+    }
+    
     func fetchProducts(_ brand: BrandCK, completion:@escaping (_ author: [ProductCK]?, _ error: NSError?) ->()) {
         var productIds = [CKRecordID]()
         if let references = brand.record["products"] as? [CKReference] {

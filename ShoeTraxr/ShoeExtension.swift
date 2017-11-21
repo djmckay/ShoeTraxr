@@ -124,6 +124,7 @@ extension Shoe {
         ModelController.sharedInstance.retireShoe(shoe: self, completion: { (status, error) in
             self.retired = true
             self.retiredDate = Date() as NSDate
+            self.defaultWorkout = nil
         })
         completion(true, nil)
     }

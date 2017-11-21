@@ -20,6 +20,9 @@
 		220E1A471EE460C800024016 /* BrandCloudKitControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A461EE460C800024016 /* BrandCloudKitControllerDelegate.swift */; };
 		220E1A491EE4621800024016 /* BrandCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A481EE4621800024016 /* BrandCK.swift */; };
 		220E1A4B1EE4657500024016 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E1A4A1EE4657500024016 /* CloudKit.framework */; };
+		22418E921FB78AC800533013 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22418E911FB78AC800533013 /* UserDefaultsManager.swift */; };
+		22418E941FB78BE100533013 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22418E931FB78BE100533013 /* StoreManager.swift */; };
+		22418E961FB795CB00533013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22418E951FB795CB00533013 /* GoogleService-Info.plist */; };
 		22562A7C1EAFF6F4007010D6 /* BrandPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562A7B1EAFF6F4007010D6 /* BrandPickerCell.swift */; };
 		2259A1471EAA439A0048433C /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259A1461EAA439A0048433C /* PickerTextField.swift */; };
 		2274D25A1EB7CF46005813D5 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274D2591EB7CF46005813D5 /* ColorPickerCell.swift */; };
@@ -32,7 +35,6 @@
 		2276B5151EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B5141EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift */; };
 		2276B51F1EA6BBD000F84083 /* ShoeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B51E1EA6BBD000F84083 /* ShoeExtension.swift */; };
 		2276B5211EA6BBFF00F84083 /* WorkoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276B5201EA6BBFF00F84083 /* WorkoutExtension.swift */; };
-		2276B5271EA6FF8B00F84083 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */; };
 		2279CA1D1EB249CD0049AC99 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279CA1C1EB249CD0049AC99 /* Brand.swift */; };
 		22B0429D1EE64F57001E5DEF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0429C1EE64F57001E5DEF /* Product.swift */; };
 		22B0429F1EE64FA4001E5DEF /* ProductCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0429E1EE64FA4001E5DEF /* ProductCK.swift */; };
@@ -41,6 +43,7 @@
 		22E1FC451EA7EF770092A3F4 /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1FC441EA7EF770092A3F4 /* PickerCell.swift */; };
 		22E5C8631EB7A46B00CD0232 /* ShoeWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5C8621EB7A46B00CD0232 /* ShoeWorkoutTableViewController.swift */; };
 		22E5C8651EB7A49C00CD0232 /* WorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5C8641EB7A49C00CD0232 /* WorkoutTableViewController.swift */; };
+		22E8FA6B1FB908D000821F43 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E8FA6A1FB908D000821F43 /* GoogleMobileAds.framework */; };
 		22F069681EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F069671EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift */; };
 		22FA057E1EC7B63000201328 /* DefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA057D1EC7B63000201328 /* DefaultExtension.swift */; };
 		22FA05801EC7B72E00201328 /* DefaultPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA057F1EC7B72E00201328 /* DefaultPickerCell.swift */; };
@@ -49,6 +52,7 @@
 		22FA05861EC89B1C00201328 /* ShoeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA05851EC89B1C00201328 /* ShoeCollectionViewCell.swift */; };
 		22FA05881EC89B5800201328 /* ShoeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA05871EC89B5800201328 /* ShoeCollectionViewController.swift */; };
 		22FA058A1EC89B9600201328 /* ShoeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA05891EC89B9600201328 /* ShoeCollectionView.swift */; };
+		76B697930A0F028212B6AA7B /* Pods_ShoeTraxr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CDF4C2A4978571D6DD852E /* Pods_ShoeTraxr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,9 @@
 		220E1A461EE460C800024016 /* BrandCloudKitControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandCloudKitControllerDelegate.swift; sourceTree = "<group>"; };
 		220E1A481EE4621800024016 /* BrandCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandCK.swift; sourceTree = "<group>"; };
 		220E1A4A1EE4657500024016 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		22418E911FB78AC800533013 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		22418E931FB78BE100533013 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		22418E951FB795CB00533013 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22562A7B1EAFF6F4007010D6 /* BrandPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandPickerCell.swift; sourceTree = "<group>"; };
 		2259A1461EAA439A0048433C /* PickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		2274D2591EB7CF46005813D5 /* ColorPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
@@ -80,7 +87,6 @@
 		2276B5141EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignShoeWorkoutTableViewController.swift; sourceTree = "<group>"; };
 		2276B51E1EA6BBD000F84083 /* ShoeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeExtension.swift; sourceTree = "<group>"; };
 		2276B5201EA6BBFF00F84083 /* WorkoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExtension.swift; sourceTree = "<group>"; };
-		2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2279CA1C1EB249CD0049AC99 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		22B0429C1EE64F57001E5DEF /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		22B0429E1EE64FA4001E5DEF /* ProductCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCK.swift; sourceTree = "<group>"; };
@@ -89,6 +95,7 @@
 		22E1FC441EA7EF770092A3F4 /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		22E5C8621EB7A46B00CD0232 /* ShoeWorkoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeWorkoutTableViewController.swift; sourceTree = "<group>"; };
 		22E5C8641EB7A49C00CD0232 /* WorkoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewController.swift; sourceTree = "<group>"; };
+		22E8FA6A1FB908D000821F43 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		22F069671EAF898C00E0EB06 /* ShoeBrandPickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeBrandPickerViewDelegate.swift; sourceTree = "<group>"; };
 		22FA057D1EC7B63000201328 /* DefaultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultExtension.swift; sourceTree = "<group>"; };
 		22FA057F1EC7B72E00201328 /* DefaultPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPickerCell.swift; sourceTree = "<group>"; };
@@ -97,6 +104,9 @@
 		22FA05851EC89B1C00201328 /* ShoeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeCollectionViewCell.swift; sourceTree = "<group>"; };
 		22FA05871EC89B5800201328 /* ShoeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeCollectionViewController.swift; sourceTree = "<group>"; };
 		22FA05891EC89B9600201328 /* ShoeCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeCollectionView.swift; sourceTree = "<group>"; };
+		ADC4229248C2D2AECADD6204 /* Pods-ShoeTraxr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoeTraxr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShoeTraxr/Pods-ShoeTraxr.debug.xcconfig"; sourceTree = "<group>"; };
+		C2CDF4C2A4978571D6DD852E /* Pods_ShoeTraxr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoeTraxr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E047A4E44F349EFAEE0F602B /* Pods-ShoeTraxr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoeTraxr.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoeTraxr/Pods-ShoeTraxr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,20 +115,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				220E1A4B1EE4657500024016 /* CloudKit.framework in Frameworks */,
-				2276B5271EA6FF8B00F84083 /* GoogleMobileAds.framework in Frameworks */,
 				2207695F1EA54F4700B98B6B /* HealthKit.framework in Frameworks */,
+				22E8FA6B1FB908D000821F43 /* GoogleMobileAds.framework in Frameworks */,
+				76B697930A0F028212B6AA7B /* Pods_ShoeTraxr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15C4EC457131DF8A376204C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADC4229248C2D2AECADD6204 /* Pods-ShoeTraxr.debug.xcconfig */,
+				E047A4E44F349EFAEE0F602B /* Pods-ShoeTraxr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2207693B1EA54F3E00B98B6B = {
 			isa = PBXGroup;
 			children = (
 				220769461EA54F3F00B98B6B /* ShoeTraxr */,
 				220769451EA54F3F00B98B6B /* Products */,
 				2207695D1EA54F4700B98B6B /* Frameworks */,
+				15C4EC457131DF8A376204C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +158,8 @@
 				220769471EA54F3F00B98B6B /* AppDelegate.swift */,
 				2276B5221EA6BC1B00F84083 /* Extensions */,
 				2276B5061EA5B12F00F84083 /* ModelContoller.swift */,
+				22418E911FB78AC800533013 /* UserDefaultsManager.swift */,
+				22418E931FB78BE100533013 /* StoreManager.swift */,
 				220E1A441EE45F9200024016 /* CloudKitController.swift */,
 				220E1A461EE460C800024016 /* BrandCloudKitControllerDelegate.swift */,
 				22B042A01EE6502A001E5DEF /* ProductCloudKitControllerDelegate.swift */,
@@ -157,6 +180,7 @@
 				220769511EA54F3F00B98B6B /* Assets.xcassets */,
 				220769531EA54F3F00B98B6B /* LaunchScreen.storyboard */,
 				220769561EA54F3F00B98B6B /* Info.plist */,
+				22418E951FB795CB00533013 /* GoogleService-Info.plist */,
 				2207694E1EA54F3F00B98B6B /* ShoeTraxr.xcdatamodeld */,
 				2279CA1C1EB249CD0049AC99 /* Brand.swift */,
 				22B0429C1EE64F57001E5DEF /* Product.swift */,
@@ -170,9 +194,10 @@
 		2207695D1EA54F4700B98B6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22E8FA6A1FB908D000821F43 /* GoogleMobileAds.framework */,
 				220E1A4A1EE4657500024016 /* CloudKit.framework */,
-				2276B5261EA6FF8B00F84083 /* GoogleMobileAds.framework */,
 				2207695E1EA54F4700B98B6B /* HealthKit.framework */,
+				C2CDF4C2A4978571D6DD852E /* Pods_ShoeTraxr.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,9 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 220769591EA54F3F00B98B6B /* Build configuration list for PBXNativeTarget "ShoeTraxr" */;
 			buildPhases = (
+				BF56B78B0447BF4DEE014A69 /* [CP] Check Pods Manifest.lock */,
 				220769401EA54F3F00B98B6B /* Sources */,
 				220769411EA54F3F00B98B6B /* Frameworks */,
 				220769421EA54F3F00B98B6B /* Resources */,
+				05EB0AAB0AD86A6D481F1046 /* [CP] Embed Pods Frameworks */,
+				E8D1F8C46B4C79AA226EF439 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -276,12 +304,71 @@
 			buildActionMask = 2147483647;
 			files = (
 				220769551EA54F3F00B98B6B /* LaunchScreen.storyboard in Resources */,
+				22418E961FB795CB00533013 /* GoogleService-Info.plist in Resources */,
 				220769521EA54F3F00B98B6B /* Assets.xcassets in Resources */,
 				2207694D1EA54F3F00B98B6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05EB0AAB0AD86A6D481F1046 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ShoeTraxr/Pods-ShoeTraxr-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoeTraxr/Pods-ShoeTraxr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF56B78B0447BF4DEE014A69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShoeTraxr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8D1F8C46B4C79AA226EF439 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoeTraxr/Pods-ShoeTraxr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		220769401EA54F3F00B98B6B /* Sources */ = {
@@ -317,8 +404,10 @@
 				2276B5051EA5AF5500F84083 /* ShoeTableViewController.swift in Sources */,
 				2276B5151EA65B5900F84083 /* AssignShoeWorkoutTableViewController.swift in Sources */,
 				22B0429F1EE64FA4001E5DEF /* ProductCK.swift in Sources */,
+				22418E941FB78BE100533013 /* StoreManager.swift in Sources */,
 				22562A7C1EAFF6F4007010D6 /* BrandPickerCell.swift in Sources */,
 				220769631EA552C300B98B6B /* RunningWorkoutTableViewController.swift in Sources */,
+				22418E921FB78AC800533013 /* UserDefaultsManager.swift in Sources */,
 				22E1FC451EA7EF770092A3F4 /* PickerCell.swift in Sources */,
 				22B042A11EE6502A001E5DEF /* ProductCloudKitControllerDelegate.swift in Sources */,
 				220E1A491EE4621800024016 /* BrandCK.swift in Sources */,
@@ -444,6 +533,7 @@
 		};
 		2207695A1EA54F3F00B98B6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADC4229248C2D2AECADD6204 /* Pods-ShoeTraxr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ShoeTraxr/ShoeTraxr.entitlements;
@@ -463,6 +553,7 @@
 		};
 		2207695B1EA54F3F00B98B6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E047A4E44F349EFAEE0F602B /* Pods-ShoeTraxr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ShoeTraxr/ShoeTraxr.entitlements;
