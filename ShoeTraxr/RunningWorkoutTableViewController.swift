@@ -231,6 +231,33 @@ public class RunningWorkoutTableViewController: UITableViewController {
         return cell
     }
     
+    override public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        let selectedWorkout  = workouts[indexPath.row]
+        if let workout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
+            if workout.shoe != nil {
+                return UITableViewCellEditingStyle.delete
+            }
+        }
+        return UITableViewCellEditingStyle.none
+    }
+    
+    override public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Unassign Shoe"
+    }
+    
+    
+    override public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let selectedWorkout  = workouts[indexPath.row]
+         if let workout = modelController?.getWorkout(hkWorkout: selectedWorkout) {
+            if editingStyle == .delete {
+                print("delete")
+                workout.shoe = nil
+                tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            }
+        }
+        
+    }
+    
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "assignShoe" {
