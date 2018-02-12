@@ -216,7 +216,7 @@ class HealthKitManager {
                             }
                         }
                         else {
-                            self.sendNotification(type: HKWorkoutActivityType.running) {
+                            self.sendNotification(type: HKWorkoutActivityType.running, uuid: workout!.uuid.uuidString) {
                                 completionHandler()
                             }
                         }
@@ -236,7 +236,7 @@ class HealthKitManager {
                             }
                         }
                         else {
-                            self.sendNotification(type: HKWorkoutActivityType.walking) {
+                            self.sendNotification(type: HKWorkoutActivityType.walking, uuid: workout!.uuid.uuidString) {
                                 completionHandler()
                             }
                         }
@@ -313,8 +313,8 @@ class HealthKitManager {
         
     }
     
-    public func sendNotification(type: HKWorkoutActivityType, completion: @escaping () -> (Void)) {
-        NotificationManager.sendNotification(type: type) {
+    public func sendNotification(type: HKWorkoutActivityType, uuid: String, completion: @escaping () -> (Void)) {
+        NotificationManager.sendNotification(type: type, uuid: uuid) {
             completion()
         }
 //        // 1

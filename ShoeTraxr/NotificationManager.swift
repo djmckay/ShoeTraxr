@@ -24,7 +24,7 @@ class NotificationManager {
             completionHandler(granted, error)
         }
     }
-    static func sendNotification(type: HKWorkoutActivityType, completion: @escaping () -> (Void)) {
+    static func sendNotification(type: HKWorkoutActivityType, uuid: String?, completion: @escaping () -> (Void)) {
         // 1
         let content = UNMutableNotificationContent()
         content.title = "New Workout Detected"
@@ -47,7 +47,7 @@ class NotificationManager {
         
         // 3
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: uuid != nil ? uuid! : UUID().uuidString, content: content, trigger: trigger)
         
         // 4
         UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
@@ -63,9 +63,16 @@ class NotificationManager {
         let content = UNMutableNotificationContent()
         content.title = "New Workout Detected"
         
+        var uuid = UUID().uuidString
+        if let workoutUUID = shoe.getWalkingHKWorkouts().first?.uuid.uuidString {
+            uuid = workoutUUID
+        }
         var typeString = "walking"
         if type == .running {
             typeString = "running"
+            if let workoutUUID = shoe.getRunningHKWorkouts().first?.uuid.uuidString {
+                uuid = workoutUUID
+            }
         }
         
         if shoe.distanceLogged >= shoe.distance {
@@ -92,7 +99,9 @@ class NotificationManager {
         
         // 3
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        
+        let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
         
         // 4
         UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
