@@ -104,23 +104,12 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                         total += workoutDistance
                         let entry = ChartDataEntry(x: Double(workout.endDate.timeIntervalSince1970), y: total, data: workout.endDate as AnyObject)
                         lineChartEntries.append(entry)
-//                        let bubbleEntry = BubbleChartDataEntry(x: Double(workout.endDate.timeIntervalSince1970), y: total, size: CGFloat(workoutDistance))
-//                        bubbleChartEntries.append(bubbleEntry)
                     }
                     
                     let line1 = LineChartDataSet(values: lineChartEntries, label: "Total Distance")
                     line1.label = "Distance"
                     let lineData = LineChartData()
                     lineData.addDataSet(line1)
-
-//                    let bubbleChartDataSet = BubbleChartDataSet(values: bubbleChartEntries, label: "Total Distance")
-//                    bubbleChartDataSet.setColors(ChartColorTemplates.vordiplom(), alpha: 1)
-//                    //bubbleChartDataSet.valueTextColor = UIColor.white
-//                    bubbleChartDataSet.drawValuesEnabled = true
-//                    let bubbleData = BubbleChartData(dataSet: bubbleChartDataSet)
-//                    bubbleData.setHighlightCircleWidth(1.5)
-                    
-                    
                     
                     //create slope
                     if let firstPoint = lineChartEntries.first, let lastPoint = lineChartEntries.last {
@@ -146,16 +135,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                         self.combinedChartView.xAxis.valueFormatter = DateValueFormatter()
                         self.combinedChartView.chartDescription?.text = "Workouts"
                         self.combinedChartView.pinchZoomEnabled = true
-//                        let rightAxis = self.combinedChartView.rightAxis
-//                        rightAxis.axisMinimum = 0
-//
-//                        let leftAxis = self.combinedChartView.leftAxis
-//                        leftAxis.axisMinimum = 0
-//
-//                        let xAxis = self.combinedChartView.xAxis
-//                        xAxis.labelPosition = .bothSided
-//                        xAxis.axisMinimum = 0
-//                        xAxis.granularity = 1
+
                         let chartData = CombinedChartData()
                         chartData.lineData = lineData
                         total = 0.0
@@ -176,31 +156,6 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                     
                 }
             }
-
-//            var lineChartEntry = [ChartDataEntry]()
-//            let allWorkouts = editShoe.workoutData
-//            var total = 0.0
-//            lineChartEntry.append(ChartDataEntry(x: 0.0, y: 0.0))
-//            for (index, workout) in allWorkouts.enumerated() {
-//                total += workout.distance
-//                let entry = ChartDataEntry(x: Double(index + 1), y: total)
-//                lineChartEntry.append(entry)
-//            }
-//            let line1 = LineChartDataSet(values: lineChartEntry, label: "Total Distance")
-//            let data = LineChartData()
-//            data.addDataSet(line1)
-//            //create slope
-//            let average = total / Double(allWorkouts.count)
-//            let estimatedNumberOfWorkouts = editShoe.distance / average
-//            var estimateLineChartEntry = [ChartDataEntry]()
-//            estimateLineChartEntry.append(ChartDataEntry(x: 0.0, y: 0.0))
-//            estimateLineChartEntry.append(ChartDataEntry(x: estimatedNumberOfWorkouts, y: editShoe.distance))
-//            let line2 = LineChartDataSet(values: estimateLineChartEntry, label: "Average Usage")
-//            line2.colors = [UIColor.orange]
-//            data.addDataSet(line2)
-//            lineChartView.data = data
-//            lineChartView.chartDescription?.text = "Workouts"
-//            lineChartView.pinchZoomEnabled = true
             
             
         }
