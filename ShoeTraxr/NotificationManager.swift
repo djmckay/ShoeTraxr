@@ -34,9 +34,12 @@ class NotificationManager {
         }
         content.body = "New Workout added for \(typeString) needs shoe assigned."
         content.sound = UNNotificationSound.default()
-        var currentBadge: Int = UIApplication.shared.applicationIconBadgeNumber
-        currentBadge += 1
-        content.badge = currentBadge as NSNumber
+        DispatchQueue.main.async {
+            var currentBadge: Int = UIApplication.shared.applicationIconBadgeNumber
+            currentBadge += 1
+            content.badge = currentBadge as NSNumber
+        }
+        
         // 2
         //        let imageName = "applelogo"
         //        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }

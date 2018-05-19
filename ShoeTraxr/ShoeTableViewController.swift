@@ -62,6 +62,7 @@ public class ShoeTableViewController: UITableViewController {
         
     }
     
+    
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shoeType == .Active {
             return shoes.count

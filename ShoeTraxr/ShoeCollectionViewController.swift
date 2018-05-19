@@ -40,6 +40,15 @@ class ShoeCollectionViewController: ViewController, UICollectionViewDataSource, 
         return .portrait
     }
     
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+        } else {
+            self.shoeCollectionView.reloadData()
+        }
+        
+    }
+        
     override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
 

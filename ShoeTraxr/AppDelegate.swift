@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 import GoogleMobileAds
 import Firebase
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(UserDefaultsManager.incrementAppRuns())
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
-
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         return true
     }
 
@@ -100,5 +101,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // Support for background fetch
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let manager = HealthKitManager()
+        var fetchResults: UIBackgroundFetchResult = .noData
+        manager.readMostRecentRunningWorkOut { (results, error) in
+             manager.readMostRecentWalkingWorkout(completion: { (results2, error) in
+                if let running = results?.first as? HKWorkout {
+                    if nil == ModelController.sharedInstance.getWorkout(hkWorkout: running) {
+                            fetchResults = UIBackgroundFetchResult.newData
+                    }
+                    
+                }
+                if let walking = results2?.first as? HKWorkout {
+                    if nil == ModelController.sharedInstance.getWorkout(hkWorkout: walking) {
+                        fetchResults = UIBackgroundFetchResult.newData
+                    }
+                }
+                completionHandler(fetchResults)
+            })
+        }
+    }
+    
 }
 

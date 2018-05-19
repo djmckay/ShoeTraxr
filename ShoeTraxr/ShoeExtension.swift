@@ -200,6 +200,16 @@ extension Shoe {
         return hkWorkouts
     }
     
+    func getHKUnit() -> HKUnit {
+        if self.distanceUnitType == .Kilometers {
+            return HKUnit.meterUnit(with: HKMetricPrefix.kilo)
+        }
+        else {
+            return  HKUnit.mile()
+            
+        }
+    }
+    
     func addWorkout(selectedWorkout: HKWorkout) -> Workout {
         var workout: Workout!
         if let existingWorkout = ModelController.sharedInstance.getWorkout(hkWorkout: selectedWorkout) {

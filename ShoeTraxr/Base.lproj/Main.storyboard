@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nc8-La-iLq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nc8-La-iLq">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -737,6 +737,48 @@
                                             <outlet property="textField" destination="ryr-6a-fms" id="5rG-vA-hYC"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3De-IF-udV" customClass="TextCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="540" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3De-IF-udV" id="60d-Un-kp3" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Estimated Retirement Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xp9-wx-2J0">
+                                                    <rect key="frame" x="15" y="12" width="213" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="?" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-ON-APN">
+                                                    <rect key="frame" x="236" y="7" width="123" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="22Y-ON-APN" id="4I6-JU-0TR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="0fr-11-oTR">
+                                        <rect key="frame" x="0.0" y="584" width="375" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0fr-11-oTR" id="sV7-SK-f6B" customClass="NumberCell" customModule="ShoeTraxr" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUD-hr-sbN" customClass="CombinedChartView" customModule="Charts">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="233"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -761,7 +803,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="brandProductPickerCell" destination="Ei0-vR-gHt" id="FnF-pA-Ay9"/>
+                        <outlet property="combinedChartView" destination="GUD-hr-sbN" id="1th-dD-Ors"/>
                         <outlet property="defaultPickerCell" destination="I4e-hO-4ef" id="Orz-Y5-VeM"/>
+                        <outlet property="estimatedRetirementDateCell" destination="3De-IF-udV" id="Iv0-Hf-doD"/>
                         <outlet property="numberOfWorkouts" destination="mbd-Ic-6KF" id="54d-Hp-HT1"/>
                         <outlet property="shoeAvatarColorPIckerCell" destination="LfE-hQ-Fax" id="6vm-rb-5oW"/>
                         <outlet property="shoeBrandPickerCell" destination="7XH-i2-9pn" id="C0c-X0-Awt"/>
@@ -934,8 +978,8 @@
         <image name="ico_29" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2SC-93-7VR"/>
-        <segue reference="nN1-31-7p4"/>
+        <segue reference="xPi-dN-KUF"/>
+        <segue reference="Peu-1q-8Ur"/>
         <segue reference="XhZ-fF-Etg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 import Charts
+import HealthKit
 
 public class AddShoeTableViewController: UITableViewController, UITextFieldDelegate, GADInterstitialDelegate {
 
@@ -31,12 +32,15 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var defaultPickerCell: DefaultPickerCell!
     @IBOutlet weak var brandProductPickerCell: ProductPickerCell!
     
+    
+    @IBOutlet weak var estimatedRetirementDateCell: TextCell!
     @IBOutlet weak var shoePercentRemaining: TextCell!
     var editShoe: Shoe!
 
     var interstitial: GADInterstitial!
     
-    @IBOutlet weak var barChartView: BarChartView!
+//    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var combinedChartView: CombinedChartView!
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,6 +83,126 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                 self.defaultPickerCell.detailTextLabel?.text = ModelController.defaultWorkoutTypes[Int(defaultWorkout.type)]
                 self.defaultPickerCell.select()
             }
+            
+            var allHKWorkouts: [HKWorkout] = []
+            ModelController.sharedInstance.getRunningWorkouts { workouts in
+                allHKWorkouts.append(contentsOf: editShoe.getRunningHKWorkouts())
+                
+                ModelController.sharedInstance.getWalkingWorkouts { workouts in
+                    allHKWorkouts.append(contentsOf: editShoe.getWalkingHKWorkouts())
+                    allHKWorkouts.sort(by: { (lhs, rhs) -> Bool in
+                        return lhs.endDate < rhs.endDate
+                    })
+                    var total = 0.0
+                    var lineChartEntries = [ChartDataEntry]()
+                    var bubbleChartEntries = [BubbleChartDataEntry]()
+                    lineChartEntries.append(ChartDataEntry(x: Double(editShoe.dateAdded!.timeIntervalSince1970), y: 0.0, data: editShoe.dateAdded))
+                    //bubbleChartEntries.append(BubbleChartDataEntry(x: Double(editShoe.dateAdded!.timeIntervalSince1970), y: 0.0, size: 0))
+
+                    for workout in allHKWorkouts {
+                        let workoutDistance = workout.totalDistance!.doubleValue(for: editShoe.getHKUnit())
+                        total += workoutDistance
+                        let entry = ChartDataEntry(x: Double(workout.endDate.timeIntervalSince1970), y: total, data: workout.endDate as AnyObject)
+                        lineChartEntries.append(entry)
+//                        let bubbleEntry = BubbleChartDataEntry(x: Double(workout.endDate.timeIntervalSince1970), y: total, size: CGFloat(workoutDistance))
+//                        bubbleChartEntries.append(bubbleEntry)
+                    }
+                    
+                    let line1 = LineChartDataSet(values: lineChartEntries, label: "Total Distance")
+                    line1.label = "Distance"
+                    let lineData = LineChartData()
+                    lineData.addDataSet(line1)
+
+//                    let bubbleChartDataSet = BubbleChartDataSet(values: bubbleChartEntries, label: "Total Distance")
+//                    bubbleChartDataSet.setColors(ChartColorTemplates.vordiplom(), alpha: 1)
+//                    //bubbleChartDataSet.valueTextColor = UIColor.white
+//                    bubbleChartDataSet.drawValuesEnabled = true
+//                    let bubbleData = BubbleChartData(dataSet: bubbleChartDataSet)
+//                    bubbleData.setHighlightCircleWidth(1.5)
+                    
+                    
+                    
+                    //create slope
+                    if let firstPoint = lineChartEntries.first, let lastPoint = lineChartEntries.last {
+                        let slope = (lastPoint.y - firstPoint.y) / (lastPoint.x - firstPoint.x)
+                        let x = editShoe.distance / slope + editShoe.dateAdded!.timeIntervalSince1970
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "ddMMMYY"
+                        DispatchQueue.main.async {
+                            self.estimatedRetirementDateCell.textField.text = dateFormatter.string(from: Date(timeIntervalSince1970: x))
+                        }
+                        var estimateLineChartEntry = [ChartDataEntry]()
+                        estimateLineChartEntry.append(ChartDataEntry(x: Double(editShoe.dateAdded!.timeIntervalSince1970), y: 0.0, data: editShoe.dateAdded))
+                        estimateLineChartEntry.append(ChartDataEntry(x: x, y: editShoe.distance, data: editShoe.dateAdded))
+                        let line2 = LineChartDataSet(values: estimateLineChartEntry, label: "Average Usage")
+                        line2.colors = [UIColor.orange]
+                        lineData.addDataSet(line2)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.combinedChartView.setScaleEnabled(true)
+                        //self.combinedChartView.maxVisibleCount = 200
+                        self.combinedChartView.xAxis.valueFormatter = DateValueFormatter()
+                        self.combinedChartView.chartDescription?.text = "Workouts"
+                        self.combinedChartView.pinchZoomEnabled = true
+//                        let rightAxis = self.combinedChartView.rightAxis
+//                        rightAxis.axisMinimum = 0
+//
+//                        let leftAxis = self.combinedChartView.leftAxis
+//                        leftAxis.axisMinimum = 0
+//
+//                        let xAxis = self.combinedChartView.xAxis
+//                        xAxis.labelPosition = .bothSided
+//                        xAxis.axisMinimum = 0
+//                        xAxis.granularity = 1
+                        let chartData = CombinedChartData()
+                        chartData.lineData = lineData
+                        total = 0.0
+                        bubbleChartEntries = allHKWorkouts.map({ (workout) -> BubbleChartDataEntry in
+                            let workoutDistance = workout.totalDistance!.doubleValue(for: editShoe.getHKUnit())
+                            total += workoutDistance
+                            return BubbleChartDataEntry(x: Double(workout.endDate.timeIntervalSince1970), y: total, size: CGFloat(workoutDistance))
+                        })
+                        let set = BubbleChartDataSet(values: bubbleChartEntries, label: "Total Distance")
+                        set.setColors(ChartColorTemplates.vordiplom(), alpha: 1)
+                        set.valueTextColor = UIColor.blue
+                        set.valueFont = .systemFont(ofSize: 10)
+                        set.drawValuesEnabled = true
+                        chartData.bubbleData = BubbleChartData(dataSet: set)
+                        self.combinedChartView.drawOrder = [DrawOrder.bubble.rawValue, DrawOrder.line.rawValue]
+                        self.combinedChartView.data = chartData
+                    }
+                    
+                }
+            }
+
+//            var lineChartEntry = [ChartDataEntry]()
+//            let allWorkouts = editShoe.workoutData
+//            var total = 0.0
+//            lineChartEntry.append(ChartDataEntry(x: 0.0, y: 0.0))
+//            for (index, workout) in allWorkouts.enumerated() {
+//                total += workout.distance
+//                let entry = ChartDataEntry(x: Double(index + 1), y: total)
+//                lineChartEntry.append(entry)
+//            }
+//            let line1 = LineChartDataSet(values: lineChartEntry, label: "Total Distance")
+//            let data = LineChartData()
+//            data.addDataSet(line1)
+//            //create slope
+//            let average = total / Double(allWorkouts.count)
+//            let estimatedNumberOfWorkouts = editShoe.distance / average
+//            var estimateLineChartEntry = [ChartDataEntry]()
+//            estimateLineChartEntry.append(ChartDataEntry(x: 0.0, y: 0.0))
+//            estimateLineChartEntry.append(ChartDataEntry(x: estimatedNumberOfWorkouts, y: editShoe.distance))
+//            let line2 = LineChartDataSet(values: estimateLineChartEntry, label: "Average Usage")
+//            line2.colors = [UIColor.orange]
+//            data.addDataSet(line2)
+//            lineChartView.data = data
+//            lineChartView.chartDescription?.text = "Workouts"
+//            lineChartView.pinchZoomEnabled = true
+            
+            
         }
         else {
             //adding new shoe don't need to show a few fields.
@@ -90,6 +214,22 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
         self.interstitial = self.createAndLoadAd()
         self.interstitial.delegate = self
         
+    }
+    
+    func generateBubbleData() -> BubbleChartData {
+        let entries = (0..<10).map { (i) -> BubbleChartDataEntry in
+            return BubbleChartDataEntry(x: Date().addingTimeInterval(Double(i) * 10000.0).timeIntervalSince1970,
+                                        y: Double(arc4random_uniform(10) + 105) + 0.5,
+                                        size: CGFloat(arc4random_uniform(10)) + 0.1)
+        }
+        
+        let set = BubbleChartDataSet(values: entries, label: "Bubble DataSet")
+        set.setColors(ChartColorTemplates.vordiplom(), alpha: 1)
+        set.valueTextColor = .white
+        set.valueFont = .systemFont(ofSize: 10)
+        set.drawValuesEnabled = true
+        
+        return BubbleChartData(dataSet: set)
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -244,5 +384,18 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             print("Portrait")
         }
         
+    }
+}
+
+public class DateValueFormatter: NSObject, IAxisValueFormatter {
+    private let dateFormatter = DateFormatter()
+    
+    override init() {
+        super.init()
+        dateFormatter.dateFormat = "ddMMMYY"
+    }
+    
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
     }
 }
