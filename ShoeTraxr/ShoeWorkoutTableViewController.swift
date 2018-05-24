@@ -37,15 +37,17 @@ class ShoeWorkoutTableViewController: WorkoutTableViewController {
             
             self.title = shoe.getTitle()
             
+            distanceUnit = shoe.distanceUnitType
+            self.distanceUnitPicker.selectedSegmentIndex = shoe.distanceUnitType.rawValue
             if shoe.defaultWorkout?.type == Int16(HKWorkoutActivityType.walking.rawValue) {
                 walkingShoeDefaultType = true
             }
             ModelController.sharedInstance.getRunningWorkouts { workouts in
                 self.runningWorkouts = self.shoe.getRunningHKWorkouts()
-
+                print(self.runningWorkouts.count)
                 ModelController.sharedInstance.getWalkingWorkouts { workouts in
                     self.walkingWorkouts = self.shoe.getWalkingHKWorkouts()
-                    
+                    print(self.walkingWorkouts.count)
                     DispatchQueue.main.async(execute: {
                         self.tableView.reloadData()
                     })

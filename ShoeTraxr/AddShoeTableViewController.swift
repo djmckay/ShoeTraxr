@@ -105,12 +105,17 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                         let entry = ChartDataEntry(x: Double(workout.endDate.timeIntervalSince1970), y: total, data: workout.endDate as AnyObject)
                         lineChartEntries.append(entry)
                     }
-                    
+                    lineChartEntries.append(ChartDataEntry(x: Double(Date().timeIntervalSince1970), y: total, data: editShoe.dateAdded))
                     let line1 = LineChartDataSet(values: lineChartEntries, label: "Total Distance")
                     line1.label = "Distance"
                     let lineData = LineChartData()
                     lineData.addDataSet(line1)
-                    
+                    line1.circleRadius = 5.0
+                    line1.circleHoleRadius = 2.5
+                    //line1.setColor(.white)
+                    //line1.setCircleColor(.white)
+                    //line1.highlightColor = .white
+                    //line1.valueColors = [.white]
                     //create slope
                     if let firstPoint = lineChartEntries.first, let lastPoint = lineChartEntries.last {
                         let slope = (lastPoint.y - firstPoint.y) / (lastPoint.x - firstPoint.x)
@@ -125,7 +130,8 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                         estimateLineChartEntry.append(ChartDataEntry(x: x, y: editShoe.distance, data: editShoe.dateAdded))
                         let line2 = LineChartDataSet(values: estimateLineChartEntry, label: "Average Usage")
                         line2.colors = [UIColor.orange]
-                        lineData.addDataSet(line2)
+                        //line2.valueColors = [UIColor.white]
+                        //lineData.addDataSet(line2)
                     }
                     
                     DispatchQueue.main.async {
@@ -146,12 +152,21 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
                         })
                         let set = BubbleChartDataSet(values: bubbleChartEntries, label: "Total Distance")
                         set.setColors(ChartColorTemplates.vordiplom(), alpha: 1)
-                        set.valueTextColor = UIColor.blue
+                        //set.valueTextColor = UIColor.white
                         set.valueFont = .systemFont(ofSize: 10)
                         set.drawValuesEnabled = true
+                        //set.setColor(.white)
+                        //set.highlightColor = .white
                         chartData.bubbleData = BubbleChartData(dataSet: set)
+                        
                         self.combinedChartView.drawOrder = [DrawOrder.bubble.rawValue, DrawOrder.line.rawValue]
                         self.combinedChartView.data = chartData
+                        let orbitBlue = UIColor(colorLiteralRed: 0, green: 0.6062946, blue: 0.752984, alpha: 1)
+                        //self.combinedChartView.backgroundColor = .black
+                        self.combinedChartView.leftAxis.axisMinimum = 0
+                        //self.combinedChartView.leftAxis.labelTextColor = .white
+                        //self.combinedChartView.xAxis.labelTextColor = .white
+                        
                     }
                     
                 }

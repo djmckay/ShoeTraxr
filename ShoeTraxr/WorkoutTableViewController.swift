@@ -16,6 +16,7 @@ class WorkoutTableViewController: UITableViewController {
     var type: HKWorkoutActivityType!
     
     var distanceUnit = DistanceUnit.Miles
+    @IBOutlet weak var distanceUnitPicker: UISegmentedControl!
     var selectedWorkout: HKWorkout!
     
     // MARK: - Formatters

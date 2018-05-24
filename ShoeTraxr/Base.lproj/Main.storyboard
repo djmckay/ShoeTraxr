@@ -968,6 +968,9 @@
                             <outlet property="delegate" destination="fKC-ez-mIt" id="6p6-Ei-XlG"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="distanceUnitPicker" destination="Vie-7w-k5P" id="mwj-eQ-RxE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTo-JF-1zp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
