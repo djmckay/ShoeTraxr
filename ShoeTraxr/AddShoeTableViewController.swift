@@ -62,7 +62,7 @@ public class AddShoeTableViewController: UITableViewController, UITextFieldDeleg
             //self.shoeBrandCell.textField.text = editShoe.brand
             self.shoeBrandPickerCell.detailTextLabel?.text = editShoe.brand
             if editShoe.distanceUnit == "Kilometers" {
-                self.shoeDistanceUnit.isEnabledForSegment(at: DistanceUnit.Kilometers.rawValue)
+                self.shoeDistanceUnit.selectedSegmentIndex = DistanceUnit.Kilometers.rawValue
             }
             self.shoeBrandPickerCell.select()
             self.brandProductPickerCell.detailTextLabel?.text = editShoe.model
